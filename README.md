@@ -20,7 +20,7 @@ The container started from this image will expect following environment variable
 The following bind mounts should be used:
 
 | Container's directory     | Host's directory  | Writable? |
-| ------------------------- | ----------------- | ---------- |
+| ------------------------- | ----------------- | --------- |
 | `/katalon/katalon/source` | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
 | `/katalon/katalon/report` | report directory  | Yes - Katalon Studio will write execution report to this directory. |
 
