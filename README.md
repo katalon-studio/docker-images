@@ -7,10 +7,10 @@ This project aims at providing convenient Docker images for Katalon Studio and o
 * Fully installed and configured testing frameworks and companion tools,
 * Compatible with Cloud and local-based CIs.
 
-At this moment, these images are published:
+At this moment, the following images are available:
 
 * Core: contains Google Chrome, Mozilla Firefox, Xvfb, Java SE Runtime Environment (OpenJDK).
-* Katalon Studio.
+* Katalon Studio: used to create containers that can execute Katalon Studio tests and write reports to host's file system.
 
 # Katalon Studio
 
