@@ -18,6 +18,7 @@ The container started from this image will expect following environment variable
 * `KATALON_OPTS`: all Katalon Studio console mode arguments except `-runMode`, `-reportFolder`, and `-projectPath`. For more details as well as an easy way to generate all arguments please refer to [the documentation](https://docs.katalon.com/display/KD/Console+Mode+Execution).
 
 The following bind mounts should be used:
+
 | Container's directory     | Host's directory  | Writable? |
 | ------------------------- | ----------------- | ---------- |
 | `/katalon/katalon/source` | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
