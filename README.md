@@ -28,9 +28,11 @@ The following bind mounts should be used:
 | `/katalon/katalon/source` | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
 | `/katalon/katalon/report` | report directory  | Yes - Katalon Studio will write execution report to this directory. |
 
-For example, the following script will execute a project at `/home/ubuntu/katalon-test` and write reports to `/katalon/katalon/report`.
+For example, the following script will execute a project at `/home/ubuntu/katalon-test` and write reports to `/katalon/katalon/report`. 
 
     #!/usr/bin/env bash
 
     katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"'
-    docker run --rm -v /home/ubuntu/katalon-test:/katalon/katalon/source:ro -v ~/report:/katalon/katalon/report -e KATALON_OPTS="$katalon_opts" katalonstudio/katalon
+    docker run --rm -v /home/ubuntu/katalon-test:/katalon/katalon/source:ro -v /home/ubuntu/report:/katalon/katalon/report -e KATALON_OPTS="$katalon_opts" katalonstudio/katalon
+
+See detailed in [the sample repository](https://github.com/katalon-studio/docker-images-samples).
