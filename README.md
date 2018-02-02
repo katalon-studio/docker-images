@@ -35,4 +35,4 @@ For example, the following script will execute a project at `/home/ubuntu/katalo
     katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"'
     docker run --rm -v /home/ubuntu/katalon-test:/katalon/katalon/source:ro -v /home/ubuntu/report:/katalon/katalon/report -e KATALON_OPTS="$katalon_opts" katalonstudio/katalon
 
-See detailed in [the sample repository](https://github.com/katalon-studio/docker-images-samples).
+Please visit https://github.com/katalon-studio/docker-images-samples for samples.
