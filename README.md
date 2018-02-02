@@ -1,18 +1,22 @@
 # Introduction
 
-This project aims at providing convenient Docker images for Katalon Studio and other frameworks with following goals:
+This project provides convenient Docker images for Katalon Studio and other Selenium-based testing frameworks, with following requirements:
 
-* Images are easy to use for people with limited Docker knowledge,
+* Images are easy to deploy and use for people with limited Docker knowledge,
 * Up-to-date browser versions (Google Chrome, Mozilla Firefox) from official installation packages,
-* Fully installed and configured testing frameworks and companion tools,
+* Testing frameworks and companion tools are fully installed and configured for common use cases,
 * Compatible with Cloud and local-based CIs.
 
 At this moment, the following images are available:
 
-* Core: contains Google Chrome, Mozilla Firefox, Xvfb, Java SE Runtime Environment (OpenJDK).
-* Katalon Studio: used for creating containers that can execute Katalon Studio tests and write reports to host's file system.
+* Base: contains common software for doing Selenium testing: Google Chrome, Mozilla Firefox, Xvfb, Java SE Runtime Environment (OpenJDK).
+* [Katalon Studio](https://hub.docker.com/r/katalonstudio/katalon/): used for creating containers that can execute Katalon Studio tests and write reports to host's file system.
 
-# Katalon Studio
+Versions of important packages is written in `/katalon/version` (or `$KATALON_VERSION_FILE`).
+
+    cat $KATALON_VERSION_FILE
+
+# Katalon Studio image
 
 The container started from this image will expect following environment variables:
 * `KATALON_OPTS`: all Katalon Studio console mode arguments except `-runMode`, `-reportFolder`, and `-projectPath`. For more details as well as an easy way to generate all arguments please refer to [the documentation](https://docs.katalon.com/display/KD/Console+Mode+Execution).
