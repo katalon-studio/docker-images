@@ -33,7 +33,7 @@ The following bind mounts should be used:
 
 If you need to configure proxy for Katalon Studio please use following parameters:
 
-| Option Name--------- | Value Type | Values                              | Mandatory? |
+| Option Name          | Value Type | Values                              | Mandatory? |
 | -------------------- | ---------- | ----------------------------------- | ---------- |
 | proxy.option         | Fixed      | NO_PROXY, USE_SYSTEM, MANUAL_CONFIG | YES        |
 | proxy.server.type    | Fixed      | HTTP, HTTPS, or SOCKS               | YES        |
