@@ -28,8 +28,8 @@ The following bind mounts should be used:
 
 | Container's directory     | Host's directory  | Writable? |
 | ------------------------- | ----------------- | --------- |
-| `/katalon/katalon/source` | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
-| `/katalon/katalon/report` | report directory  | Yes - Katalon Studio will write execution report to this directory. |
+| /katalon/katalon/source | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
+| /katalon/katalon/report | report directory  | Yes - Katalon Studio will write execution report to this directory. |
 
 If you need to configure proxy for Katalon Studio please use following parameters:
 
@@ -39,7 +39,7 @@ If you need to configure proxy for Katalon Studio please use following parameter
 | proxy.server.type    | Fixed      | HTTP, HTTPS, or SOCKS               | YES        |
 | proxy.server.address | String     | Examples: locahost, 192.168.1.221   | YES        |
 | proxy.server.port    | Integer    | Examples: 8888, 8080                | YES        |
-| proxy.usernam        | String	    | Example: MyProxyUsername            | Optional (YES if your proxy server requires authentication) |
+| proxy.username       | String	    | Example: MyProxyUsername            | Optional (YES if your proxy server requires authentication) |
 | proxy.password       | String     | Example: MyProxyPasswordOptional    | (YES if your proxy server requires authentication) |
 
 These proxy information will be passed to browsers executing the tests.
