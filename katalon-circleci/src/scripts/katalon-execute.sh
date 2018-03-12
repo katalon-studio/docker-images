@@ -18,7 +18,7 @@ touch $project_dir/.classpath || exit
 chmod -R 777 $project_dir
 
 # report
-report_dir=$KATALON_KATALON_CIRCLECI_ROOT_DIR/report
+report_dir=$CIRCLE_TEST_REPORTS/reports
 mkdir -p $report_dir
 chmod -R 777 $report_dir
 
