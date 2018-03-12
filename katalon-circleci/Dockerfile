@@ -1,0 +1,18 @@
+FROM katalon-base
+
+# common environment variables
+ENV KATALON_KATALON_ROOT_DIR=$KATALON_ROOT_DIR/circleci
+
+# copy scripts
+RUN mkdir -p $KATALON_KATALON_ROOT_DIR
+WORKDIR $KATALON_KATALON_ROOT_DIR
+ADD ./src ./
+
+RUN $KATALON_MAKE_EXECUTABLE_SCRIPT .
+
+RUN ./index.sh
+RUN $KATALON_CLEAN_UP_SCRIPT
+
+WORKDIR /
+
+ENTRYPOINT []
