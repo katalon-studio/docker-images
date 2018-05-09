@@ -1,4 +1,4 @@
-FROM katalon
+FROM katalon-katalon
 
 # common environment variables
 ENV KATALON_KATALON_CIRCLECI_ROOT_DIR=$KATALON_ROOT_DIR/katalon-circleci
