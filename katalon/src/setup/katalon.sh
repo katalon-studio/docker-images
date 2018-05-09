@@ -9,7 +9,8 @@ package=Katalon_Studio_Linux_64-$version.tar.gz
 unzipped_directory=./Katalon_Studio_Linux_64-$version
 
 wget -O $package http://download.katalon.com/$version/update/$package
-tar -xvzf $package
+mkdir $unzipped_directory
+tar -xvzf $package -C $unzipped_directory
 ls
 rm $package
 
