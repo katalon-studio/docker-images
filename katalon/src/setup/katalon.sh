@@ -10,7 +10,7 @@ unzipped_directory=./Katalon_Studio_Linux_64-$version
 
 wget -O $package http://download.katalon.com/$version/update/$package
 tar -xvzf $package
-pwd
+ls
 rm $package
 
 mv $unzipped_directory $KATALON_KATALON_INSTALL_DIR
