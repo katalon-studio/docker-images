@@ -15,6 +15,7 @@ ls
 rm $package
 
 mv $unzipped_directory $KATALON_KATALON_INSTALL_DIR
+ls $KATALON_KATALON_INSTALL_DIR
 chmod u+x $KATALON_KATALON_INSTALL_DIR/katalon
 chmod u+x $KATALON_KATALON_INSTALL_DIR/configuration/resources/drivers/chromedriver_linux64/chromedriver
 
