@@ -15,8 +15,8 @@ At this moment, the following images are available:
 Versions of important packages is written in `/katalon/version` (or `$KATALON_VERSION_FILE`).
 
     cat $KATALON_VERSION_FILE
-    Google Chrome 67.0.3396.62
-    Mozilla Firefox 60.0.1
+    Google Chrome 65.0.3325.181 (ChromeDriver 2.36)
+    Mozilla Firefox 59.0.3 (Geckodriver 0.20.1)
     Katalon Studio 5.4.2
 
 # Katalon Studio image
@@ -45,6 +45,7 @@ If you need to configure proxy for Katalon Studio please use following parameter
 These proxy information will be passed to browsers executing the tests.
 
 For example, the following script will execute a project at `/home/ubuntu/katalon-test` and write reports to `/katalon/katalon/report`. Do not forget to put `--config` before the proxy configuration.
+> If during the test, encountering the "chrome is not reachable", or "failed to decode response from marionette", add the `--privileged -v /dev/shm:/dev/shm --shm-size 2048m` into docker run
 
     #!/usr/bin/env bash
 

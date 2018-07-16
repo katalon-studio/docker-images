@@ -9,3 +9,4 @@ apt install -y apt-utils
 apt upgrade -y
 apt dist-upgrade -y
 apt install -y wget
+apt install -y bzip2

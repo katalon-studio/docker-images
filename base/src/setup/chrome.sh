@@ -6,7 +6,9 @@ echo "Install Google Chrome"
 
 package='google-chrome-stable_current_amd64.deb'
 
-wget -O $package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+CHROME=65.0.3325.181
+
+wget -O $package  https://www.slimjet.com/chrome/download-chrome.php?file=lnx%2Fchrome64_$CHROME.deb
 dpkg -i $package || apt -y -f install
 rm $package
 
