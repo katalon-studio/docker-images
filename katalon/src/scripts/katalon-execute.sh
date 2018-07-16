@@ -29,8 +29,17 @@ cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report
 
 $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 cd $tmp_dir
-eval "$cmd"
+eval "$cmd" & pid=$!
+
+wait $pid && retval=0 || retval=$?
 
 cd $current_dir
+
+# grant access
 chmod -R 777 $KATALON_KATALON_ROOT_DIR/project/Reports/
 chmod -R 777 $report_dir
+
+# final exit status
+if [ $retval != 0 ]; then
+    exit $retval;
+fi
