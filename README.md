@@ -52,3 +52,7 @@ For example, the following script will execute a project at `/home/ubuntu/katalo
     docker run --rm -v /home/ubuntu/katalon-test:/katalon/katalon/source:ro -v /home/ubuntu/report:/katalon/katalon/report -e KATALON_OPTS="$katalon_opts" katalonstudio/katalon
 
 Please visit https://github.com/katalon-studio/docker-images-samples for samples.
+
+# Images built by community
+
+We also host image built by community. If you want to add one, please fire a Pull Request. For example, `katalonstudio/katalon:contrib_PR_15` refers to the image built based on #15. We do not maintain or take responsiblity for any consequence made by using these images, so please use them at your own risk.
