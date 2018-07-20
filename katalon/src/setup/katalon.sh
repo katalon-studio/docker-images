@@ -4,11 +4,12 @@ set -xe
 
 echo "Install Katalon"
 
-version=5.4.2
+directory=5.5.0
+version=5.5
 package=Katalon_Studio_Linux_64-$version.tar.gz
-unzipped_directory=Katalon_Studio_Linux-$version
+unzipped_directory=Katalon_Studio_Linux_64-$version
 
-wget -O $package http://download.katalon.com/$version/$package
+wget -O $package http://download.katalon.com/$directory/$package
 tar -xvzf $package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
 rm $package
