@@ -20,7 +20,6 @@ chmod -R 777 $project_dir
 # report
 report_dir=$KATALON_KATALON_CIRCLECI_ROOT_DIR/report/KatalonStudio
 mkdir -p $report_dir
-chmod -R 777 $report_dir
 
 # build command line
 project_file=$(find $project_dir -maxdepth 1 -type f -name "*.prj")
@@ -29,5 +28,7 @@ cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report
 $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 cd $tmp_dir
 eval "$cmd"
+
+chmod -R 777 $report_dir
 
 cd $current_dir
