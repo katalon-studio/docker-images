@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh './build/build.sh'
                 sh './test/project/run_chrome.sh'
+                sh './test/project/run_firefox.sh'
             }
         }
     }
