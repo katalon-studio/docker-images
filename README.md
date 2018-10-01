@@ -17,7 +17,7 @@ Versions of important packages is written in `/katalon/version` (or `$KATALON_VE
     cat $KATALON_VERSION_FILE
     Google Chrome 69.0.3497.81
     Mozilla Firefox 62.0
-    Katalon Studio 5.7.0
+    Katalon Studio 5.7.1
 
 # Katalon Studio image
 
