@@ -3,4 +3,3 @@
 set -xe
 
 setup/katalon.sh
-setup/path.sh
