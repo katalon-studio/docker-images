@@ -4,6 +4,8 @@ set -xe
 
 echo "Starting Katalon Studio"
 
+cat $KATALON_VERSION_FILE
+
 current_dir=$(pwd)
 
 # create tmp directory
