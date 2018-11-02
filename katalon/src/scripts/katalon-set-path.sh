@@ -2,4 +2,4 @@
 
 set -xe
 
-export PATH="/katalon/katalon/scripts/katalon-execute.sh:$PATH"
+export PATH="$KATALON_KATALON_ROOT_DIR/scripts:$PATH"
