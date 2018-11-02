@@ -6,5 +6,5 @@ setup/tools.sh
 setup/chrome.sh
 setup/firefox.sh
 setup/xvfb.sh
-setup/tigervnc.sh
 setup/jre.sh
+setup/circleci-tools.sh
