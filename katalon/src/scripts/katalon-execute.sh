@@ -55,5 +55,6 @@ eval "$cmd"
 #clean up
 
 chmod -R 777 $report_dir
+ls $report_dir
 
 cd $current_dir
