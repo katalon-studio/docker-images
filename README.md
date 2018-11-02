@@ -17,12 +17,27 @@ Versions of important packages is written in `/katalon/version` (or `$KATALON_VE
     cat $KATALON_VERSION_FILE
     Google Chrome 70.0.3538.77
     Mozilla Firefox 63.0
-    Katalon Studio 5.7.1
+    Katalon Studio 5.8.5
 
 # Katalon Studio image
 
+> The usage has been changed since v5.8.5. Visit [here](https://github.com/katalon-studio/docker-images/tree/v5.7.1) for the old usage.
+
 The container started from this image will expect following environment variables:
 * `KATALON_OPTS`: all Katalon Studio console mode arguments except `-runMode`, `-reportFolder`, and `-projectPath`. For more details as well as an easy way to generate all arguments please refer to [the documentation](https://docs.katalon.com/display/KD/Console+Mode+Execution).
+
+
+## Simple usage
+
+Inside the test project directory, execute the following command (`katalon_opts` might be different):
+
+```
+katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"'
+
+docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalon-katalon katalon-execute.sh
+```
+
+## Advanced scenarios
 
 The following bind mounts should be used:
 
