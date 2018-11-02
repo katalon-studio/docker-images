@@ -34,8 +34,10 @@ Inside the test project directory, execute the following command (`katalon_opts`
 ```
 katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"'
 
-docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalon-katalon katalon-execute.sh
+docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalon-katalon katalon-execute
 ```
+
+Reports will be written to the `report` directory.
 
 ## Advanced scenarios
 
