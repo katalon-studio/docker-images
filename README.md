@@ -41,12 +41,19 @@ Reports will be written to the `report` directory.
 
 ## Advanced scenarios
 
-The following bind mounts should be used:
+The following bind mounts can be used:
 
-| Container's directory     | Host's directory  | Writable? |
-| ------------------------- | ----------------- | --------- |
-| /katalon/katalon/source | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
-| /katalon/katalon/report | report directory  | Yes - Katalon Studio will write execution report to this directory. |
+**/katalon/katalon/source**
+
+Host's directory: the test project directory.
+
+Katalon Studio will execute the test project inside this location. If this bind mount is not used, Katalon Studio will look for the test project in the container's current working directory.
+
+**/katalon/katalon/report**
+
+Host's directory: the report directory.
+
+Katalon Studio will write the test reports to this location. If this bind mount is not used, Katalon Studio will write the test reports to the `report` directory inside the test project.
 
 If you need to configure proxy for Katalon Studio please use following parameters:
 
