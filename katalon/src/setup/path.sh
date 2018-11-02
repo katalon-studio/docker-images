@@ -2,7 +2,6 @@
 
 set -xe
 
-echo "Set PATH for Katalon Studio"
+echo "Add katalon-execute.sh to PATH"
 
-cp scripts/katalon-set-path.sh /etc/profile.d
-source /etc/profile.d/katalon-set-path.sh
+echo 'export PATH="$KATALON_KATALON_ROOT_DIR/scripts:$PATH"' >> /etc/profile
