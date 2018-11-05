@@ -26,5 +26,3 @@ case "$1" in
 esac
 
 xhost +
-
-exit 0
