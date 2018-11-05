@@ -8,19 +8,26 @@
 # Short-Description: Start Xvfb
 ### END INIT INFO
 
-_kill_procs() {
-  kill -TERM $xvfb
-}
-
-# Setup a trap to catch SIGTERM and relay it to child processes
-trap _kill_procs SIGTERM
-
-XVFB_WHD=${XVFB_WHD:-1280x720x24}
-
-# Start Xvfb
-Xvfb :99 -ac -screen 0 $XVFB_WHD -nolisten tcp &
-xvfb=$!
-
-export DISPLAY=:99
-
-wait $xvfb
+XVFB=/usr/bin/Xvfb
+XVFBARGS="$DISPLAY -ac -screen 0 1280x800x24 +extension RANDR"
+PIDFILE=/var/xvfb_${DISPLAY:1}.pid
+case "$1" in
+  start)
+    echo -n "Starting virtual X frame buffer: Xvfb"
+    /sbin/start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
+    echo "."
+    ;;
+  stop)
+    echo -n "Stopping virtual X frame buffer: Xvfb"
+    /sbin/start-stop-daemon --stop --quiet --pidfile $PIDFILE
+    echo "."
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  *)
+  echo "Usage: /etc/init.d/xvfb {start|stop|restart}"
+  exit 1
+esac
+exit 0
