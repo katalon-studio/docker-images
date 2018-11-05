@@ -30,9 +30,8 @@ touch $project_dir/.classpath || exit
 chmod -R 777 $project_dir
 
 # create report directory
-if [ -d "$KATALON_KATALON_ROOT_DIR/report" ]; then
-  report_dir=$KATALON_KATALON_ROOT_DIR/report
-else
+report_dir=$KATALON_KATALON_ROOT_DIR/report
+if ! [ -d "$report_dir" ]; then
   report_dir=$source_dir/report
 fi
 mkdir -p $report_dir
@@ -40,11 +39,7 @@ mkdir -p $report_dir
 # build command line
 project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 
-if [ -z "$report_dir" ]; then
-  cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $KATALON_OPTS"
-else
-  cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -projectPath=$project_file $KATALON_OPTS"
-fi
+cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $KATALON_OPTS"
 
 # execute
 $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
