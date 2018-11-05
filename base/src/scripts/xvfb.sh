@@ -4,7 +4,7 @@ set -xe
 
 XVFB=/usr/bin/Xvfb
 XVFBARGS="$DISPLAY -screen 0 $DISPLAY_CONFIGURATION -fbdir /var/run -ac"
-PIDFILE=/var/run/xvfb.pid
+PIDFILE=/tmp/xvfb.pid
 case "$1" in
   start)
     echo -n "Starting virtual X frame buffer $DISPLAY $DISPLAY_CONFIGURATION"

@@ -16,6 +16,5 @@ rm $package
 
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$unzipped_directory $KATALON_KATALON_INSTALL_DIR
 chmod u+x $KATALON_KATALON_INSTALL_DIR/katalon
-chmod u+x $KATALON_KATALON_INSTALL_DIR/configuration/resources/drivers/chromedriver_linux64/chromedriver
 
 echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
