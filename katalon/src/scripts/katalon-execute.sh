@@ -18,7 +18,7 @@ chmod -R 777 $workspace_dir
 # source directory
 source_dir=$KATALON_KATALON_ROOT_DIR/source
 if ! [ -d "$source_dir" ]; then
-  source_dir=.
+  source_dir=$(pwd)
 fi
 
 # project source code
