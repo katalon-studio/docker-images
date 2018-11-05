@@ -2,6 +2,8 @@
 
 set -xe
 
+$KATALON_BASE_ROOT_DIR/scripts/xvfb.sh
+
 echo "Starting Katalon Studio"
 
 cat $KATALON_VERSION_FILE
@@ -41,7 +43,6 @@ project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 
 cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $KATALON_OPTS"
 
-export DISPLAY=:99
 cd $workspace_dir
 eval "$cmd"
 
