@@ -9,7 +9,7 @@ cat $KATALON_VERSION_FILE
 current_dir=$(pwd)
 
 # create tmp directory
-tmp_dir=$KATALON_KATALON_ROOT_DIR/tmp
+tmp_dir=/tmp/katalon_execute
 mkdir -p $tmp_dir
 chmod -R 777 $tmp_dir
 
