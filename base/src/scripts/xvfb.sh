@@ -30,4 +30,6 @@ case "$1" in
   echo "Usage: /etc/init.d/xvfb {start|stop|restart}"
   exit 1
 esac
+
+xhost +
 exit 0
