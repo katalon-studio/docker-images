@@ -15,7 +15,7 @@ chmod -R 777 $tmp_dir
 
 # source directory
 source_dir=$KATALON_KATALON_ROOT_DIR/source
-if [ -d "$source_dir" ]; then
+if ! [ -d "$source_dir" ]; then
   source_dir=.
 fi
 
