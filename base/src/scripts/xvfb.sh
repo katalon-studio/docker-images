@@ -6,7 +6,7 @@ echo "Starting X"
 
 XVFB=/usr/bin/Xvfb
 XVFBARGS="$DISPLAY -screen 0 $DISPLAY_CONFIGURATION -fbdir /var/run -ac"
-PIDFILE=/var/run/xvfb.pid
+PIDFILE=/tmp/xvfb.pid
 case "$1" in
   start)
     start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
