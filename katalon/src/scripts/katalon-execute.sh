@@ -9,9 +9,9 @@ cat $KATALON_VERSION_FILE
 current_dir=$(pwd)
 
 # create tmp directory
-tmp_dir=/tmp/katalon_execute
-mkdir -p $tmp_dir
-chmod -R 777 $tmp_dir
+workspace_dir=/tmp/katalon_execute/workspace
+mkdir -p $workspace_dir
+chmod -R 777 $workspace_dir
 
 # source directory
 source_dir=$KATALON_KATALON_ROOT_DIR/source
@@ -20,7 +20,7 @@ if ! [ -d "$source_dir" ]; then
 fi
 
 # project source code
-project_dir=$KATALON_KATALON_ROOT_DIR/project
+project_dir=/tmp/katalon_execute/project
 mkdir -p $project_dir
 
 cp -r $source_dir $project_dir
@@ -43,7 +43,7 @@ cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report
 
 # execute
 $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
-cd $tmp_dir
+cd $workspace_dir
 eval "$cmd"
 
 #clean up
