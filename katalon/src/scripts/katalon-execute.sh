@@ -15,16 +15,15 @@ chmod -R 777 $tmp_dir
 
 # source directory
 source_dir=$KATALON_KATALON_ROOT_DIR/source
+if [ -d "$source_dir" ]; then
+  source_dir=.
+fi
 
 # project source code
 project_dir=$KATALON_KATALON_ROOT_DIR/project
 mkdir -p $project_dir
 
-if [ -d "$source_dir" ]; then
-  cp -r $KATALON_KATALON_ROOT_DIR/source/. $project_dir
-else
-  cp -r . $project_dir
-fi
+cp -r $source_dir $project_dir
 
 # create .classpath if not exist
 touch $project_dir/.classpath || exit
