@@ -2,7 +2,7 @@
 
 set -xe
 
-$KATALON_BASE_ROOT_DIR/scripts/xvfb.sh
+$KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 
 echo "Starting Katalon Studio"
 
