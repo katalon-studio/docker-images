@@ -4,6 +4,7 @@ pipeline {
         stage ("Build") {
             steps {
                 sh 'chmod u+x ./build/*.sh'
+                sh './build/clean.sh'
                 sh './build/build.sh'
                 sh './build/tag.sh'
                 withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
