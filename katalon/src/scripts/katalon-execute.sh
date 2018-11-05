@@ -44,7 +44,6 @@ cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report
 # execute
 $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 
-export DISPLAY=:99
 cd $workspace_dir
 eval "$cmd"
 
