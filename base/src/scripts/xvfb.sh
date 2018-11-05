@@ -10,6 +10,7 @@ PIDFILE=/var/run/xvfb.pid
 case "$1" in
   start)
     start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
+    while [ ! -e /tmp/.X11-unix/X99 ]; do sleep 0.1; done
     xhost +
     echo "."
     ;;
