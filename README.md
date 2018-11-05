@@ -30,10 +30,10 @@ Inside the test project directory, execute the following command:
 ```
 katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"'
 
-docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute
+docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh
 ```
 
-**`katalon-execute`**
+**`katalon-execute.sh`**
 
 This command will start Katalon Studio and other necessary components.
 
@@ -43,7 +43,7 @@ All [Katalon Studio console mode arguments](https://docs.katalon.com/display/KD/
 
 **`/katalon/katalon/source`**
 
-`katalon-execute` will look for the test project inside this directory.
+`katalon-execute.sh` will look for the test project inside this directory.
 
 **Reports**
 
@@ -51,10 +51,10 @@ Reports will be written to the `report` directory.
 
 ## Jenkins
 
-If this bind mount is not used, `katalon-execute` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument). The current working directory is often defined automatically by some CI tools include Jenkins (Pipeline mode).
+If this bind mount is not used, `katalon-execute.sh` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument). The current working directory is often defined automatically by some CI tools include Jenkins (Pipeline mode).
 
 ```
-docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute
+docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute.sh
 ```
 
 ## CircleCI
@@ -87,7 +87,7 @@ These proxy information will be passed to browsers executing the tests.
 
 katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888'
 
-docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute
+docker run -t --rm -e KATALON_OPTS="$katalon_opts" -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh
 ```
 
 Please visit https://github.com/katalon-studio/docker-images-samples for samples.
