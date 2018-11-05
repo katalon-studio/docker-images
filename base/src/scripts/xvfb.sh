@@ -1,4 +1,12 @@
 #!/bin/bash
+### BEGIN INIT INFO
+# Provides:          katalon
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Start Xvfb
+### END INIT INFO
 
 _kill_procs() {
   kill -TERM $xvfb
