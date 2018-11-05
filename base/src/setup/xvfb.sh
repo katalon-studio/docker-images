@@ -5,4 +5,3 @@ set -xe
 echo "Install Xvfb"
 
 apt install -y xvfb
-xhost +
