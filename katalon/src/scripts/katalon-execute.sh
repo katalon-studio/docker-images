@@ -41,7 +41,16 @@ mkdir -p $report_dir
 # build command line
 project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 
-cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file '$*'"
+for x in "${@}" ; do
+  # try to figure out if quoting was required for the $x
+  if [[ "$x" != "${x%[[:space:]]*}" ]]; then
+    x="\""$x"\""
+  fi
+  echo $x
+  _args=$_args" "$x
+done
+
+cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args"
 
 cd $workspace_dir
 eval "$cmd"
