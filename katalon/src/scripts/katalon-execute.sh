@@ -2,8 +2,6 @@
 
 set -xe
 
-$KATALON_BASE_ROOT_DIR/scripts/xvfb.sh
-
 echo "Starting Katalon Studio"
 
 cat $KATALON_VERSION_FILE
@@ -52,7 +50,7 @@ done
 
 cd $workspace_dir
 
-$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args
+sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" $KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args
 
 #clean up
 
