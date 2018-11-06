@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -xe
+# Skip set -xe to save the reports
 
 echo "Starting Katalon Studio"
 
@@ -50,7 +50,8 @@ sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
 
 #clean up
 
-chmod -R 777 $report_dir
+sudo chown -R $(id -u):$(id -g) $report_dir
+sudo chmod -R 777 $report_dir
 ls $report_dir
 
 cd $current_dir
