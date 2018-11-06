@@ -39,15 +39,14 @@ mkdir -p $report_dir
 # build command line
 project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 
-for x in "${@}" ; do
-  # try to figure out if quoting was required for the $x
-  x="'$x'"
-  _args+=" $x"
-done
+args=("$KATALON_KATALON_INSTALL_DIR/katalon" "$@")
+args+=("-runMode=console")
+args+=("-reportFolder=$report_dir")
+args+=("-projectPath=$project_file")
 
 cd $workspace_dir
 
-sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" $KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args
+sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
 
 #clean up
 
