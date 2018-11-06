@@ -2,7 +2,7 @@
 
 set -xe
 
-sudo $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
+sudo -E $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 
 echo "Starting Katalon Studio"
 
