@@ -15,21 +15,51 @@ At this moment, the following images are available:
 Versions of important packages is written in `/katalon/version` (or `$KATALON_VERSION_FILE`).
 
     cat $KATALON_VERSION_FILE
-    Google Chrome 69.0.3497.100
-    Mozilla Firefox 62.0
-    Katalon Studio 5.7.1
+    Google Chrome 70.0.3538.77
+    Mozilla Firefox 63.0
+    Katalon Studio 5.8.5
 
 # Katalon Studio image
 
-The container started from this image will expect following environment variables:
-* `KATALON_OPTS`: all Katalon Studio console mode arguments except `-runMode`, `-reportFolder`, and `-projectPath`. For more details as well as an easy way to generate all arguments please refer to [the documentation](https://docs.katalon.com/display/KD/Console+Mode+Execution).
+> The usage has been simplified since v5.8.5. Visit [here](https://github.com/katalon-studio/docker-images/tree/v5.7.1) for the old usage.
 
-The following bind mounts should be used:
+## Simple usage
 
-| Container's directory     | Host's directory  | Writable? |
-| ------------------------- | ----------------- | --------- |
-| /katalon/katalon/source | project directory | No - the source code will be copied to a temporary directory inside the container, therefore no write access is needed. |
-| /katalon/katalon/report | report directory  | Yes - Katalon Studio will write execution report to this directory. |
+Inside the test project directory, execute the following command:
+
+```
+docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"
+```
+
+**`katalon-execute.sh`**
+
+This command will start Katalon Studio and other necessary components. All [Katalon Studio console mode arguments](https://docs.katalon.com/display/KD/Console+Mode+Execution) are accepted *except* `-runMode`, `-reportFolder`, and `-projectPath`.
+
+**`/katalon/katalon/source`**
+
+`katalon-execute.sh` will look for the test project inside this directory.
+
+**Reports**
+
+Reports will be written to the `report` directory.
+
+## Jenkins
+
+If this bind mount is not used, `katalon-execute.sh` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument). The current working directory is often defined automatically by some CI tools include Jenkins (Pipeline mode).
+
+```
+docker run -t --rm -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"
+```
+
+## CircleCI
+
+This image is compatible with CircleCI 2.0.
+
+## Customize the report directory
+
+If bind mount `/katalon/katalon/report` is used, the test reports will be written to that location.
+
+## Proxy
 
 If you need to configure proxy for Katalon Studio please use following parameters:
 
@@ -44,12 +74,11 @@ If you need to configure proxy for Katalon Studio please use following parameter
 
 These proxy information will be passed to browsers executing the tests.
 
-For example, the following script will execute a project at `/home/ubuntu/katalon-test` and write reports to `/katalon/katalon/report`. Do not forget to put `--config` before the proxy configuration.
+*Do not forget to put `--config` before the proxy configuration.* Example:
 
-    #!/usr/bin/env bash
-
-    katalon_opts='-browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888'
-    docker run --rm -v /home/ubuntu/katalon-test:/katalon/katalon/source:ro -v /home/ubuntu/report:/katalon/katalon/report -e KATALON_OPTS="$katalon_opts" katalonstudio/katalon
+```
+docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888
+```
 
 Please visit https://github.com/katalon-studio/docker-images-samples for samples.
 

@@ -4,8 +4,8 @@ set -xe
 
 echo "Install Katalon"
 
-directory=5.7.1
-version=5.7.1
+directory=5.8.5
+version=5.8.5
 package=Katalon_Studio_Linux_64-$version.tar.gz
 unzipped_directory=Katalon_Studio_Linux_64-$version
 
@@ -16,6 +16,5 @@ rm $package
 
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$unzipped_directory $KATALON_KATALON_INSTALL_DIR
 chmod u+x $KATALON_KATALON_INSTALL_DIR/katalon
-chmod u+x $KATALON_KATALON_INSTALL_DIR/configuration/resources/drivers/chromedriver_linux64/chromedriver
 
 echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
