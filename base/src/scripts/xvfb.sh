@@ -4,25 +4,6 @@ set -xe
 
 echo "Starting X"
 
-XVFB=/usr/bin/Xvfb
-XVFBARGS="$DISPLAY -screen 0 $DISPLAY_CONFIGURATION -fbdir /var/run -ac"
-PIDFILE=/tmp/xvfb.pid
-case "$1" in
-  start)
-    start-stop-daemon --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB -- $XVFBARGS
-    while [ ! -e /tmp/.X11-unix/X99 ]; do sleep 0.1; done
-    xhost +
-    echo "."
-    ;;
-  stop)
-    start-stop-daemon --stop --quiet --pidfile $PIDFILE
-    echo "."
-    ;;
-  restart)
-    $0 stop
-    $0 start
-    ;;
-  *)
-    echo "Usage: xvfb {start|stop|restart}"
-    exit 1
-esac
+sudo -E /usr/bin/Xvfb $DISPLAY $DISPLAY_CONFIGURATION &
+sudo -E while [ ! -e /tmp/.X11-unix/X99 ]; do sleep 0.1; done
+sudo -E xhost +
