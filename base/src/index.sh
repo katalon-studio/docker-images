@@ -8,3 +8,4 @@ setup/firefox.sh
 setup/xvfb.sh
 setup/jre.sh
 setup/circleci-tools.sh
+setup/sudo.sh

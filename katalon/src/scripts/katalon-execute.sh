@@ -2,7 +2,7 @@
 
 set -xe
 
-$KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
+sudo $KATALON_BASE_ROOT_DIR/scripts/xvfb.sh start
 
 echo "Starting Katalon Studio"
 
@@ -50,10 +50,9 @@ for x in "${@}" ; do
   _args=$_args" "$x
 done
 
-cmd="$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args"
-
 cd $workspace_dir
-eval "$cmd"
+
+$KATALON_KATALON_INSTALL_DIR/katalon -runMode=console -reportFolder=$report_dir -projectPath=$project_file $_args
 
 #clean up
 
