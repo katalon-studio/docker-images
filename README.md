@@ -43,6 +43,15 @@ This command will start Katalon Studio and other necessary components. All [Kata
 
 Reports will be written to the `report` directory.
 
+## Display configuration
+
+This image makes use of Xvfb with the following configurations which are configurable with `docker run`:
+
+```
+ENV DISPLAY=:99
+ENV DISPLAY_CONFIGURATION=1024x768x24
+```
+
 ## Jenkins
 
 If this bind mount is not used, `katalon-execute.sh` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument). The current working directory is often defined automatically by some CI tools include Jenkins (Pipeline mode).
