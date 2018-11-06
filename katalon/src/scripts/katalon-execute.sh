@@ -42,7 +42,7 @@ project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 for x in "${@}" ; do
   # try to figure out if quoting was required for the $x
   x="\"$x\""
-  _args=$_args $x
+  _args+=$x
 done
 
 cd $workspace_dir
