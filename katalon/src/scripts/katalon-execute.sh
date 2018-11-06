@@ -41,11 +41,8 @@ project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
 
 for x in "${@}" ; do
   # try to figure out if quoting was required for the $x
-  if [[ "$x" != "${x%[[:space:]]*}" ]]; then
-    x="\""$x"\""
-  fi
-  echo $x
-  _args=$_args" "$x
+  x="\"$x\""
+  _args=$_args $x
 done
 
 cd $workspace_dir
