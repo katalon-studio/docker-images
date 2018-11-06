@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Skip set -xe to save the reports
+set -x
+# Skip set -e to save the reports
 
 echo "Starting Katalon Studio"
 
@@ -47,6 +48,7 @@ args+=("-projectPath=$project_file")
 cd $workspace_dir
 
 sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
+ret_code=$?
 
 #clean up
 
@@ -55,3 +57,5 @@ sudo chmod -R 777 $report_dir
 ls $report_dir
 
 cd $current_dir
+
+exit $ret_code
