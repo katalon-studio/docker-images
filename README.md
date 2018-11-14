@@ -23,6 +23,10 @@ Versions of important packages is written in `/katalon/version` (or `$KATALON_VE
 
 > The usage has been simplified since v5.8.5. Visit [here](https://github.com/katalon-studio/docker-images/tree/v5.7.1) for the old usage.
 
+## Sample configurations
+
+Please visit https://github.com/katalon-studio-samples/ci-samples for a sample project with configurations for some CI tools.
+
 ## Simple usage
 
 Inside the test project directory, execute the following command:
@@ -88,8 +92,6 @@ These proxy information will be passed to browsers executing the tests.
 ```
 docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888
 ```
-
-Please visit https://github.com/katalon-studio/docker-images-samples for samples.
 
 # Images built by community
 
