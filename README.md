@@ -43,6 +43,12 @@ This command will start Katalon Studio and other necessary components. All [Kata
 
 `katalon-execute.sh` will look for the test project inside this directory.
 
+If this bind mount is not used, `katalon-execute.sh` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument)..
+
+```
+docker run -t --rm -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"
+```
+
 **Reports**
 
 Reports will be written to the `report` directory.
@@ -58,15 +64,11 @@ ENV DISPLAY_CONFIGURATION=1024x768x24
 
 ## Jenkins
 
-If this bind mount is not used, `katalon-execute.sh` will look for the test project inside the current working directory (defined with `docker run`'s `-w` argument). The current working directory is often defined automatically by some CI tools include Jenkins (Pipeline mode).
-
-```
-docker run -t --rm -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest"
-```
+Please see [the sample `Jenkinsfile`](https://github.com/katalon-studio-samples/ci-samples/blob/master/Jenkinsfile).
 
 ## CircleCI
 
-This image is compatible with CircleCI 2.0.
+This image is compatible with CircleCI 2.0. Please see [the sample `config.yml`](https://github.com/katalon-studio-samples/ci-samples/blob/master/.circleci/config.yml).
 
 ## Customize the report directory
 

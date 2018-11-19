@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-set -xe
+set -x
 
 docker rmi katalonstudio/katalon:test
