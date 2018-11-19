@@ -34,6 +34,8 @@ chmod -R 777 $project_dir
 rm -rf $project_dir/bin
 rm -rf $project_dir/Libs
 
+ls -la $project_dir
+
 # create report directory
 report_dir=$KATALON_KATALON_ROOT_DIR/report
 if ! [ -d "$report_dir" ]; then
