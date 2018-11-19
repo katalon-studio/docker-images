@@ -47,13 +47,13 @@ args+=("-projectPath=$project_file")
 
 cd $workspace_dir
 
-sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
+xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
 ret_code=$?
 
 #clean up
 
-sudo chown -R $(id -u):$(id -g) $report_dir
-sudo chmod -R 777 $report_dir
+chown -R $(id -u):$(id -g) $report_dir
+chmod -R 777 $report_dir
 ls $report_dir
 
 cd $current_dir
