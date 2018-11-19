@@ -24,7 +24,7 @@ fi
 project_dir=/tmp/katalon_execute/project
 mkdir -p $project_dir
 
-cp -r $source_dir $project_dir
+cp -r $source_dir/* $project_dir
 
 # create .classpath if not exist
 touch $project_dir/.classpath || exit
