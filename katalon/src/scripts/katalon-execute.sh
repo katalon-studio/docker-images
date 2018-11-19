@@ -30,6 +30,10 @@ cp -r $source_dir $project_dir
 touch $project_dir/.classpath || exit
 chmod -R 777 $project_dir
 
+# remove generated file
+rm -rf $project_dir/bin
+rm -rf $project_dir/Libs
+
 # create report directory
 report_dir=$KATALON_KATALON_ROOT_DIR/report
 if ! [ -d "$report_dir" ]; then
@@ -38,12 +42,10 @@ fi
 mkdir -p $report_dir
 
 # build command line
-project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
-
 args=("$KATALON_KATALON_INSTALL_DIR/katalon" "$@")
 args+=("-runMode=console")
 args+=("-reportFolder=$report_dir")
-args+=("-projectPath=$project_file")
+args+=("-projectPath=$project_dir")
 
 cd $workspace_dir
 
