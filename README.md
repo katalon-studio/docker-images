@@ -53,6 +53,10 @@ docker run -t --rm -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon 
 
 Reports will be written to the `report` directory.
 
+> **Docker Toolbox for Windows**
+>
+> Please make sure directories have been shared and configured correctly https://docs.docker.com/toolbox/toolbox_install_windows/#optional-add-shared-directories.
+
 ### Display configuration
 
 This image makes use of Xvfb with the following configurations which are configurable with `docker run`:
