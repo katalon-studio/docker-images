@@ -12,9 +12,9 @@ pipeline {
                 }
 
                 sh 'chmod u+x ./test/project/*.sh'
-                sh './test/project/run_chrome.sh'
-                sh './test/project/run_chrome_advanced.sh'
-                sh './test/project/run_firefox.sh'
+                sh 'cd ./test/project && ./run_chrome.sh'
+                sh 'cd ./test/project && ./run_chrome_advanced.sh'
+                sh 'cd ./test/project && ./run_firefox.sh'
             }
         }
     }

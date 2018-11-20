@@ -2,4 +2,4 @@
 
 set -xe
 
-docker rmi katalonstudio/katalon:test
+docker rmi katalonstudio/katalon:test || echo 'No image to delete.'

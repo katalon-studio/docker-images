@@ -24,11 +24,17 @@ fi
 project_dir=/tmp/katalon_execute/project
 mkdir -p $project_dir
 
-cp -r $source_dir $project_dir
+cp -r $source_dir/* $project_dir
 
 # create .classpath if not exist
 touch $project_dir/.classpath || exit
 chmod -R 777 $project_dir
+
+# remove generated file
+rm -rf $project_dir/bin
+rm -rf $project_dir/Libs
+
+ls -la $project_dir
 
 # create report directory
 report_dir=$KATALON_KATALON_ROOT_DIR/report
@@ -38,22 +44,20 @@ fi
 mkdir -p $report_dir
 
 # build command line
-project_file=$(find $project_dir -maxdepth 5 -type f -name "*.prj" -print -quit)
-
 args=("$KATALON_KATALON_INSTALL_DIR/katalon" "$@")
 args+=("-runMode=console")
 args+=("-reportFolder=$report_dir")
-args+=("-projectPath=$project_file")
+args+=("-projectPath=$project_dir")
 
 cd $workspace_dir
 
-sudo xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
+xvfb-run -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
 ret_code=$?
 
 #clean up
 
-sudo chown -R $(id -u):$(id -g) $report_dir
-sudo chmod -R 777 $report_dir
+chown -R $(id -u):$(id -g) $report_dir
+chmod -R 777 $report_dir
 ls $report_dir
 
 cd $current_dir
