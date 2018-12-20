@@ -4,7 +4,6 @@
    <name>TS_RegressionTest</name>
    <tag></tag>
    <isRerun>false</isRerun>
-   <lastRun>2018-11-09T11:30:45</lastRun>
    <mailRecipient></mailRecipient>
    <numberOfRerun>0</numberOfRerun>
    <pageLoadTimeout>30</pageLoadTimeout>
@@ -34,5 +33,11 @@
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Main Test Cases/TC2_Verify Successful Appointment</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>b0769902-0d89-4fd8-927b-15dcf1ff35da</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Main Test Cases/TC3_Test Fonts</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>
