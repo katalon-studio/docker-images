@@ -4,4 +4,4 @@ set -xe
 
 echo "Install JRE"
 
-apt -y --no-install-recommends install default-jre
+apt -y install default-jre

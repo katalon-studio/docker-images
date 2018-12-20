@@ -5,5 +5,5 @@ set -xe
 echo "Install tools"
 
 apt update
-apt -y --no-install-recommends install apt-utils
-apt -y --no-install-recommends install wget
+apt -y install apt-utils
+apt -y install wget

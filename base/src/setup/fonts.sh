@@ -4,7 +4,7 @@ set -xe
 
 echo "Install fonts"
 
-apt -y --no-install-recommends install \
+apt -y install \
     libfontconfig \
     libfreetype6 \
     xfonts-cyrillic \
