@@ -13,4 +13,4 @@ apt -y install \
     fonts-ipafont-gothic \
     fonts-wqy-zenhei \
     fonts-tlwg-loma-otf \
-    ttf-ubuntu-font-family \
+    ttf-ubuntu-font-family
