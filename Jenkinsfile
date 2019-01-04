@@ -15,6 +15,7 @@ pipeline {
                 sh 'cd ./test/project && ./run_chrome.sh'
                 sh 'cd ./test/project && ./run_chrome_advanced.sh'
                 sh 'cd ./test/project && ./run_firefox.sh'
+                archiveArtifacts '**/*.avi'
             }
         }
     }
