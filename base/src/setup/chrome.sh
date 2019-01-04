@@ -6,7 +6,7 @@ echo "Install Google Chrome"
 
 package='google-chrome-stable_current_amd64.deb'
 
-wget -O --no-check-certificate $package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -O $package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i $package || apt -y -f install
 rm $package
 
