@@ -4,4 +4,4 @@ set -xe
 
 echo "Install CircleCI tools"
 
-apt install -y git ssh tar gzip ca-certificates
+apt -y install git ssh tar gzip ca-certificates

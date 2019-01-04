@@ -4,9 +4,9 @@ set -xe
 
 echo "Install Mozilla Firefox"
 
-apt install -y firefox
+apt -y install firefox
 
 # Install 'pulseaudio' package to support WebRTC audio streams
-apt install -y pulseaudio
+apt -y install pulseaudio
 
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
