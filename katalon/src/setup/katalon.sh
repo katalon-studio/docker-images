@@ -9,7 +9,7 @@ directory=$version
 package=Katalon_Studio_Linux_64-$version.tar.gz
 unzipped_directory=Katalon_Studio_Linux_64-$version
 
-wget -O $package http://download.katalon.com/$directory/$package
+wget -O $package https://github.com/katalon-studio/katalon-studio/releases/download/v$version/Katalon_Studio_Linux_64-$version.tar.gz
 tar -xvzf $package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
 rm $package
