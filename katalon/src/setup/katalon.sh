@@ -17,4 +17,6 @@ rm $package
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$unzipped_directory $KATALON_KATALON_INSTALL_DIR
 chmod u+x $KATALON_KATALON_INSTALL_DIR/katalon
 
+chmod -R u+x /opt/katalonstudio/configuration/resources/drivers
+
 echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
