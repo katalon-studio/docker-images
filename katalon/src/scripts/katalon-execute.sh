@@ -29,7 +29,7 @@ cp -r $source_dir/* $project_dir
 # download dependencies
 cd $project_dir
 if [ -f "$project_dir/build.gradle" ]; then
-  gradle katalonCopyDependencies
+  gradle --console=plain katalonCopyDependencies
 fi
 cd $current_dir
 
