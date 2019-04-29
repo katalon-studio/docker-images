@@ -26,6 +26,13 @@ mkdir -p $project_dir
 
 cp -r $source_dir/* $project_dir
 
+# download dependencies
+cd $project_dir
+if [ -f "$project_dir/build.gradle" ]; then
+  gradle katalonCopyDependencies
+fi
+cd $current_dir
+
 # create .classpath if not exist
 touch $project_dir/.classpath || exit
 chmod -R 777 $project_dir
