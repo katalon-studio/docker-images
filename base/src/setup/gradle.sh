@@ -15,3 +15,5 @@ rm $package
 
 mv $unzipped_package $GRADLE_HOME
 ls $GRADLE_HOME
+
+mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
