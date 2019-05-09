@@ -25,9 +25,9 @@ pipeline {
                         ./build/tag.sh $KS_VERSION
 
                         chmod u+x ./test/project/*.sh
-                        cd ./test/project && ./run_chrome.sh $KS_VERSION
-                        cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION
-                        cd ./test/project && ./run_firefox.sh $KS_VERSION
+                        cd ./test/project && ./run_chrome.sh $KS_VERSION && cd ..
+                        cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION && cd ..
+                        cd ./test/project && ./run_firefox.sh $KS_VERSION && cd ..
                     '''
 
                     archiveArtifacts '**/*.avi'
