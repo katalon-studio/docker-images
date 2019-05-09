@@ -2,4 +2,6 @@
 
 set -xe
 
-docker tag katalon-katalon katalonstudio/katalon:test
+ksversion = $1
+
+docker tag katalon-katalon katalonstudio/katalon:$ksversion

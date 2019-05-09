@@ -2,4 +2,6 @@
 
 set -xe
 
-docker push katalonstudio/katalon:test
+ksversion = $1
+
+docker push katalonstudio/katalon:$ksversion
