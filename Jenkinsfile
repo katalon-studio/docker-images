@@ -8,7 +8,6 @@ pipeline {
 
     stages {
 
-        lock('katalon-docker-images') {
 
             stage ("DO NOT DISABLE THIS STAGE") {
                 steps {
@@ -19,26 +18,28 @@ pipeline {
                 }
             }
             stage ("Build") {
-                steps {
-                    sh '''
-                        chmod u+x ./build/*.sh
-                        ./build/clean.sh
-                        ./build/build.sh $KS_VERSION
-                        ./build/tag.sh $KS_VERSION
-
-                        chmod u+x ./test/project/*.sh
-                        cd ./test/project && ./run_chrome.sh $KS_VERSION
-                        cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION
-                        cd ./test/project && ./run_firefox.sh $KS_VERSION
-                    '''
-
-                    archiveArtifacts '**/*.avi'
-
-                    withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
+                lock('katalon-docker-images') {
+                    steps {
                         sh '''
+                            chmod u+x ./build/*.sh
+                            ./build/clean.sh
+                            ./build/build.sh $KS_VERSION
                             ./build/tag.sh $KS_VERSION
-                            ./build/push.sh $KS_VERSION
+
+                            chmod u+x ./test/project/*.sh
+                            cd ./test/project && ./run_chrome.sh $KS_VERSION
+                            cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION
+                            cd ./test/project && ./run_firefox.sh $KS_VERSION
                         '''
+
+                        archiveArtifacts '**/*.avi'
+
+                        withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
+                            sh '''
+                                ./build/tag.sh $KS_VERSION
+                                ./build/push.sh $KS_VERSION
+                            '''
+                        }
                     }
                 }
             }
