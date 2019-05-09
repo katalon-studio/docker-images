@@ -36,6 +36,8 @@ pipeline {
                         sh '''
                             ./build/tag.sh $KS_VERSION
                             ./build/push.sh $KS_VERSION
+                            ./build/tag.sh latest
+                            ./build/push.sh latest
                         '''
                     }
                 }
