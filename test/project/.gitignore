@@ -2,5 +2,8 @@
 /Libs/
 /.settings/
 /.classpath
-.svn/
+/.svn/
 /Reports
+/Drivers
+/.project
+/.gradle

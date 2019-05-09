@@ -9,3 +9,4 @@ setup/xvfb.sh
 setup/jre.sh
 setup/circleci-tools.sh
 setup/fonts.sh
+setup/gradle.sh
