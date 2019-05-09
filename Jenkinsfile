@@ -18,18 +18,16 @@ pipeline {
         stage ("Build") {
             steps {
                 lock('katalon-docker-images') {
-                    sh '''
-                        chmod u+x ./build/*.sh
-                        ./build/clean.sh $KS_VERSION
-                        ./build/build.sh $KS_VERSION
-                        ./build/tag.sh $KS_VERSION
 
-                        chmod u+x ./test/project/*.sh
-                        cd ./test/project && ./run_chrome.sh $KS_VERSION && cd ..
-                        cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION && cd ..
-                        cd ./test/project && ./run_firefox.sh $KS_VERSION && cd ..
-                    '''
+                    sh 'chmod u+x ./build/*.sh'
+                    sh './build/clean.sh $KS_VERSION'
+                    sh './build/build.sh $KS_VERSION'
+                    sh './build/tag.sh $KS_VERSION'
 
+                    sh 'chmod u+x ./test/project/*.sh'
+                    sh 'cd ./test/project && ./run_chrome.sh $KS_VERSION'
+                    sh 'cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION'
+                    sh 'cd ./test/project && ./run_firefox.sh $KS_VERSION'
                     archiveArtifacts '**/*.avi'
 
                     withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
