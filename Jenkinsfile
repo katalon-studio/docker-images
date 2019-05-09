@@ -20,7 +20,7 @@ pipeline {
                 lock('katalon-docker-images') {
                     sh '''
                         chmod u+x ./build/*.sh
-                        ./build/clean.sh
+                        ./build/clean.sh $KS_VERSION
                         ./build/build.sh $KS_VERSION
                         ./build/tag.sh $KS_VERSION
 

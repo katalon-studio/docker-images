@@ -2,4 +2,6 @@
 
 set -xe
 
-docker rmi katalonstudio/katalon:test || echo 'No image to delete.'
+ksversion=$1
+
+docker rmi katalonstudio/katalon:$ksversion || echo 'No image to delete.'
