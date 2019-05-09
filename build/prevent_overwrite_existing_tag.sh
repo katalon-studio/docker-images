@@ -2,7 +2,7 @@
 
 set -xe
 
-ksversion = $1
+ksversion = '$1'
 
 function docker_tag_exists() {
   curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
