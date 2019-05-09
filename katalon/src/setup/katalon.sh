@@ -4,7 +4,7 @@ set -xe
 
 echo "Install Katalon"
 
-version=6.1.3
+version=$KATALON_STUDIO_VERSION
 directory=$version
 package=Katalon_Studio_Linux_64-$version.tar.gz
 unzipped_directory=Katalon_Studio_Linux_64-$version
