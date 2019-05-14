@@ -4,8 +4,13 @@ set -xe
 
 ksversion=$1
 
-if curl --output /dev/null --silent --head --fail https://hub.docker.com/v2/repositories/katalonstudio/katalon/tags/$ksversion; then
-  exit 0
+function docker_tag_exists() {
+    EXISTS=$(curl -s https://hub.docker.com/v2/repositories/katalonstudio/katalon/tags/?page_size=10000 | jq -r "[.results | .[] | .name == \"$ksversion\"] | any")
+    test $EXISTS = true
+}
+
+if docker_tag_exists; then
+    echo 1
 else
-  exit 1
+    echo 0
 fi
