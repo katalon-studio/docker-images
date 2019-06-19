@@ -26,7 +26,7 @@ mkdir -p $project_dir
 
 cp -r $source_dir/* $project_dir
 
-project_prj_file=$(find $project_dir -name "*.prj"
+project_prj_file=$(find $project_dir -name "*.prj")
 
 # download dependencies
 cd $project_dir
