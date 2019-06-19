@@ -26,6 +26,8 @@ mkdir -p $project_dir
 
 cp -r $source_dir/* $project_dir
 
+project_prj_file=$(find $project_dir -name "*.prj"
+
 # download dependencies
 cd $project_dir
 if [ -f "$project_dir/build.gradle" ]; then
@@ -54,7 +56,7 @@ mkdir -p $report_dir
 args=("$KATALON_KATALON_INSTALL_DIR/katalon" "$@")
 args+=("-runMode=console")
 args+=("-reportFolder=$report_dir")
-args+=("-projectPath=$project_dir")
+args+=("-projectPath=$project_prj_file")
 
 cd $workspace_dir
 
