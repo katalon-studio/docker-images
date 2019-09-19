@@ -28,16 +28,16 @@ pipeline {
                     sh 'cd ./test/project && ./run_chrome.sh $KS_VERSION'
                     sh 'cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION'
                     sh 'cd ./test/project && ./run_firefox.sh $KS_VERSION'
-                    archiveArtifacts '**/*.avi'
+                    // archiveArtifacts '**/*.avi'
 
-                    withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
-                        sh '''
-                            ./build/tag.sh $KS_VERSION
-                            ./build/push.sh $KS_VERSION
-                            ./build/tag.sh latest
-                            ./build/push.sh latest
-                        '''
-                    }
+                    // withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
+                    //     sh '''
+                    //         ./build/tag.sh $KS_VERSION
+                    //         ./build/push.sh $KS_VERSION
+                    //         ./build/tag.sh latest
+                    //         ./build/push.sh latest
+                    //     '''
+                    // }
                 }
             }
         }
