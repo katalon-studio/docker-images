@@ -28,7 +28,7 @@ pipeline {
                     sh 'cd ./test/project && ./run_chrome.sh $KS_VERSION'
                     sh 'cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION'
                     sh 'cd ./test/project && ./run_firefox.sh $KS_VERSION'
-                    // archiveArtifacts '**/*.avi'
+                    archiveArtifacts '**/*.avi'
 
                     // withDockerRegistry([ credentialsId: "docker-hub", url: "" ]) {
                     //     sh '''
