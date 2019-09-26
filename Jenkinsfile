@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        KS_VERSION = '6.3.1'
+        KS_VERSION = '6.3.2'
     }
 
     stages {
