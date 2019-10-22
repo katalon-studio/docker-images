@@ -7,9 +7,9 @@ echo "Install Katalon"
 version=$KATALON_STUDIO_VERSION
 directory=$version
 package=Katalon_Studio_Engine_Linux_64-$version.tar.gz
-unzipped_directory=Katalon_Studio_Engine_Linux_64-$main_version
+unzipped_directory=Katalon_Studio_Engine_Linux_64-$version
 
-wget -O $package https://github.com/katalon-studio/katalon-studio/releases/download/v$version/Katalon_Studio_Engine_Linux_64-$main_version.tar.gz
+wget -O $package https://github.com/katalon-studio/katalon-studio/releases/download/v$version/Katalon_Studio_Engine_Linux_64-$version.tar.gz
 ls
 tar -xvzf $package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
