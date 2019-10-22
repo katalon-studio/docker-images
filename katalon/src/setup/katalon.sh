@@ -16,7 +16,7 @@ ls
 rm $package
 
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$unzipped_directory $KATALON_KATALON_INSTALL_DIR
-chmod u+x $KATALON_KATALON_INSTALL_DIR/katalon
+chmod u+x $KATALON_KATALON_INSTALL_DIR/katalonc
 
 chmod -R u+x /opt/katalonstudio/configuration/resources/drivers
 
