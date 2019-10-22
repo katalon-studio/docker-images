@@ -53,7 +53,7 @@ fi
 mkdir -p $report_dir
 
 # build command line
-args=("$KATALON_KATALON_INSTALL_DIR/katalon" "$@")
+args=("$KATALON_KATALON_INSTALL_DIR/katalonc" "$@")
 args+=("-runMode=console")
 args+=("-reportFolder=$report_dir")
 args+=("-projectPath=$project_prj_file")
