@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -xe
 
@@ -9,3 +9,4 @@ apt -y install apt-utils
 apt -y install wget
 apt -y install unzip
 apt -y install curl
+apt -y install gosu

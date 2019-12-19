@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -x
 # Skip set -e to save the reports
+
+echo "Please visit https://github.com/katalon-studio/docker-images for new usage. The use of katalon-execute.sh has been deprecated."
 
 echo "Starting Katalon Studio"
 
