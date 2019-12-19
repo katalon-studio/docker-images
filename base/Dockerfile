@@ -1,5 +1,9 @@
 FROM ubuntu:18.04
 
+# This is to avoid the error
+# 'debconf: unable to initialize frontend: Dialog'
+ENV DEBIAN_FRONTEND noninteractive
+
 # common environment variables
 ENV KATALON_ROOT_DIR=/katalon
 ENV KATALON_BASE_ROOT_DIR=/katalon/base
