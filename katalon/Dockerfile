@@ -13,7 +13,8 @@ ENV ECLIPSE_SANDBOX=1.11
 RUN mkdir -p $KATALON_KATALON_ROOT_DIR
 WORKDIR $KATALON_KATALON_ROOT_DIR
 
-COPY ./src/katalon.sh katalon.sh && chmod a+x katalon.sh && ./katalon.sh
+COPY ./src/katalon.sh katalon.sh
+RUN chmod a+x katalon.sh && ./katalon.sh
 
 # clean up
 WORKDIR /
@@ -22,8 +23,10 @@ RUN $KATALON_CLEAN_UP_SCRIPT
 
 RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_BASE_ROOT_DIR
-COPY ./src/scripts/katalon-execute.sh katalon-execute.sh && chmod a+x katalon-execute.sh
-COPY ./src/scripts/katalon-notify.sh katalon-notify.sh && chmod a+x katalon-notify.sh
+COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
+RUN chmod a+x katalon-execute.sh
+COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
+RUN chmod a+x katalon-notify.sh
 
 ENV PATH "$PATH:$KATALON_KATALON_SCRIPT_DIR"
 
