@@ -4,14 +4,11 @@ set -xe
 
 echo "Entrypoint"
 
-# Add local user
-# Either use the LOCAL_USER_ID if passed in at runtime or
-# fallback
-
-USER_ID=${LOCAL_USER_ID:-9001}
-
-echo "Starting with UID : $USER_ID"
-useradd --shell /bin/bash -u $USER_ID -o -c "" -m user
-export HOME=/home/user
-
-exec gosu user "$@"
+if [ -z "$KATALON_USER_ID" ]; then
+    exec "$@"
+else
+    echo "Starting with UID : $KATALON_USER_ID"
+    useradd --shell /bin/bash -u $KATALON_USER_ID -o -c "" -m katalon
+    export HOME=/home/katalon
+    exec gosu katalon "$@"
+fi

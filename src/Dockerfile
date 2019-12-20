@@ -10,8 +10,8 @@ ENV KATALON_VERSION_FILE=$KATALON_ROOT_DIR/version
 ARG KATALON_SOFTWARE_DIR=/opt
 
 # copy scripts
-WORKDIR $KATALON_BASE_ROOT_DIR
 RUN mkdir -p $KATALON_BASE_ROOT_DIR
+WORKDIR $KATALON_BASE_ROOT_DIR
 
 RUN apt update
 
@@ -60,6 +60,9 @@ RUN wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-st
 RUN dpkg -i $chrome_package || apt -y -f install
 RUN rm $chrome_package
 RUN echo "$(google-chrome -version)" >> $KATALON_VERSION_FILE
+
+COPY ./src/wrap_chrome_binary.sh wrap_chrome_binary.sh
+RUN chmod a+x wrap_chrome_binary.sh && ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
 
 ENV GRADLE_HOME=$KATALON_SOFTWARE_DIR/gradle
 ENV GRADLE_BIN=$GRADLE_HOME/bin
@@ -113,6 +116,8 @@ COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
 COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
 RUN chmod a+x katalon-notify.sh
+COPY ./src/scripts/katalonc.sh katalonc.sh
+RUN chmod a+x katalonc.sh
 
 ENV PATH "$PATH:$KATALON_KATALON_SCRIPT_DIR"
 
