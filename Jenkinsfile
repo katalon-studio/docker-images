@@ -26,6 +26,7 @@ pipeline {
 
                         sh 'chmod u+x ./test/project/*.sh'
                         sh '''cd ./test/project && ./run_chrome.sh $KS_VERSION $API_KEY'''
+                        sh '''cd ./test/project && ./run_chrome_root.sh $KS_VERSION $API_KEY'''
                         sh '''cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION $API_KEY'''
                         sh '''cd ./test/project && ./run_firefox.sh $KS_VERSION $API_KEY'''
                         archiveArtifacts '**/*.avi'
