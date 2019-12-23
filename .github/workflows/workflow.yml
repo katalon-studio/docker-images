@@ -16,7 +16,7 @@ jobs:
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
-        apt -y install jq
+        sudo apt -y install jq
     - name: Log in to Docker
       uses: azure/docker-login@v1
       with:
