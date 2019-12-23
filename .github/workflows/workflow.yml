@@ -17,11 +17,11 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
     - name: Log in to Docker
-      uses: actions/docker/login@master
-      env:
-          DOCKER_REGISTRY_URL: registry.hub.docker.com
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      uses: azure/docker-login@v1
+      with:
+          login-server: 'registry.hub.docker.com'
+          username: '${{ secrets.DOCKER_USERNAME }}'
+          password: '${{ secrets.DOCKER_PASSWORD }}'
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
