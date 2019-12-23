@@ -16,11 +16,12 @@ jobs:
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
-    - name: Docker Login
-      run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} > ./my_password.txt
-        cat ./my_password.txt
-        cat ./my_password.txt | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+    - name: Log in to Docker
+      uses: actions/docker/login@master
+      env:
+          DOCKER_REGISTRY_URL: registry.hub.docker.com
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
