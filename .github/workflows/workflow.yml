@@ -24,6 +24,7 @@ jobs:
           password: '${{ secrets.DOCKER_PASSWORD }}'
     - name: Prepare 
       run: |
+        sudo apt -y install jq
         chmod u+x ./build/*.sh
         ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
