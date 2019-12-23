@@ -16,14 +16,13 @@ jobs:
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
+        apt -y install jq
     - name: Log in to Docker
       uses: azure/docker-login@v1
       with:
           login-server: 'registry.hub.docker.com'
           username: '${{ secrets.DOCKER_USERNAME }}'
           password: '${{ secrets.DOCKER_PASSWORD }}'
-      run: |
-        sudo apt -y install jq
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
