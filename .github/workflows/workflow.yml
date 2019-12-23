@@ -18,7 +18,8 @@ jobs:
         sudo sh get-docker.sh
     - name: Docker Login
       run: |
-        docker login -u='${{ secrets.DOCKER_USERNAME }}' -p='${{ secrets.DOCKER_PASSWORD }}'
+        echo ${{ secrets.DOCKER_PASSWORD }} > ./my_password.txt
+        cat ./my_password.txt | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
