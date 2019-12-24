@@ -2,7 +2,7 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - github_action
+      - master
 jobs:
   run:
     name: Run
