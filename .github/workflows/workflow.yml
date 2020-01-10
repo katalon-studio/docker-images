@@ -34,10 +34,10 @@ jobs:
           ./build/build.sh $KS_VERSION
           ./build/tag.sh $KS_VERSION
           chmod u+x ./test/project/*.sh
-          cd ./test/project && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-          cd ./test/project && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-          cd ./test/project && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-          cd ./test/project && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
+          cd $GITHUB_WORKSPACE/test/project && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
+          cd $GITHUB_WORKSPACE/test/project && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
+          cd $GITHUB_WORKSPACE/test/project && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
+          cd $GITHUB_WORKSPACE/test/project && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
     - name: Push to dockerhub
       run: |
              ./build/tag.sh $KS_VERSION
