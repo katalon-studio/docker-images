@@ -16,7 +16,7 @@ WORKDIR $KATALON_BASE_ROOT_DIR
 RUN apt update
 
 RUN echo "Install tools"
-RUN apt -y install --no-install-recommends apt-utils
+RUN apt -y install apt-utils
 RUN apt -y install wget
 RUN apt -y install unzip
 RUN apt -y install curl
