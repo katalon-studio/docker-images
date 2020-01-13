@@ -17,12 +17,6 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    - name: Log in to Docker
-      uses: azure/docker-login@v1
-      with:
-          login-server: 'registry.hub.docker.com'
-          username: '${{ secrets.DOCKER_USERNAME }}'
-          password: '${{ secrets.DOCKER_PASSWORD }}'
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
@@ -40,7 +34,8 @@ jobs:
           cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
     - name: Push to dockerhub
       run: |
-             ./build/tag.sh $KS_VERSION
-             ./build/push.sh $KS_VERSION
-             ./build/tag.sh latest
-             ./build/push.sh latest
+          docker login -u '${{ secrets.DOCKER_USERNAME }}' -p '${{ secrets.DOCKER_PASSWORD }}'
+          ./build/tag.sh $KS_VERSION
+          ./build/push.sh $KS_VERSION
+          ./build/tag.sh latest
+          ./build/push.sh latest
