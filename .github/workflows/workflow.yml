@@ -37,7 +37,7 @@ jobs:
       continue-on-error: true
     - uses: azure/docker-login@v1
       with:
-        login-server: index.docker.io
+        login-server: registry.hub.docker.com
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push to dockerhub
