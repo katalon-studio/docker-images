@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 7.2.2
+        KS_VERSION: 7.2.3
     steps:
     - name: Checkout
       uses: actions/checkout@master
