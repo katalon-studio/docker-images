@@ -55,6 +55,7 @@ RUN apt -y install pulseaudio
 RUN echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 RUN echo "Install Google Chrome"
+RUN apt-get install -y --no-install-recommends build-essential
 ARG chrome_package='google-chrome-stable_current_amd64.deb'
 RUN wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i $chrome_package || apt -y -f install
