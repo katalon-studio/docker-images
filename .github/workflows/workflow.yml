@@ -48,3 +48,7 @@ jobs:
         ./build/push.sh $KS_VERSION
         ./build/tag.sh latest
         ./build/push.sh latest
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
