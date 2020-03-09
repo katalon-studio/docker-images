@@ -62,7 +62,7 @@ args+=("-projectPath=$project_prj_file")
 
 cd $workspace_dir
 
-xvfb-run -a -e /dev/stoud $XVFB_ARGS -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
+xvfb-run -a -e /dev/stdout $XVFB_ARGS -s "-screen 0 $DISPLAY_CONFIGURATION" "${args[@]}"
 ret_code=$?
 
 #clean up
