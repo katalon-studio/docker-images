@@ -100,7 +100,7 @@ ARG katalon_version=$KATALON_STUDIO_VERSION
 ARG katalon_directory=$version
 ARG katalon_package=Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ARG katalon_unzipped_directory=Katalon_Studio_Engine_Linux_64-$katalon_version
-RUN wget -O $katalon_package https://github.com/katalon-studio/katalon-studio/releases/download/v$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+RUN wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Linux_64-$katalon_version.tar.gz
 RUN ls
 RUN tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 RUN ls
