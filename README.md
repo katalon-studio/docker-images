@@ -121,7 +121,7 @@ These proxy information will be passed to browsers executing the tests.
 *Do not forget to put `--config` before the proxy configuration.* Example:
 
 ```
-docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalonc.sh -projectPath=/katalon/katalon/source -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888
+docker run -t --rm -v "$(pwd)":/katalon/katalon/source katalonstudio/katalon katalonc.sh -projectPath=/katalon/katalon/source -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" -apikey=<YOUR_API_KEY> --config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=192.168.1.221 -proxy.server.port=8888
 ```
 
 ## Build custom images
