@@ -17,7 +17,6 @@ RUN apt update
 
 RUN echo "Install tools"
 RUN apt -y install apt-utils
-RUN apt -y install --no-install-recommends build-essential
 RUN apt -y install wget
 RUN apt -y install unzip
 RUN apt -y install curl
