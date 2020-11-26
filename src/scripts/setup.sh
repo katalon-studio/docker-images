@@ -39,7 +39,9 @@ apt -y install fonts-tlwg-loma-otf
 apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
-apt -y install firefox
+echo "deb http://security.ubuntu.com/ubuntu xenial-security main " >> /etc/apt/sources.list
+apt update
+apt install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
