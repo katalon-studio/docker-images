@@ -76,7 +76,7 @@ katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
-wget -O $katalon_package https://github.com/katalon-studio/katalon-studio/releases/download/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package https://github.com/katalon-studio/katalon-studio/releases/download/v$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
