@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.0.5
+        KS_VERSION: 8.1.0
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -44,8 +44,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-        ./build/tag.sh test-$KS_VERSION
-        ./build/push.sh test-$KS_VERSION
+        ./build/tag.sh test
+        ./build/push.sh test
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
