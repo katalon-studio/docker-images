@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+RUN useradd katalon
+USER katalon
+
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
 ARG KATALON_BASE_ROOT_DIR=$KATALON_ROOT_DIR/base
