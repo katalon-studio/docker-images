@@ -9,6 +9,7 @@ apt update
 
 echo "Install tools"
 apt -y install apt-utils
+apt -y install apt-transport-https
 apt -y install wget
 apt -y install unzip
 apt -y install curl
