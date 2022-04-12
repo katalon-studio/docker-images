@@ -2,7 +2,7 @@ name: KatalonDockerCI-NonLatest
 on:
   push:
     branches:
-      - release-8.3.0.beta
+      - master
 jobs:
   run:
     name: Run
