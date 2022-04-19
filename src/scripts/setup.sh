@@ -53,6 +53,13 @@ echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
 ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
 
+echo "Install Edge Chromium"
+microsoft_edge_package='MicrosoftEdgeSetup.exe'
+wget -O $microsoft_edge_package https://go.microsoft.com/fwlink/?linkid=2149139
+dpkg -i $microsoft_edge_package || apt -y -f install
+rm $microsoft_edge_package
+echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE
+
 echo "Install Gradle"
 gradle_version='5.4.1'
 gradle_package="gradle-$gradle_version-bin.zip"
@@ -74,7 +81,7 @@ katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
-wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package https://download.katalon.com/$katalon_version.DEV/STUDIO-1898/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
