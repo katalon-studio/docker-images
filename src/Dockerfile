@@ -44,6 +44,9 @@ RUN chmod a+x setup.sh
 # Main setup
 RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
 
+# Override java.security
+RUN sed -i 's/^jdk.tls.disabledAlgorithms=.*/jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \\ /g' /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+
 COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
 COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
