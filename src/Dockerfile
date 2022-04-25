@@ -31,10 +31,6 @@ WORKDIR $KATALON_BASE_ROOT_DIR
 COPY ./src/wrap_chrome_binary.sh wrap_chrome_binary.sh
 RUN chmod a+x wrap_chrome_binary.sh
 
-# Copy "wrap_edge_chromium_binary" script
-COPY ./src/wrap_edge_chromium_binary.sh wrap_edge_chromium_binary.sh
-RUN chmod a+x wrap_edge_chromium_binary.sh
-
 RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
