@@ -27,9 +27,11 @@ Entrypoint
 
 Mozilla Firefox 88.0
 
-Google Chrome 92.0.4515.159 
+Google Chrome 102.0.5005.115
 
-Katalon Studio 
+Microsoft Edge 102.0.1245.41
+
+Katalon Studio
 ```
 
 ### Step 2: Run your test with KDI
