@@ -2,7 +2,7 @@ name: KatalonDockerCI-NonLatest
 on:
   push:
     branches:
-      - relase-non-latest
+      - release-non-latest
 jobs:
   run:
     name: Run
