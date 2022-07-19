@@ -18,24 +18,6 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    - name: Prepare 
-      run: |
-        chmod u+x ./build/*.sh
-        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
-    - name:  Build
-      run: |
-        chmod u+x ./build/*.sh
-        ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION
-        ./build/tag.sh $KS_VERSION 
-    - name: Test
-      run: | 
-        chmod u+x ./test/project/*.sh
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-      continue-on-error: true
     - name: Scan Security Vulnerabilities
       run: |
         ./build/security_scan.sh
