@@ -18,10 +18,6 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    - name: Prepare 
-      run: |
-        chmod u+x ./build/*.sh
-        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
@@ -38,6 +34,7 @@ jobs:
       continue-on-error: true
     - name: Scan Security Vulnerabilities
       run: |
+        chmod u+x ./build/*.sh
         ./build/security_scan.sh
     - name: Upload Security Vulnerabilities as Artifacts
       uses: actions/upload-artifact@v3
