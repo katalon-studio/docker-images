@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
@@ -43,9 +43,6 @@ RUN chmod a+x setup.sh
 
 # Main setup
 RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
-
-# Override java.security
-RUN sed -i 's/^jdk.tls.disabledAlgorithms=.*/jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \\ /g' /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
 
 COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
