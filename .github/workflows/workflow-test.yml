@@ -20,6 +20,7 @@ jobs:
         sudo apt -y install jq
     - name: Scan Security Vulnerabilities
       run: |
+        chmod u+x ./build/*.sh
         ./build/security_scan.sh
     - name: Upload Security Vulnerabilities as Artifacts
       uses: actions/upload-artifact@v3
