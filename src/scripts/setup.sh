@@ -15,7 +15,7 @@ apt -y install curl
 apt -y install gosu
 
 echo "Install JRE"
-apt -y install default-jre
+apt -y install openjdk-8-jdk
 
 echo "Install CircleCI tools"
 apt -y install git
