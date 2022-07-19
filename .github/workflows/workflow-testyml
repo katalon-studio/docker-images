@@ -1,8 +1,8 @@
-name: KatalonDockerCI-NonLatest
+name: KatalonDockerCI-Test
 on:
   push:
     branches:
-      - STUDIO-1474
+      - release-test-8.4.0
 jobs:
   run:
     name: Run
