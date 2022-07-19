@@ -1,4 +1,4 @@
-name: KatalonDockerCI-Test
+name: KatalonDockerCI-NonLatest
 on:
   push:
     branches:
