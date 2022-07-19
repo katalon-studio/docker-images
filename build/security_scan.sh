@@ -6,12 +6,17 @@ katalonImage=python:3.4-alpine
 
 echo "Setting things up before scanning security severity..."
 mkdir -p ../report
-sudo apt-get update -qq
-sudo apt-get install -y zip
+
+wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+sudo dpkg -i trivy_0.18.3_Linux-64bit.deb
+
 npm install snyk-to-html --location=global
 
+sudo apt-get update -qq
+sudo apt-get install -y zip
+
 echo "Scanning security severity with Trivy..."
-docker run --rm -v "$(pwd)":/root/.cache/ aquasec/trivy:0.18.3 --format template --template "@contrib/html.tpl" -o security_report_trivy.html ${katalonImage}
+trivy image --format template --template "@contrib/html.tpl" -o security_report_trivy.html ${katalonImage}
 mv security_report_trivy.html ../report
 
 echo "Scanning security severity with Snyk..."
