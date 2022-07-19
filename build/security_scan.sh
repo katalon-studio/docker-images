@@ -20,7 +20,8 @@ trivy image --format template --template trivy_html.tpl -o security_report_trivy
 mv security_report_trivy.html ../report
 
 echo "Scanning security severity with Snyk..."
-echo $(docker scan --token "8a4cc0b6-50db-40e3-8afd-f8ce97e1b12c" ${katalonImage} --json) > security_report_snyk.json
+docker scan --login --token "8a4cc0b6-50db-40e3-8afd-f8ce97e1b12c"
+echo $(docker scan ${katalonImage} --json) > security_report_snyk.json
 snyk-to-html -i security_report_snyk.json -o ../report/security_report_snyk.html
 mv security_report_snyk.html ../report
 
