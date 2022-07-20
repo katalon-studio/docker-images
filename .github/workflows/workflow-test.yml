@@ -13,21 +13,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name : Prepare docker install 
-      run: |
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-        sudo apt -y install jq
+    # - name : Prepare docker install 
+    #   run: |
+    #     curl -fsSL https://get.docker.com -o get-docker.sh
+    #     sudo sh get-docker.sh
+    #     sudo apt -y install jq
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-      image-ref: 'python:3.4-alpine'
-      format: 'sarif'
-      output: 'trivy-results.sarif'
+        image-ref: 'python:3.4-alpine'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
       with:
-      sarif_file: 'trivy-results.sarif'
+        sarif_file: 'trivy-results.sarif'
     # - name: Scan Security Vulnerabilities
     #   run: |
     #     chmod u+x ./build/*.sh
