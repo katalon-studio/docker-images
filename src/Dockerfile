@@ -44,6 +44,9 @@ RUN chmod a+x setup.sh
 # Main setup
 RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
 
+# Set locale
+ENV LANG C.UTF-8
+
 COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
 COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
