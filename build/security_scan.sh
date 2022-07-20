@@ -16,8 +16,8 @@ sudo apt-get update -qq
 sudo apt-get install -y zip
 
 echo "Scanning security severity with Trivy..."
-trivy image --format template --template "@../contrib/html.tpl" -o security_report_trivy.html ${katalonImage}
-mv security_report_trivy.html ../report
+docker pull aquasec/trivy:latest
+docker run -it -v ../report:/result --rm aquasec/trivy:latest i --format template --template "@contrib/html.tpl" --output /result/security_report_trivy.html ${katalonImage}
 
 # echo "Scanning security severity with Snyk..."
 # docker scan --login --token "8a4cc0b6-50db-40e3-8afd-f8ce97e1b12c"
