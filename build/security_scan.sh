@@ -16,7 +16,7 @@ sudo apt-get update -qq
 sudo apt-get install -y zip
 
 echo "Scanning security severity with Trivy..."
-trivy image --format template --template "@contrib/html.tpl" -o security_report_trivy.html ${katalonImage}
+trivy image --format template --template "@../contrib/html.tpl" -o security_report_trivy.html ${katalonImage}
 mv security_report_trivy.html ../report
 
 # echo "Scanning security severity with Snyk..."
