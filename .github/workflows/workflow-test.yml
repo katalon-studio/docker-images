@@ -57,10 +57,10 @@ jobs:
         ./build/security_scan.sh
     - name: Upload report
       uses: stcalica/s3-upload@0.0.1
-        with:
-          bucket: ${{ secrets.SEC_AWS_S3_BUCKET }}
-          package: report
-          key: $KS_VERSION
-          AWS_REGION: us-east-1
-          AWS_SECRET_ID: ${{ secrets.SEC_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_KEY: ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+      with:
+        bucket: ${{ secrets.SEC_AWS_S3_BUCKET }}
+        package: report
+        key: $KS_VERSION
+        AWS_REGION: us-east-1
+        AWS_SECRET_ID: ${{ secrets.SEC_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_KEY: ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
