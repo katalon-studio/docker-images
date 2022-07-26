@@ -3,9 +3,9 @@ import sys
 
 def main():
     print ('---------------------------')
-    print (len(sys.argv))
+    print (sys.argv[0])
     print ('---------------------------')
-    if (len(sys.argv) != 5):
+    if (len(sys.argv) != 6):
         print ('Error: Required 5 arguments.')
         sys.exit(1)
 
