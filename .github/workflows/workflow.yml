@@ -52,3 +52,11 @@ jobs:
       uses: rtCamp/action-slack-notify@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Scan Security Vulnerabilities
+      run: |
+        chmod u+x ./build/security-report/security_scan.sh
+        ./build/security-report/security_scan.sh $KS_VERSION_TAG
+    - name: Upload reports
+      run: |
+        chmod u+x ./build/security-report/upload.sh
+        ./build/security-report/upload.sh $KS_VERSION_TAG ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
