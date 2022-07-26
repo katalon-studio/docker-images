@@ -2,11 +2,8 @@ import boto3
 import sys
 
 def main():
-    print ('---------------------------')
-    print (sys.argv[0])
-    print ('---------------------------')
     if (len(sys.argv) != 6):
-        print ('Error: Required 5 arguments.')
+        print ('Error: upload_file_to_s3.py required 5 arguments.')
         sys.exit(1)
 
     bucket_name=sys.argv[1]
@@ -26,7 +23,7 @@ def main():
         Bucket=bucket_name,
         Key=aws_key
     )
-    print ('Done uploading')
+    print ('Done uploading file ' + local_path)
 
 
 main()
