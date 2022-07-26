@@ -13,11 +13,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name : Prepare docker install 
-      run: |
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-        sudo apt -y install jq
+    # - name : Prepare docker install 
+    #   run: |
+    #     curl -fsSL https://get.docker.com -o get-docker.sh
+    #     sudo sh get-docker.sh
+    #     sudo apt -y install jq
     # - name: Prepare 
     #   run: |
     #     chmod u+x ./build/*.sh
@@ -51,17 +51,15 @@ jobs:
     #   uses: rtCamp/action-slack-notify@master
     #   env:
     #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    - name: Scan Security Vulnerabilities
-      run: |
-        chmod u+x ./build/*.sh
-        ./build/security_scan.sh
+    # - name: Scan Security Vulnerabilities
+    #   run: |
+    #     chmod u+x ./build/*.sh
+    #     ./build/security_scan.sh
     - name: Upload report
       uses: stcalica/s3-upload@0.0.1
-      run: |
-        ls
       with:
         bucket: ${{ secrets.SEC_AWS_S3_BUCKET }}
-        package: report/security_report_snyk.html
+        package: index.html
         key: $KS_VERSION
         AWS_REGION: us-east-1
         AWS_SECRET_ID: ${{ secrets.SEC_AWS_ACCESS_KEY_ID }}
