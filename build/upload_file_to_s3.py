@@ -2,7 +2,7 @@ import boto3
 import sys
 
 def main():
-    if (len(sys.argv)  6):
+    if (len(sys.argv) != 5):
         print ('Error: Required 5 arguments.')
         sys.exit(1)
 
