@@ -57,4 +57,4 @@ jobs:
     #     ./build/security_scan.sh
     - name: Upload report
       run: |
-      bash ./build/release.sh ${{secrets.SEC_AWS_S3_BUCKET}} "8.4.1/index.html" ${{secrets.SEC_AWS_ACCESS_KEY_ID}} ${{secrets.SEC_AWS_SECRET_ACCESS_KEY}} "index.html"
+        bash ./build/release.sh ${{secrets.SEC_AWS_S3_BUCKET}} "8.4.1/index.html" ${{secrets.SEC_AWS_ACCESS_KEY_ID}} ${{secrets.SEC_AWS_SECRET_ACCESS_KEY}} "index.html"
