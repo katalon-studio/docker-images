@@ -56,7 +56,7 @@ jobs:
         chmod u+x ./build/*.sh
         ./build/security_scan.sh
     - name: Upload report
-      uses: stcalica/s3-upload@master
+      uses: stcalica/s3-upload@0.0.1
         with:
           bucket: ${{ secrets.SEC_AWS_S3_BUCKET }}
           package: report
