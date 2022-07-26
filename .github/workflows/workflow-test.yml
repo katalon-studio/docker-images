@@ -57,6 +57,8 @@ jobs:
         ./build/security_scan.sh
     - name: Upload report
       uses: stcalica/s3-upload@0.0.1
+      run: |
+        ls
       with:
         bucket: ${{ secrets.SEC_AWS_S3_BUCKET }}
         package: report/security_report_snyk.html
