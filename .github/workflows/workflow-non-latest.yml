@@ -2,14 +2,14 @@ name: KatalonDockerCI-NonLatest
 on:
   push:
     branches:
-      - release-non-latest
+      - HELPDESK-1279
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 8.4.0
-        KS_VERSION_TAG: 8.4.0
+        KS_VERSION_TAG: test-00008090
     steps:
     - name: Checkout
       uses: actions/checkout@master
