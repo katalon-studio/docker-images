@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
@@ -43,6 +43,9 @@ RUN chmod a+x setup.sh
 
 # Main setup
 RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
+
+# Set locale
+ENV LANG C.UTF-8
 
 COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
