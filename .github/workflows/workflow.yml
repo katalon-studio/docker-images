@@ -8,7 +8,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.4.1
+        KS_VERSION: 10.0.0
+        KS_VERSION_TAG: latest
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -46,8 +47,8 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
         ./build/tag.sh $KS_VERSION
         ./build/push.sh $KS_VERSION
-        ./build/tag.sh latest
-        ./build/push.sh latest
+        ./build/tag.sh $KS_VERSION_TAG
+        ./build/push.sh $KS_VERSION_TAG
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:
