@@ -21,7 +21,7 @@ jobs:
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
-        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
+        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION_TAG
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
