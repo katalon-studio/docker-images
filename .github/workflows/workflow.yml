@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.5.0
+        KS_VERSION: 8.5.1
         KS_VERSION_TAG: latest
     steps:
     - name: Checkout
@@ -56,7 +56,7 @@ jobs:
     - name: Scan Security Vulnerabilities
       run: |
         chmod u+x ./build/security-report/security_scan.sh
-        ./build/security-report/security_scan.sh $KS_VERSION_TAG
+        ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
     - name: Upload reports
       run: |
         chmod u+x ./build/security-report/upload.sh
