@@ -24,7 +24,7 @@ jobs:
         ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
       run: |
-        chmod u+x ./build/*.sh        
+        chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
