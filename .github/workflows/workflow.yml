@@ -24,9 +24,7 @@ jobs:
         ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
       run: |
-        chmod u+x ./build/*.sh
-        ./build/tag.sh $KS_VERSION
-        ./build/push.sh $KS_VERSION
+        chmod u+x ./build/*.sh        
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
@@ -47,6 +45,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+        ./build/tag.sh $KS_VERSION
+        ./build/push.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
     - name: Slack Notification
