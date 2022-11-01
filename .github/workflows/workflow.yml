@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - master
+      - release-8.5.5
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.5.2
-        KS_VERSION_TAG: latest
+        KS_VERSION: 8.5.5
+        KS_VERSION_TAG: test
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -45,8 +45,6 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-        ./build/tag.sh $KS_VERSION
-        ./build/push.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
     - name: Slack Notification
