@@ -17,5 +17,5 @@ docker run -v $(pwd):/security-report --rm aquasec/trivy:0.18.3 i --format templ
 
 echo "Scanning security severity ${katalonImage} with Snyk..."
 yes 2>/dev/null | docker scan --login --token $snyk_token
-echo $(yes | docker scan --file ../src/Dockerfile --exclude-base ${katalonImage} --json) >> security_report_snyk.json
+echo $(yes | docker scan --file ../src/Dockerfile ${katalonImage} --json) >> security_report_snyk.json
 snyk-to-html -i security_report_snyk.json -o security_report_snyk.html
