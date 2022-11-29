@@ -19,5 +19,5 @@ echo "Scanning security severity ${katalonImage} with Snyk..."
 yes 2>/dev/null | docker scan --login --token $snyk_token
 echo "HUYEN DEBUG: $PWD"
 echo $(ls)
-echo $(yes | docker scan --file ../../src/Dockerfile ${katalonImage} --json) >> security_report_snyk.json
+echo $(yes | docker scan --file src/Dockerfile ${katalonImage} --json) >> security_report_snyk.json
 snyk-to-html -i security_report_snyk.json -o security_report_snyk.html
