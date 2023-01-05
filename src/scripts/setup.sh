@@ -7,37 +7,84 @@ cd $KATALON_BASE_ROOT_DIR
 
 apt update
 
-echo "Install tools"
-apt install apt-utils=$(apt list -a apt-utils | grep "2.0" | head -1 | awk '{ print $2 }') -y
-apt install wget=$(apt list -a wget | grep "1.20" | head -1 | awk '{ print $2 }') -y
-apt install unzip=$(apt list -a unzip | grep "6.0" | head -1 | awk '{ print $2 }') -y
-apt install curl=$(apt list -a curl | grep "7.68" | head -1 | awk '{ print $2 }') -y
-apt install gosu=$(apt list -a gosu | grep "1.10" | head -1 | awk '{ print $2 }') -y
+#Functions
+function os_dependency {
+        echo "Install os dependency"
+        apt install -y \
+        libfreetype6=2.10* \
+        xfonts-cyrillic=1:1.0* \
+        xfonts-scalable=1:1.0* \
+        fonts-liberation=1:1.07* \
+        fonts-ipafont-gothic=00303-18ubuntu1* \
+        fonts-wqy-zenhei=0.9* \
+        fonts-tlwg-loma-otf=1:0.7* \
+        ttf-ubuntu-font-family=1:0.83*
+}
 
-echo "Install JRE"
-apt install openjdk-8-jdk=$(apt list -a openjdk-8-jdk | grep "8u352-ga-1~20.04" | head -1 | awk '{ print $2 }') -y
-echo "Install CircleCI tools"
-apt install git=$(apt list -a git | grep "1:2.25" | head -1 | awk '{ print $2 }') -y
-apt install ssh=$(apt list -a ssh | grep "1:8.2p1-4ubuntu0" | head -1 | awk '{ print $2 }') -y
-apt install tar=$(apt list -a tar | grep "1.30+dfsg-7ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
-apt install gzip=$(apt list -a gzip | grep "1.10-0ubuntu4" | head -1 | awk '{ print $2 }') -y
-apt install ca-certificates=$(apt list -a ca-certificates | grep "20211016ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
-echo "Install Xvfb"
-apt install xvfb=$(apt list -a xvfb | grep "2:1.20.13-1ubuntu1~20.04" | head -1 | awk '{ print $2 }') -y
-echo "Install fonts"
+app_dependency() {
+        echo "Install app dependency"
+        apt install -y \
+        tzdata \
+        apt-utils=2.0* \
+        wget=1.20* \
+        unzip=6.0* \
+        curl=7.68* \
+        gosu=1.10* \
+        openjdk-8-jdk=8u352-ga-1~20.04* \
+        git=1:2.25* \
+        ssh=1:8.2p1-4ubuntu0* \
+        tar=1.30+dfsg-7ubuntu0.20.04* \
+        gzip=1.10-0ubuntu4* \
+        ca-certificates=20211016ubuntu0.20.04* \
+        xvfb=2:1.20.13-1ubuntu1~20.04* 
+}
+
+build_dependency() {
+        echo "Install build dependency"
+        apt install -y \
+        firefox \
+        pulseaudio=1:13.99*
+}
+export DEBIAN_FRONTEND=noninteractive
+export TZ="America/New_York"
+apt install tzdata -y
+app_dependency
 apt install libfontconfig1=$(apt list -a libfontconfig1 | grep "libfontconfig1" | head -1 | awk '{ print $2 }') -y
-apt install libfreetype6=$(apt list -a libfreetype6 | grep "2.10" | head -1 | awk '{ print $2 }') -y
-apt install xfonts-cyrillic=$(apt list -a xfonts-cyrillic | grep "1:1.0" | head -1 | awk '{ print $2 }') -y
-apt install xfonts-scalable=$(apt list -a xfonts-scalable | grep "1:1.0" | head -1 | awk '{ print $2 }') -y
-apt install fonts-liberation=$(apt list -a fonts-liberation | grep "1:1.07" | head -1 | awk '{ print $2 }') -y
-apt install fonts-ipafont-gothic=$(apt list -a fonts-ipafont-gothic | grep "00303-18ubuntu1" | head -1 | awk '{ print $2 }') -y
-apt install fonts-wqy-zenhei=$(apt list -a fonts-wqy-zenhei | grep "0.9" | head -1 | awk '{ print $2 }') -y
-apt install fonts-tlwg-loma-otf=$(apt list -a fonts-tlwg-loma-otf | grep "1:0.7" | head -1 | awk '{ print $2 }') -y
-apt install ttf-ubuntu-font-family=$(apt list -a ttf-ubuntu-font-family | grep "1:0.83" | head -1 | awk '{ print $2 }') -y
-echo "Install Mozilla Firefox"
-apt install firefox=$(apt list -a firefox | grep "107.0+build2-0ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
-# Install 'pulseaudio' package to support WebRTC audio streams
-apt install pulseaudio=$(apt list -a pulseaudio | grep "1:13.99" | head -1 | awk '{ print $2 }') -y
+os_dependency
+build_dependency
+
+# echo "Install tools"
+# apt install apt-utils=$(apt list -a apt-utils | grep "2.0" | head -1 | awk '{ print $2 }') -y
+# apt install wget=$(apt list -a wget | grep "1.20" | head -1 | awk '{ print $2 }') -y
+# apt install unzip=$(apt list -a unzip | grep "6.0" | head -1 | awk '{ print $2 }') -y
+# apt install curl=$(apt list -a curl | grep "7.68" | head -1 | awk '{ print $2 }') -y
+# apt install gosu=$(apt list -a gosu | grep "1.10" | head -1 | awk '{ print $2 }') -y
+
+# echo "Install JRE"
+# apt install openjdk-8-jdk=$(apt list -a openjdk-8-jdk | grep "8u352-ga-1~20.04" | head -1 | awk '{ print $2 }') -y
+# echo "Install CircleCI tools"
+# apt install git=$(apt list -a git | grep "1:2.25" | head -1 | awk '{ print $2 }') -y
+# apt install ssh=$(apt list -a ssh | grep "1:8.2p1-4ubuntu0" | head -1 | awk '{ print $2 }') -y
+# apt install tar=$(apt list -a tar | grep "1.30+dfsg-7ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
+# apt install gzip=$(apt list -a gzip | grep "1.10-0ubuntu4" | head -1 | awk '{ print $2 }') -y
+# apt install ca-certificates=$(apt list -a ca-certificates | grep "20211016ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
+# echo "Install Xvfb"
+# apt install xvfb=$(apt list -a xvfb | grep "2:1.20.13-1ubuntu1~20.04" | head -1 | awk '{ print $2 }') -y
+# echo "Install fonts"
+# apt install libfontconfig1=$(apt list -a libfontconfig1 | grep "libfontconfig1" | head -1 | awk '{ print $2 }') -y
+# apt install libfreetype6=$(apt list -a libfreetype6 | grep "2.10" | head -1 | awk '{ print $2 }') -y
+# apt install xfonts-cyrillic=$(apt list -a xfonts-cyrillic | grep "1:1.0" | head -1 | awk '{ print $2 }') -y
+# apt install xfonts-scalable=$(apt list -a xfonts-scalable | grep "1:1.0" | head -1 | awk '{ print $2 }') -y
+# apt install fonts-liberation=$(apt list -a fonts-liberation | grep "1:1.07" | head -1 | awk '{ print $2 }') -y
+# apt install fonts-ipafont-gothic=$(apt list -a fonts-ipafont-gothic | grep "00303-18ubuntu1" | head -1 | awk '{ print $2 }') -y
+# apt install fonts-wqy-zenhei=$(apt list -a fonts-wqy-zenhei | grep "0.9" | head -1 | awk '{ print $2 }') -y
+# apt install fonts-tlwg-loma-otf=$(apt list -a fonts-tlwg-loma-otf | grep "1:0.7" | head -1 | awk '{ print $2 }') -y
+# apt install ttf-ubuntu-font-family=$(apt list -a ttf-ubuntu-font-family | grep "1:0.83" | head -1 | awk '{ print $2 }') -y
+# echo "Install Mozilla Firefox"
+# #apt install firefox=$(apt list -a firefox | grep "107.0+build2-0ubuntu0.20.04" | head -1 | awk '{ print $2 }') -y
+# apt install firefox -y
+# # Install 'pulseaudio' package to support WebRTC audio streams
+# apt install pulseaudio=$(apt list -a pulseaudio | grep "1:13.99" | head -1 | awk '{ print $2 }') -y
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 echo "Install Google Chrome"
