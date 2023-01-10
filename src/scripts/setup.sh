@@ -45,6 +45,21 @@ build_dependency() {
         firefox \
         pulseaudio=1:13.99*
 }
+
+fix_dependency() {
+        echo "Fix CVE-2022-3821"
+        rm -rf /etc/apt/trusted.gpg.d/*
+        apt install gnupg -y
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+        echo "deb http://deb.debian.org/debian bullseye-backports main" >> /etc/apt/sources.list && apt-get update
+        apt install -y --no-install-recommends \
+        libsystemd0=251.3-1*
+}
 export DEBIAN_FRONTEND=noninteractive
 export TZ="America/New_York"
 apt install tzdata -y
@@ -139,6 +154,8 @@ echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
 chmod -R 777 $KATALON_ROOT_DIR
 chmod -R 777 $KATALON_SOFTWARE_DIR
 
+#Fix Dependency
+fix_dependency
 # clean up
 
 echo "Clean up"
