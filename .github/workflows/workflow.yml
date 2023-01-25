@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.5.5
+        KS_VERSION: 8.5.5-KSR2361
         KS_VERSION_TAG: KSR-2361
     steps:
     - name: Checkout
