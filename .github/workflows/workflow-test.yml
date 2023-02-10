@@ -18,10 +18,10 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    - name: Prepare 
-      run: |
-        chmod u+x ./build/*.sh
-        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION_TAG
+    # - name: Prepare 
+    #   run: |
+    #     chmod u+x ./build/*.sh
+    #     ./build/prevent_overwrite_existing_tag.sh $KS_VERSION_TAG
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
