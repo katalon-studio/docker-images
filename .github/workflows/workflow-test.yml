@@ -25,8 +25,8 @@ jobs:
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
-        ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION
+        ./build/clean.sh $KS_VERSION_TAG
+        ./build/build.sh $KS_VERSION_TAG
         ./build/tag.sh $KS_VERSION 
     - name: Test
       run: | 
