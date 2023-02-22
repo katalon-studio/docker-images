@@ -139,7 +139,7 @@ If this bind mount is not used, `katalon-execute.sh` will look for the test proj
 docker run -t --rm -v "$(pwd)":/tmp/source -w /tmp/source katalonstudio/katalon katalon-execute.sh -browserType="Chrome" -retry=0 -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" -apikey=<YOUR_API_KEY>
 ```
 
-**Reports**
+**Report**
 
 Reports will be written to the `report` directory.
 
