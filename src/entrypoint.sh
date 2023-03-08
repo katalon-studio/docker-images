@@ -5,7 +5,20 @@ set -xe
 echo "Entrypoint"
 
 if [ -z "$KATALON_USER_ID" ]; then
-    exec "$@"
+	if [ "$1" == "-docker.autoUpdateBrowsers=true" ]; then
+		echo "Upgrade Chrome browser..."
+		apt --only-upgrade install google-chrome-stable 
+
+		# echo "Upgrade Firefox browser..."
+		# apt --only-upgrade install firefox
+
+		# echo "Upgrade Edge Chromium browser..."
+		# apt --only-upgrade install microsoft-edge-stable
+		echo "${@:2}"
+		exec "${@:2}"
+	else	
+		exec "$@"
+	fi
 else
     echo "Starting with UID : $KATALON_USER_ID"
     username=katalon
