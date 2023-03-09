@@ -4,6 +4,8 @@ set -xe
 
 echo "Entrypoint"
 
+exec upgrade-web-browsers.sh "$@"
+
 if [ -z "$KATALON_USER_ID" ]; then
 	exec "$@"
 else
