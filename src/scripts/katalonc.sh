@@ -7,18 +7,8 @@ echo "Starting Katalon Studio"
 
 cat $KATALON_VERSION_FILE
 
-if grep -q -- "-docker.autoUpdateBrowsers=true" <<< "$@"; then
-	if grep -q -- "-browserType=Chrome" <<< "$@"; then
-		echo "Upgrade Chrome browser..."
-		sudo apt --only-upgrade install google-chrome-stable
-	elif grep -q -- "-browserType=Firefox" <<< "$@"; then
-		echo "Upgrade Firefox browser..."
-		sudo apt --only-upgrade install firefox
-	elif grep -q -- "-browserType=Edge Chromium" <<< "$@"; then
-		echo "Upgrade Edge Chromium browser..."
-		sudo apt --only-upgrade install microsoft-edge-stable
-	fi
-fi
+usernam=katalon
+exec gosu $username upgrade-web-browsers.sh "$@"
 
 args=("$KATALON_KATALON_INSTALL_DIR/katalonc" "$@")
 

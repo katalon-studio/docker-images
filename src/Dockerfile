@@ -53,6 +53,8 @@ COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
 RUN chmod a+x katalon-notify.sh
 COPY ./src/scripts/katalonc.sh katalonc.sh
 RUN chmod a+x katalonc.sh
+COPY ./scripts/upgrade-web-browsers.sh upgrade-web-browsers.sh
+RUN chmod a+x upgrade-web-browsers.sh
 
 RUN echo "PATH=\"$PATH\"" > /etc/environment
 
