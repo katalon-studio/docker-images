@@ -5,7 +5,7 @@ set -xe
 echo "Entrypoint"
 
 # exec upgrade-web-browsers.sh "$@"
-if grep -q -- "-docker.autoUpdateBrowsers=true" <<< "$@"; then
+if grep -q -- "-docker\.autoUpdateBrowsers=true" <<< "$@"; then
 	if grep -q -- "-browserType=Chrome" <<< "$@"; then
 		echo "Upgrade Chrome browser..."
 		apt --only-upgrade install google-chrome-stable
