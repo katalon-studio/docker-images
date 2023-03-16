@@ -13,6 +13,7 @@ apt -y install wget
 apt -y install unzip
 apt -y install curl
 apt -y install gosu
+apt -y install jq
 
 echo "Install JRE"
 apt -y install openjdk-8-jdk
