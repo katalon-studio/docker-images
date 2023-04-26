@@ -5,7 +5,7 @@ set -xe
 mkdir -p $KATALON_BASE_ROOT_DIR
 cd $KATALON_BASE_ROOT_DIR
 
-apt update
+apt-get update
 
 echo "Install tools"
 apt -y install apt-utils
