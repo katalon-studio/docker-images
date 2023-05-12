@@ -40,7 +40,7 @@ apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
 # apt -y install firefox
-apt install software-properties-common
+apt -y install software-properties-common
 apt update
 add-apt-repository ppa:mozillateam/ppa
 apt update && sudo apt install -t "o=LP-PPA-mozillateam" firefox
