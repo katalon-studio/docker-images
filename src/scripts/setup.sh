@@ -43,7 +43,7 @@ echo "Install Mozilla Firefox"
 apt -y install software-properties-common
 apt update
 add-apt-repository ppa:mozillateam/ppa
-apt update && sudo apt install -t "o=LP-PPA-mozillateam" firefox
+apt update && apt install -t "o=LP-PPA-mozillateam" firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
