@@ -9,19 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 8.5.9
-        KS_VERSION_TAG: 8.5.9.alpha
+        KS_VERSION_TAG: test
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name : Prepare docker install 
+    - name : Prepare docker install
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    # - name: Prepare 
-    #   run: |
-    #     chmod u+x ./build/*.sh
-    #     ./build/prevent_overwrite_existing_tag.sh $KS_VERSION_TAG
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
@@ -58,5 +54,5 @@ jobs:
     - name: Upload reports
       run: |
         chmod u+x ./build/security-report/upload.sh
-        ./build/security-report/upload.sh $KS_VERSION_TAG ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+        ./build/security-report/upload.sh "security-report" ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
 
