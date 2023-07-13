@@ -14,7 +14,7 @@ sudo apt install docker-scan-plugin
 
 echo "Scanning security severity ${katalonImage} with Trivy..."
 docker pull aquasec/trivy:latest
-docker run -v $(pwd):/security-report --rm aquasec/trivy:0.18.3 i --format template --template "@contrib/html.tpl" --output /security-report/security_report_trivy.html ${katalonImage} --timeout 15m
+docker run -v $(pwd):/security-report --rm aquasec/trivy:0.18.3 i --timeout 15m --format template --template "@contrib/html.tpl" --output /security-report/security_report_trivy.html ${katalonImage} 
 
 echo "Scanning security severity ${katalonImage} with Snyk..."
 yes 2>/dev/null | docker scan --login --token $snyk_token
