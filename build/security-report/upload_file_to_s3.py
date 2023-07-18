@@ -18,6 +18,8 @@ def main():
     )
     client = session.client('s3')
 
+    print ('Bucketname - ' + bucket_name)
+
     response = client.upload_file(
         Filename=local_path,
         Bucket=bucket_name,
