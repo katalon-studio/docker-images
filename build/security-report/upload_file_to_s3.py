@@ -1,5 +1,6 @@
 import boto3
 import sys
+import botocore
 
 def main():
     if (len(sys.argv) != 6):
@@ -18,14 +19,15 @@ def main():
     )
     client = session.client('s3')
 
-    print ('Bucketname - ' + bucket_name)
-
-    response = client.upload_file(
-        Filename=local_path,
-        Bucket=bucket_name,
-        Key=aws_key
-    )
-    print ('Done uploading file ' + local_path)
-
+    try:
+        response = client.upload_file(
+            Filename=local_path,
+            Bucket=bucket_name,
+            Key=aws_key
+        )
+        print ('Done uploading file ' + local_path)
+    except botocore.exceptions.ClientError as e:
+        print (e)
+    
 
 main()
