@@ -5,7 +5,7 @@ set -xe
 mkdir -p $KATALON_BASE_ROOT_DIR
 cd $KATALON_BASE_ROOT_DIR
 
-apt update
+apt-get update
 
 echo "Install tools"
 apt -y install apt-utils
@@ -15,7 +15,7 @@ apt -y install curl
 apt -y install gosu
 
 echo "Install JRE"
-apt -y install openjdk-8-jdk
+apt -y install openjdk-17-jdk
 
 echo "Install CircleCI tools"
 apt -y install git
@@ -39,7 +39,11 @@ apt -y install fonts-tlwg-loma-otf
 apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
-apt -y install firefox
+# apt -y install firefox
+apt -y install software-properties-common
+apt update
+add-apt-repository ppa:mozillateam/ppa
+apt update && apt install -y -t "o=LP-PPA-mozillateam" firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
