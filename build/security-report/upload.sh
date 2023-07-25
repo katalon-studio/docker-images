@@ -15,4 +15,5 @@ aws_access_secret=$4
 
 pip install mediafire
 echo "Uploading report..."
+ls -a "security-report"
 python3 build/security-report/upload_file_test.py          
