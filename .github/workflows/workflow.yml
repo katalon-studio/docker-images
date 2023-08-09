@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - release-9.0.0
+      - STUDIO-4152
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.0.0
-        KS_VERSION_TAG: test
+        KS_VERSION_TAG: STUDIO-4152
     steps:
     # trigger build comments
     - name: Checkout

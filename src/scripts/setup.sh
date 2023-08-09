@@ -85,9 +85,9 @@ cd $KATALON_KATALON_ROOT_DIR
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
-katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
-katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
-wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+katalon_package="Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz"
+katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-9.0.0"
+wget -O $katalon_package https://download.katalon.com/9.0.0.DEV/STUDIO-4152/Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
