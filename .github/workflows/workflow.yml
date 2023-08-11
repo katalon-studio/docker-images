@@ -11,7 +11,7 @@ jobs:
         KS_VERSION: 9.0.0
         KS_VERSION_TAG: STUDIO-4152
     steps:
-    # trigger build comment
+    # trigger build commentss
     - name: Checkout
       uses: actions/checkout@master
     - name : Prepare docker install 
