@@ -51,8 +51,8 @@ echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 echo "Install Google Chrome"
 chrome_package='google-chrome-stable_current_amd64.deb'
-wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.198-1_amd64.deb
+# wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.198-1_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
 find ~/ -type f -name "chrome"
