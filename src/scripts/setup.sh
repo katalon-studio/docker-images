@@ -55,7 +55,7 @@ wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable
 # wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.198-1_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
-find ~/ -type f -name "chrome"
+which google-chrome
 echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
 ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
