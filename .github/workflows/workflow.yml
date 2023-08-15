@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - release-9.0.0
+      - release-8.6.13.alpha
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.0.0
-        KS_VERSION_TAG: test
+        KS_VERSION: 8.6.13
+        KS_VERSION_TAG: 8.6.13.alpha
     steps:
     # trigger build comments
     - name: Checkout
