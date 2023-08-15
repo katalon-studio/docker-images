@@ -2,16 +2,15 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - STUDIO-4152
+      - master
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.0.0
-        KS_VERSION_TAG: STUDIO-4152
+        KS_VERSION_TAG: latest
     steps:
-    # trigger build comments
     - name: Checkout
       uses: actions/checkout@master
     - name : Prepare docker install 
@@ -46,6 +45,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+        ./build/tag.sh $KS_VERSION
+        ./build/push.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
     - name: Slack Notification

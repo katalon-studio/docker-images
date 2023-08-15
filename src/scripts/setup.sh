@@ -52,10 +52,8 @@ echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 echo "Install Google Chrome"
 chrome_package='google-chrome-stable_current_amd64.deb'
 wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.198-1_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
-which google-chrome
 echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
 ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
@@ -88,9 +86,9 @@ cd $KATALON_KATALON_ROOT_DIR
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
-katalon_package="Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz"
-katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-9.0.0"
-wget -O $katalon_package https://download.katalon.com/9.0.0.DEV/STUDIO-4152/Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz
+katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
+katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
+wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls

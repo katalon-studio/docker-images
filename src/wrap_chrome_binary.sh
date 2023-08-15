@@ -5,7 +5,6 @@ set -xe
 echo "Wrap Chrome binary"
 
 WRAPPER_PATH=$(readlink -f /usr/bin/google-chrome)
-# WRAPPER_PATH="/opt/google/chrome/chrome"
 BASE_PATH="$WRAPPER_PATH-base"
 mv "$WRAPPER_PATH" "$BASE_PATH"
 
