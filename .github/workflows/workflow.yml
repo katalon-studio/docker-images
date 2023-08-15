@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.6.13
+        KS_VERSION: 8.6.13.alpha
         KS_VERSION_TAG: 8.6.13.alpha
     steps:
     # trigger build comments
