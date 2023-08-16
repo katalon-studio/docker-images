@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 8.6.5
-        KS_VERSION_TAG: STUDIO-4152
+        KS_VERSION_TAG: latest
     steps:
     - name: Checkout
       uses: actions/checkout@master
