@@ -51,8 +51,9 @@ jobs:
       run: |
         chmod u+x ./build/security-report/security_scan.sh
         ./build/security-report/security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
+    #${{ secrets.SEC_AWS_S3_BUCKET }}
     - name: Upload reports
       run: |
         chmod u+x ./build/security-report/upload.sh
-        ./build/security-report/upload.sh "security-report" ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+        ./build/security-report/upload.sh "security-report" "katalon-sec-katalonstudio-report2" ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
 
