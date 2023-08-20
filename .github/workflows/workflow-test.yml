@@ -51,10 +51,22 @@ jobs:
       run: |
         chmod u+x ./build/security-report/security_scan.sh
         ./build/security-report/security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
-    - name: Get reports
+    - name: Copy reports
       run: |
         chmod u+x ./build/copy.sh
         ./build/copy.sh $KS_VERSION_TAG
+    - name: Get reports
+      uses: deka0106/upload-to-dropbox@v2
+      with:
+        dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
+        src: ~/security_report_trivy.html
+        dest: /test/
+    - name: Get reports 2
+      uses: deka0106/upload-to-dropbox@v2
+      with:
+        dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
+        src: ~/security_report_snyk.html
+        dest: /test/
     - name: Upload reports
       run: |
         chmod u+x ./build/security-report/upload.sh
