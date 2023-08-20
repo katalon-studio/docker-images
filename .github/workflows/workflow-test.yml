@@ -54,7 +54,7 @@ jobs:
     - name: Copy reports
       run: |
         chmod u+x ./build/copy.sh
-        ./build/copy.sh $KS_VERSION_TAG
+        ./build/copy.sh $KS_VERSION
     - name: Get reports
       uses: deka0106/upload-to-dropbox@v2
       with:
