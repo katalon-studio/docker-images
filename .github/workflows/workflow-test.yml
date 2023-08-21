@@ -43,63 +43,14 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
-    # - name: Slack Notification
-    #   uses: rtCamp/action-slack-notify@master
-    #   env:
-    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     - name: Scan Security Vulnerabilities
       run: |
         chmod u+x ./build/security-report/security_scan.sh
         ./build/security-report/security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
-    # - name: Copy reports
-    #   run: |
-    #     chmod u+x ./build/copy.sh
-    #     ./build/copy.sh $KS_VERSION
-    # - name: Check location
-    #   run: |
-    #     ls -a
-    #     ls -a /security-report
-    - name: Send mail
-      uses: dawidd6/action-send-mail@v3
-      with:
-        # Required mail server address if not connection_url:
-        server_address: smtp.gmail.com
-        # Server port, default 25:
-        server_port: 465
-        # Optional whether this connection use TLS (default is true if server_port is 465)
-        secure: true
-        # Optional (recommended) mail server username:
-        username: hieu.bui@katalon.com
-        # Optional (recommended) mail server password:
-        password: mexgeflswockehfx
-        # Required mail subject:
-        subject: Github Actions job result
-        # Required recipients' addresses:
-        to: hieubui9981@gmail.com
-        # Required sender full name (address can be skipped):
-        from: Hieu
-        # Optional plain body:
-        body: Build job of ${{github.repository}} completed successfully!
-        # Optional unsigned/invalid certificates allowance:
-        ignore_cert: true
-        # Optional converting Markdown to HTML (set content_type to text/html too):
-        convert_markdown: true
-        # Optional attachments:
-        attachments: security_report_trivy.html,security_report_snyk.html
-        # Optional priority: 'high', 'normal' (default) or 'low'
-        priority: low
-    # - name: Get reports
-    #   uses: deka0106/upload-to-dropbox@v2
-    #   with:
-    #     dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
-    #     src: security_report_trivy.html
-    #     dest: /test/
-    # - name: Get reports 2
-    #   uses: deka0106/upload-to-dropbox@v2
-    #   with:
-    #     dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
-    #     src: security_report_snyk.html
-    #     dest: /test/
     - name: Upload reports
       run: |
         chmod u+x ./build/security-report/upload.sh
