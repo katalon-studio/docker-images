@@ -51,10 +51,10 @@ jobs:
       run: |
         chmod u+x ./build/security-report/security_scan.sh
         ./build/security-report/security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
-    - name: Copy reports
-      run: |
-        chmod u+x ./build/copy.sh
-        ./build/copy.sh $KS_VERSION
+    # - name: Copy reports
+    #   run: |
+    #     chmod u+x ./build/copy.sh
+    #     ./build/copy.sh $KS_VERSION
     - name: Get reports
       uses: deka0106/upload-to-dropbox@v2
       with:
