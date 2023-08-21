@@ -55,17 +55,21 @@ jobs:
     #   run: |
     #     chmod u+x ./build/copy.sh
     #     ./build/copy.sh $KS_VERSION
+    - name: Check location
+      run: |
+        ls -a
+        ls -a /security-report
     - name: Get reports
       uses: deka0106/upload-to-dropbox@v2
       with:
         dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
-        src: ~/security_report_trivy.html
+        src: /security-report/security_report_trivy.html
         dest: /test/
     - name: Get reports 2
       uses: deka0106/upload-to-dropbox@v2
       with:
         dropbox_access_token: sl.BkgWzgxW0e9jgOGSpMC7In5iNK-sTKMk61snXKhTWYEUyhwMUBdjyo4pw06It00-mYGoDbAFUYmDzlQ1FpW3OkuA03QQ63QlHatf4Q-P-xBhoBbjSyzUD9fCeGHqh5Ur5gBK3RVET0_e
-        src: ~/security_report_snyk.html
+        src: security_report_snyk.html
         dest: /test/
     - name: Upload reports
       run: |
