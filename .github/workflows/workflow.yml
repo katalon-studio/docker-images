@@ -20,46 +20,46 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    # - name: Prepare 
-    #   run: |
-    #     chmod u+x ./build/*.sh
-    #     ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
-    # - name:  Build
-    #   run: |
-    #     chmod u+x ./build/*.sh
-    #     ./build/clean.sh $KS_VERSION
-    #     ./build/build.sh $KS_VERSION
-    #     ./build/tag.sh $KS_VERSION 
-    # - name: Test
-    #   run: | 
-    #     chmod u+x ./test/project/*.sh
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #   continue-on-error: true
-    # - uses: azure/docker-login@v1
-    #   with:
-    #     login-server: registry.hub.docker.com
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
-    # - name: Push to dockerhub
-    #   run: |
-    #     cd $GITHUB_WORKSPACE
-    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-    #     ./build/tag.sh $KS_VERSION
-    #     ./build/push.sh $KS_VERSION
-    #     ./build/tag.sh $KS_VERSION_TAG
-    #     ./build/push.sh $KS_VERSION_TAG
-    # - name: Slack Notification
-    #   uses: rtCamp/action-slack-notify@master
-    #   env:
-    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Prepare 
+      run: |
+        chmod u+x ./build/*.sh
+        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
+    - name:  Build
+      run: |
+        chmod u+x ./build/*.sh
+        ./build/clean.sh $KS_VERSION
+        ./build/build.sh $KS_VERSION
+        ./build/tag.sh $KS_VERSION 
+    - name: Test
+      run: | 
+        chmod u+x ./test/project/*.sh
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
+      continue-on-error: true
+    - uses: azure/docker-login@v1
+      with:
+        login-server: registry.hub.docker.com
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push to dockerhub
+      run: |
+        cd $GITHUB_WORKSPACE
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+        ./build/tag.sh $KS_VERSION
+        ./build/push.sh $KS_VERSION
+        ./build/tag.sh $KS_VERSION_TAG
+        ./build/push.sh $KS_VERSION_TAG
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     - name: Scan Security Vulnerabilities
       run: |
         chmod u+x ./build/security-report/security_scan.sh
         ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
-    - name: configure aws credentials
+    - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
