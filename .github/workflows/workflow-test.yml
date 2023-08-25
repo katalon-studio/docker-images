@@ -62,10 +62,12 @@ jobs:
         role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
         role-session-name: github-actions-${{ env.TEAM }}-${{ env.SERVICE }}
         aws-region: ${{ vars.AWS_REGION }}
+    - run: |
+        echo `pwd`
     - name: Upload Reports to S3
       run: |
         echo "switched `pwd`"
         aws s3 cp security_report_trivy.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
         aws s3 cp security_report_snyk.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
-      working-directory: /home/runner/work/docker-images/docker-images/build/security-report
+      working-directory: ./build/security-report
 
