@@ -10,8 +10,8 @@ jobs:
     env:
         KS_VERSION: 8.6.6
         KS_VERSION_TAG: latest
-        AWS_TEAM: gen4
-        AWS_SERVICE: katalonstudio-docker-vulnerability-reports
+        TEAM: gen4
+        SERVICE: katalonstudio-docker-vulnerability-reports
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -62,10 +62,10 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
-          role-session-name: github-actions-$AWS_TEAM-$AWS_SERVICE
-          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
+          role-session-name: github-actions-$TEAM-$SERVICE
+          aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload Reports to S3
         run: |
-          aws s3 cp ./build/security-report/security_report_trivy.html s3://${{ secrets.AWS_BUCKET }}/$KS_VERSION/security_report_trivy.html
-          aws s3 cp ./build/security-report/security_report_snyk.html s3://${{ secrets.AWS_BUCKET }}/$KS_VERSION/security_report_snyk.html
+          aws s3 cp ./build/security-report/security_report_trivy.html s3://${{ secrets.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
+          aws s3 cp ./build/security-report/security_report_snyk.html s3://${{ secrets.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
