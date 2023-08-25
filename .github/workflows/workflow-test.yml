@@ -67,6 +67,7 @@ jobs:
     - name: Upload Reports to S3
       run: |
         echo "switched `pwd`"
+        echo $(ls)
         aws s3 cp ./security_report_trivy.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
         aws s3 cp ./security_report_snyk.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
       working-directory: ./build/security-report
