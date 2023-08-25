@@ -73,4 +73,4 @@ jobs:
         echo "switched `pwd`"
         aws s3 cp security_report_trivy.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
         aws s3 cp security_report_snyk.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
-      working-directory: ./build/security-report
+      working-directory: /home/runner/work/docker-images/docker-images/build/security-report
