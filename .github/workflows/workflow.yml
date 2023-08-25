@@ -62,9 +62,9 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
           role-session-name: github-actions-$TEAM-$SERVICE
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ vars.AWS_REGION }}
     - name: Upload Reports to S3
         run: |
           aws s3 cp ./build/security-report/security_report_trivy.html s3://${{ secrets.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
