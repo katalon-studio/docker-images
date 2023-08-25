@@ -67,5 +67,5 @@ jobs:
         aws-region: ${{ vars.AWS_REGION }}
     - name: Upload Reports to S3
       run: |
-        aws s3 cp ./build/security-report/security_report_trivy.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
-        aws s3 cp ./build/security-report/security_report_snyk.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
+        aws s3 cp ./build/security-report/security_report_trivy.html s3://${{ secrets.SEC_AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
+        aws s3 cp ./build/security-report/security_report_snyk.html s3://${{ secrets.SEC_AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
