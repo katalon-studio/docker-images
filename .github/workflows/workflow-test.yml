@@ -52,23 +52,16 @@ jobs:
     #   uses: rtCamp/action-slack-notify@master
     #   env:
     #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    - name: Scan Security Vulnerabilities
-      run: |
-        chmod u+x ./build/security-report/security_scan.sh
-        ./build/security-report/security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
     - name: Configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
         role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/katalon-github-oidc-federation
         role-session-name: github-actions-${{ env.TEAM }}-${{ env.SERVICE }}
         aws-region: ${{ vars.AWS_REGION }}
-    - run: |
-        echo `pwd`
-    - name: Upload Reports to S3
+    - name: Scan Security Vulnerabilities
       run: |
-        echo "switched `pwd`"
-        echo $(ls)
+        chmod u+x ./security_scan.sh
+        ./security_scan.sh $KS_VERSION_TAG ${{ secrets.SNYK_AUTH_TOKEN }}
         aws s3 cp ./security_report_trivy.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_trivy.html
         aws s3 cp ./security_report_snyk.html s3://${{ vars.AWS_S3_BUCKET }}/$KS_VERSION/security_report_snyk.html
       working-directory: ./build/security-report
-
