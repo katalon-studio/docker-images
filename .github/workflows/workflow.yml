@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.0.0
-        KS_VERSION_TAG: test
+        KS_VERSION_TAG: STUDIO-4152
     steps:
     # trigger build commentss
     - name: Checkout

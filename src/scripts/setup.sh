@@ -40,11 +40,11 @@ apt -y install fonts-tlwg-loma-otf
 apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
-# apt -y install firefox
-apt -y install software-properties-common
-apt update
-add-apt-repository ppa:mozillateam/ppa
-apt update && apt install -y -t "o=LP-PPA-mozillateam" firefox
+apt -y install firefox
+# apt -y install software-properties-common
+# apt update
+# add-apt-repository ppa:mozillateam/ppa
+# apt update && apt install -y -t "o=LP-PPA-mozillateam" firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
