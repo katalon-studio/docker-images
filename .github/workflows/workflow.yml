@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.6.6
+        KS_VERSION: 8.6.8
         KS_VERSION_TAG: latest
     steps:
     - name: Checkout
