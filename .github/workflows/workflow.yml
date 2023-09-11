@@ -2,13 +2,13 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - release-9.0.0
+      - release-9.0.0.beta
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.0.0
+        KS_VERSION: 9.0.0.beta
         KS_VERSION_TAG: test
     steps:
     # trigger build commentss
