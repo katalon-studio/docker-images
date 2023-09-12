@@ -14,6 +14,7 @@ apt -y install unzip
 apt -y install curl
 apt -y install gosu
 apt -y install psmisc
+apt-get -y install docker-scan-plugin
 
 echo "Install JRE"
 apt -y install openjdk-17-jdk
@@ -41,10 +42,6 @@ apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
 apt -y install firefox
-# apt -y install software-properties-common
-# apt update
-# add-apt-repository ppa:mozillateam/ppa
-# apt update && apt install -y -t "o=LP-PPA-mozillateam" firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
@@ -89,9 +86,9 @@ katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-# wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # beta link
-wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+# wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
