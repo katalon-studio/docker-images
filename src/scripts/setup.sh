@@ -14,7 +14,7 @@ apt -y install unzip
 apt -y install curl
 apt -y install gosu
 apt -y install psmisc
-apt-get -y install docker-scan-plugin
+apt -y install docker-scan-plugin
 
 echo "Install JRE"
 apt -y install openjdk-17-jdk
