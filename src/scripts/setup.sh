@@ -16,7 +16,7 @@ apt -y install gosu
 apt -y install psmisc
 
 echo "Install JRE"
-apt -y install openjdk-8-jdk
+apt -y install openjdk-17-jdk
 
 echo "Install CircleCI tools"
 apt -y install git
@@ -40,11 +40,7 @@ apt -y install fonts-tlwg-loma-otf
 apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
-# apt -y install firefox
-apt -y install software-properties-common
-apt update
-add-apt-repository ppa:mozillateam/ppa
-apt update && apt install -y -t "o=LP-PPA-mozillateam" firefox
+apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
@@ -88,7 +84,10 @@ katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
+# general link
 wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+# beta link
+# wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
 tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
