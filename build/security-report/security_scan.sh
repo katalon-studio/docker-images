@@ -10,6 +10,7 @@ npm install snyk-to-html --location=global
 
 sudo apt-get update -qq
 sudo apt-get install -y zip
+sudo apt-get install -y docker-scan-plugin
 
 echo "Scanning security severity ${katalonImage} with Trivy..."
 docker pull aquasec/trivy:latest
