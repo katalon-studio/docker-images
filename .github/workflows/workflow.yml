@@ -2,7 +2,7 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - 9.1.0
+      - release-9.1.0
 jobs:
   run:
     name: Run
