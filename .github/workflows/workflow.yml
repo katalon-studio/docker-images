@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.1.0
-        KS_VERSION_TAG: test
+        KS_VERSION_TAG: KSR-2647
     steps:
     # comment build
     - name: Checkout
