@@ -82,15 +82,15 @@ cd $KATALON_KATALON_ROOT_DIR
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
-katalon_package="Katalon_Studio_Engine_Linux_64.tar.gz"
-katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64"
+katalon_package="Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz"
+katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-9.0.0"
 # general link
-wget -O $katalon_package "https://drive.google.com/u/0/uc?id=10R6_-HDz1YiNjuq3jpxhZacxU5tcbVKK&export=download&confirm=t&uuid=c2bab2e6-5685-4504-a9af-76704cde02a4&at=AB6BwCCLxfY_rvYpm1wWEP0wQlHr:1701240055505"
+wget -O $katalon_package "https://download.katalon.com/9.0.0/Katalon_Studio_Engine_Linux_64-9.0.0.tar.gz"
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
-mkdir -p $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
+# mkdir -p $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
 ls
-tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
+tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
 rm $katalon_package
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory $KATALON_KATALON_INSTALL_DIR
