@@ -82,8 +82,8 @@ cd $KATALON_KATALON_ROOT_DIR
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
-katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
-katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
+katalon_package="Katalon_Studio_Engine_Linux_64.tar.gz"
+katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64"
 # general link
 wget -O $katalon_package "https://drive.google.com/u/0/uc?id=10R6_-HDz1YiNjuq3jpxhZacxU5tcbVKK&export=download&confirm=t&uuid=c2bab2e6-5685-4504-a9af-76704cde02a4&at=AB6BwCCLxfY_rvYpm1wWEP0wQlHr:1701240055505"
 # beta link
