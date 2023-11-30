@@ -17,7 +17,7 @@ ENV PATH "$PATH:$KATALON_KATALON_INSTALL_DIR"
 
 ENV ECLIPSE_SANDBOX='1.11'
 
-ENV DISPLAY=':99'
+ENV DISPLAY=':0'
 ENV DISPLAY_CONFIGURATION='1024x768x24'
 
 ENV GRADLE_HOME=$KATALON_SOFTWARE_DIR/gradle
@@ -42,6 +42,7 @@ COPY ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
 # Main setup
+COPY ./src/Katalon_Studio_Engine_Linux_64.tar.gz Katalon_Studio_Engine_Linux_64.tar.gz
 RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
 
 # Set locale

@@ -2,7 +2,12 @@
 
 set -xe
 
+ls
+
 mkdir -p $KATALON_BASE_ROOT_DIR
+
+mv Katalon_Studio_Engine_Linux_64.tar.gz $KATALON_BASE_ROOT_DIR
+
 cd $KATALON_BASE_ROOT_DIR
 
 apt-get update
@@ -37,7 +42,7 @@ apt -y install fonts-liberation
 apt -y install fonts-ipafont-gothic
 apt -y install fonts-wqy-zenhei
 apt -y install fonts-tlwg-loma-otf
-apt -y install ttf-ubuntu-font-family
+# apt -y install ttf-ubuntu-font-family
 
 echo "Install Mozilla Firefox"
 apt -y install firefox
@@ -47,7 +52,7 @@ echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 echo "Install Google Chrome"
 chrome_package='google-chrome-stable_current_amd64.deb'
-wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_118.0.5993.117-1_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
 echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
@@ -55,8 +60,9 @@ echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
 
 echo "Install Edge Chromium"
-microsoft_edge_package='MicrosoftEdgeSetup.exe'
-wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
+microsoft_edge_package='microsoft-edge-stable_current_amd64.deb'
+# wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
+wget -O $microsoft_edge_package http://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_118.0.2088.76-1_amd64.deb
 dpkg -i $microsoft_edge_package || apt -y -f install
 rm $microsoft_edge_package
 echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
@@ -77,19 +83,28 @@ ls $GRADLE_HOME
 
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
+
+mv Katalon_Studio_Engine_Linux_64.tar.gz $KATALON_KATALON_ROOT_DIR
+
 cd $KATALON_KATALON_ROOT_DIR
+
+ls
 
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
+katalon_package="Katalon_Studio_Engine_Linux_64.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+# wget -O $katalon_package https://drive.google.com/file/d/10R6_-HDz1YiNjuq3jpxhZacxU5tcbVKK/view?usp=sharing
+# wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
-tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
+mkdir -p $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
+tar -xvf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
+# tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
 rm $katalon_package
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory $KATALON_KATALON_INSTALL_DIR
