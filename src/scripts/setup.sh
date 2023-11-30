@@ -47,7 +47,7 @@ echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 echo "Install Google Chrome"
 chrome_package='google-chrome-stable_current_amd64.deb'
-wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_118.0.5993.117-1_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
 echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
@@ -55,8 +55,8 @@ echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
 
 echo "Install Edge Chromium"
-microsoft_edge_package='MicrosoftEdgeSetup.exe'
-wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
+microsoft_edge_package='microsoft-edge-stable_current_amd64.deb'
+wget -O $microsoft_edge_package http://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_118.0.2088.76-1_amd64.deb
 dpkg -i $microsoft_edge_package || apt -y -f install
 rm $microsoft_edge_package
 echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
