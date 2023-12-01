@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.1.0
-        KS_VERSION_TAG: test
+        KS_VERSION_TAG: v9.1.0-mac
     steps:
     - name: Checkout
       uses: actions/checkout@master
