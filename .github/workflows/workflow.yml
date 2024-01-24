@@ -8,8 +8,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.2.0
-        KS_VERSION_TAG: v9.2.0-mac
+        KS_VERSION: 9.3.0
+        KS_VERSION_TAG: test
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -21,7 +21,7 @@ jobs:
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
-#        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
+        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
       run: |
         chmod u+x ./build/*.sh

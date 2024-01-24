@@ -47,7 +47,7 @@ echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 echo "Install Google Chrome"
 chrome_package='google-chrome-stable_current_amd64.deb'
-wget -O $chrome_package  https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_118.0.5993.117-1_amd64.deb
+wget -O $chrome_package  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i $chrome_package || apt -y -f install
 rm $chrome_package
 echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
@@ -56,7 +56,7 @@ echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
 echo "Install Edge Chromium"
 microsoft_edge_package='microsoft-edge-stable_current_amd64.deb'
-wget -O $microsoft_edge_package http://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_118.0.2088.76-1_amd64.deb
+wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=214905176-1_amd64.deb
 dpkg -i $microsoft_edge_package || apt -y -f install
 rm $microsoft_edge_package
 echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
@@ -85,7 +85,7 @@ katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package "https://drive.google.com/u/0/uc?id=10qWsKIGevP0iMSNh-35jz_-kci6xHoLq&export=download&confirm=t&uuid=b1390454-f2a1-4d25-8279-a0076cb9c2f2&at=AB6BwCB0xjdXBYlwIXsr4m0mvCyR:1703753837018"
+wget -O $katalon_package https://download.katalon.com/$katalon_version-rc/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # mkdir -p $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
