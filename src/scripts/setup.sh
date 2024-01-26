@@ -56,7 +56,7 @@ echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
 echo "Install Edge Chromium"
 microsoft_edge_package='microsoft-edge-stable_current_amd64.deb'
-wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=214905176-1_amd64.deb
+wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
 dpkg -i $microsoft_edge_package || apt -y -f install
 rm $microsoft_edge_package
 echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
