@@ -85,7 +85,7 @@ katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package "https://drive.usercontent.google.com/download?id=19oHkZq44sgl1ciTKJSzUxFBp8_juBg8S&export=download&authuser=1&confirm=t&uuid=30cde5b2-927b-4cc6-a721-d4d943d4631a&at=APZUnTW-UHKWQFn1Hnsx_Yx9zdpy%3A1706858712356"
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
