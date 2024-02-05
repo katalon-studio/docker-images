@@ -3,7 +3,7 @@
 set -xe
 
 echo "Entrypoint"
-echo $RANDOM | md5sum | fold -w 32 | head -n 1 > /etc/machine-id
+# echo $RANDOM | md5sum | fold -w 32 | head -n 1 > /etc/machine-id
 
 if [ -z "$KATALON_USER_ID" ]; then
     exec "$@"
