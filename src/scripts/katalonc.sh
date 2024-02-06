@@ -4,7 +4,7 @@ set -x
 # Skip set -e to save the reports
 
 echo "Starting Katalon Studio"
-echo $RANDOM | md5sum | fold -w 32 | head -n 1 > /etc/machine-id
+echo $RANDOM | md5sum | fold -w 32 | head -n 1 > /var/lib/dbus/machine-id
 
 cat $KATALON_VERSION_FILE
 
