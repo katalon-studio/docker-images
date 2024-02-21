@@ -37,7 +37,7 @@ apt -y install fonts-liberation
 apt -y install fonts-ipafont-gothic
 apt -y install fonts-wqy-zenhei
 apt -y install fonts-tlwg-loma-otf
-apt -y install ttf-ubuntu-font-family
+apt -y install fonts-ubuntu
 
 echo "Install Mozilla Firefox"
 apt -y install firefox
