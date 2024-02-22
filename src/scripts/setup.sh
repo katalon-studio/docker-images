@@ -16,7 +16,7 @@ apt -y install gosu
 apt -y install psmisc
 
 echo "Install JRE"
-apt -y install openjdk-17-jdk
+apt -y install openjdk-8-jdk
 
 echo "Install CircleCI tools"
 apt -y install git
@@ -85,7 +85,7 @@ katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$katalon_version-rc/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package https://download.katalon.com/release-8.6.8-20240220/Katalon_Studio_Linux_64-8.6.8.tar.gz
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # mkdir -p $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory
