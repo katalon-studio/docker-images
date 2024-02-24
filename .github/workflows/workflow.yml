@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - master
+      - exclude-cucumber
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.3.0
-        KS_VERSION_TAG: 9.3.0
+        KS_VERSION_TAG: remove-eclipse-cucumber
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -21,7 +21,7 @@ jobs:
     - name: Prepare 
       run: |
         chmod u+x ./build/*.sh
-        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
+#        ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
@@ -45,8 +45,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-        ./build/tag.sh $KS_VERSION
-        ./build/push.sh $KS_VERSION
+#        ./build/tag.sh $KS_VERSION
+#        ./build/push.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
     - name: Slack Notification
