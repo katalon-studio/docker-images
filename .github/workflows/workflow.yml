@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - R&D-cucumber-v7.14.1
+      - upgrade-jackson
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.3.1
-        KS_VERSION_TAG: RnD-cucumber-v7.14.1
+        KS_VERSION_TAG: upgrade-jackson
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -47,15 +47,4 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@master
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    - name: Scan Security Vulnerabilities
-      run: |
-        chmod u+x ./build/security-report/security_scan.sh
-        ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
-    - name: Upload reports
-      run: |
-        chmod u+x ./build/security-report/upload.sh
-        ./build/security-report/upload.sh $KS_VERSION ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+
