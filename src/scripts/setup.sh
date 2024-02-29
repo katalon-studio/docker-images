@@ -37,9 +37,18 @@ apt -y install fonts-liberation
 apt -y install fonts-ipafont-gothic
 apt -y install fonts-wqy-zenhei
 apt -y install fonts-tlwg-loma-otf
-apt -y install ttf-ubuntu-font-family
+apt -y install fonts-ubuntu
 
 echo "Install Mozilla Firefox"
+install -d -m 0755 /etc/apt/keyrings
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | tee /etc/apt/preferences.d/mozilla
+apt update
 apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
@@ -64,7 +73,7 @@ echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
 
 echo "Install Gradle"
-gradle_version='5.4.1'
+gradle_version='7.6.4'
 gradle_package="gradle-$gradle_version-bin.zip"
 gradle_unzipped_package="gradle-$gradle_version"
 wget https://downloads.gradle.org/distributions/gradle-$gradle_version-bin.zip
