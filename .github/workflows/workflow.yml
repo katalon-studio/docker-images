@@ -14,8 +14,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.3.0
-        KS_VERSION_TAG: 9.3.0
+        KS_VERSION: 8.6.8
+        KS_VERSION_TAG: 8.6.8-20240227
     steps:
     - name: Checkout
       uses: actions/checkout@master
