@@ -3,7 +3,7 @@
 set -xe
 
 # mkdir -p $KATALON_BASE_ROOT_DIR
-# cd $KATALON_BASE_ROOT_DIR
+cd $KATALON_BASE_ROOT_DIR
 
 # apt-get update
 
@@ -75,9 +75,9 @@ set -xe
 # mv $gradle_unzipped_package $GRADLE_HOME
 # ls $GRADLE_HOME
 
-# # copy scripts
+# copy scripts
 # mkdir -p $KATALON_KATALON_ROOT_DIR
-# cd $KATALON_KATALON_ROOT_DIR
+cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
