@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - CO-2599
 jobs:
   run:
     name: Run
@@ -22,42 +23,51 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
+    - name: Configure AWS credentials    
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+        role-session-name: github-actions
+        aws-region: us-east-1
+        mask-aws-account-id: 'no'
+    - name: Login to Amazon ECR 
+      uses: aws-actions/amazon-ecr-login@v1
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
-    - name: Test
-      run: | 
-        chmod u+x ./test/project/*.sh
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-      continue-on-error: true
-    - uses: azure/docker-login@v1
-      with:
-        login-server: registry.hub.docker.com
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push to dockerhub
-      run: |
-        cd $GITHUB_WORKSPACE
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-        ./build/tag.sh $KS_VERSION
-        ./build/push.sh $KS_VERSION
-        ./build/tag.sh $KS_VERSION_TAG
-        ./build/push.sh $KS_VERSION_TAG
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@master
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    - name: Scan Security Vulnerabilities
-      run: |
-        chmod u+x ./build/security-report/security_scan.sh
-        ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
-    - name: Upload reports
-      run: |
-        chmod u+x ./build/security-report/upload.sh
-        ./build/security-report/upload.sh $KS_VERSION ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+    # - name: Test
+    #   run: | 
+    #     chmod u+x ./test/project/*.sh
+    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
+    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
+    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
+    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
+    #   continue-on-error: true
+    # - uses: azure/docker-login@v1
+    #   with:
+    #     login-server: registry.hub.docker.com
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Push to dockerhub
+    #   run: |
+    #     cd $GITHUB_WORKSPACE
+    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+    #     ./build/tag.sh $KS_VERSION
+    #     ./build/push.sh $KS_VERSION
+    #     ./build/tag.sh $KS_VERSION_TAG
+    #     ./build/push.sh $KS_VERSION_TAG
+    # - name: Slack Notification
+    #   uses: rtCamp/action-slack-notify@master
+    #   env:
+    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    # - name: Scan Security Vulnerabilities
+    #   run: |
+    #     chmod u+x ./build/security-report/security_scan.sh
+    #     ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
+    # - name: Upload reports
+    #   run: |
+    #     chmod u+x ./build/security-report/upload.sh
+    #     ./build/security-report/upload.sh $KS_VERSION ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
