@@ -35,7 +35,7 @@ ARG KATALON_STUDIO_VERSION
 # COPY ./src/wrap_edge_chromium_binary.sh wrap_edge_chromium_binary.sh
 # RUN chmod a+x wrap_edge_chromium_binary.sh
 
-# RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
+RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
 COPY ./src/scripts/setup.sh setup.sh
