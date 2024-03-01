@@ -43,14 +43,14 @@ jobs:
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
-    # - name: Test
-    #   run: | 
-    #     chmod u+x ./test/project/*.sh
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #   continue-on-error: true
+    - name: Test
+      run: | 
+        chmod u+x ./test/project/*.sh
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
+      continue-on-error: true
     # - uses: azure/docker-login@v1
     #   with:
     #     login-server: registry.hub.docker.com
