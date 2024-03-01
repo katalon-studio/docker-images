@@ -76,8 +76,8 @@ set -xe
 # ls $GRADLE_HOME
 
 # copy scripts
-mkdir -p $KATALON_KATALON_ROOT_DIR
-cd $KATALON_KATALON_ROOT_DIR
+# mkdir -p $KATALON_KATALON_ROOT_DIR
+# cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
