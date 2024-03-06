@@ -4,18 +4,14 @@ on:
     branches:
       - master
       - CO-2599
-
-permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
   
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.3.0
-        KS_VERSION_TAG: 9.3.0
+        KS_VERSION: 9.3.0-base
+        KS_VERSION_TAG: 9.3.0-base
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -28,15 +24,6 @@ jobs:
     #   run: |
     #     chmod u+x ./build/*.sh
     #     ./build/prevent_overwrite_existing_tag.sh $KS_VERSION
-    - name: Configure AWS credentials    
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
-        role-session-name: github-actions
-        aws-region: us-east-1
-        mask-aws-account-id: 'no'
-    - name: Login to Amazon ECR 
-      uses: aws-actions/amazon-ecr-login@v1
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
