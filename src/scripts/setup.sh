@@ -64,7 +64,7 @@ echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
 
 echo "Install Gradle"
-gradle_version='5.4.1'
+gradle_version='7.6.4'
 gradle_package="gradle-$gradle_version-bin.zip"
 gradle_unzipped_package="gradle-$gradle_version"
 wget https://downloads.gradle.org/distributions/gradle-$gradle_version-bin.zip
