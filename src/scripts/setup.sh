@@ -16,7 +16,7 @@ apt -y install gosu
 apt -y install psmisc
 
 echo "Install JRE"
-apt -y install openjdk-17-jdk
+apt -y install openjdk-8-jdk
 
 echo "Install CircleCI tools"
 apt -y install git
