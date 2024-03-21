@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - exclude-jackson-in-cucumber-3
+      - exclude-jackson-databind-in-cucumber-v3
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 9.3.2
-        KS_VERSION_TAG: exclude-jackson-in-cucumber-3
+        KS_VERSION_TAG: exclude-jackson-databind-in-cucumber-v3
     steps:
     - name: Checkout
       uses: actions/checkout@master
