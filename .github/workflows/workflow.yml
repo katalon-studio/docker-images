@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.4.0
+        KS_VERSION: 9.4.1
         KS_VERSION_TAG: exclude-jackson-databind-in-cucumber-v3
     steps:
     - name: Checkout
