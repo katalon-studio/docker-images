@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.3.1
+        KS_VERSION: 9.3.2
         KS_VERSION_TAG: exclude-jackson-in-cucumber-3
     steps:
     - name: Checkout
