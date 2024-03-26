@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM katalonstudio/ubuntu-20.04:4a27208
 
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
@@ -25,15 +25,6 @@ ENV GRADLE_BIN=$GRADLE_HOME/bin
 ENV PATH="$PATH:$GRADLE_BIN"
 
 ARG KATALON_STUDIO_VERSION
-
-# Copy "wrap_chrome_binary" script
-WORKDIR $KATALON_BASE_ROOT_DIR
-COPY ./src/wrap_chrome_binary.sh wrap_chrome_binary.sh
-RUN chmod a+x wrap_chrome_binary.sh
-
-# Copy "wrap_edge_chromium_binary" script
-COPY ./src/wrap_edge_chromium_binary.sh wrap_edge_chromium_binary.sh
-RUN chmod a+x wrap_edge_chromium_binary.sh
 
 RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
