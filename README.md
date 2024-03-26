@@ -1,3 +1,8 @@
+# Katalon Base Image
+
+https://github.com/katalon-studio/katalon-golden-image/blob/main/ubuntu/20.04/Dockerfile
+https://katalon.atlassian.net/wiki/spaces/CO/pages/2975500210/Katalon+Studio+Base+Docker+Image+KRE
+
 # Katalon Studio Docker Image 
 
 The following how-to guide is for running Katalon Studio test with Katalon Docker Image (KDI) version 7.2.1 onwards.
