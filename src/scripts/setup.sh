@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -xe
+# copy scripts
+mkdir -p $KATALON_KATALON_ROOT_DIR
+cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
 katalon_version="9.4.0"

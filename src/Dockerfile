@@ -1,4 +1,4 @@
-FROM katalonstudio/ubuntu-20.04:d5dc507-amd64
+FROM katalonstudio/ubuntu-20.04:c013216-amd64
 
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
@@ -26,14 +26,14 @@ ENV PATH="$PATH:$GRADLE_BIN"
 
 ARG KATALON_STUDIO_VERSION
 
-RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
+# RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY ./src/scripts/setup.sh setup.sh
-RUN chmod a+x setup.sh
+COPY ./src/scripts/setup.sh setup_katalon.sh
+RUN chmod a+x setup_katalon.sh
 
 # Main setup
-RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
+RUN $KATALON_KATALON_SCRIPT_DIR/setup_katalon.sh
 
 # Set locale
 ENV LANG C.UTF-8
