@@ -9,7 +9,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.4.0
+        KS_VERSION: test-kre-amd64
         KS_VERSION_TAG: test-kre-amd64
     steps:
     - name: Checkout
