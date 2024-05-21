@@ -9,8 +9,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: fix-kre
-        KS_VERSION_TAG: fix-kre
+        KS_VERSION: 9.4.0
+        KS_VERSION_TAG: test-kre-amd64
     steps:
     - name: Checkout
       uses: actions/checkout@master
