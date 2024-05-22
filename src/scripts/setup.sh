@@ -5,7 +5,7 @@ mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
-katalon_version="9.4.0"
+katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
