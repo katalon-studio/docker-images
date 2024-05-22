@@ -23,7 +23,7 @@ chmod -R u+x $KATALON_KATALON_INSTALL_DIR/configuration/resources/drivers
 echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
 
 chmod -R 777 $KATALON_ROOT_DIR
-chmod -R 777 $KATALON_SOFTWARE_DIR
+chmod -R 777 $KATALON_KATALON_INSTALL_DIR
 
 # clean up
 
