@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
