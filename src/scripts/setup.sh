@@ -2,6 +2,10 @@
 
 set -xe
 
+# copy scripts
+mkdir -p $KATALON_KATALON_ROOT_DIR
+cd $KATALON_KATALON_ROOT_DIR
+
 echo "Install Katalon"
 katalon_version="$KATALON_STUDIO_VERSION"
 katalon_directory="$version"
@@ -21,7 +25,7 @@ chmod -R u+x $KATALON_KATALON_INSTALL_DIR/configuration/resources/drivers
 echo "Katalon Studio $version" >> $KATALON_VERSION_FILE
 
 chmod -R 777 $KATALON_ROOT_DIR
-chmod -R 777 $KATALON_SOFTWARE_DIR
+chmod -R 777 $KATALON_KATALON_INSTALL_DIR
 
 # clean up
 
