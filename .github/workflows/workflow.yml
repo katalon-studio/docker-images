@@ -2,14 +2,14 @@ name: KatalonDockerCI
 on:
   push:
     branches:
-      - release-8.6.9
+      - 8.6.9-test
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
         KS_VERSION: 8.6.9
-        KS_VERSION_TAG: latest
+        KS_VERSION_TAG: 8.6.9-test
     steps:
     - name: Checkout
       uses: actions/checkout@master
