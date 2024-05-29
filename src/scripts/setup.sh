@@ -7,12 +7,12 @@ mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
-katalon_version="$KATALON_STUDIO_VERSION"
+katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
+wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
@@ -28,8 +28,6 @@ chmod -R 777 $KATALON_ROOT_DIR
 chmod -R 777 $KATALON_KATALON_INSTALL_DIR
 
 # clean up
-
-echo "Clean up"
 apt clean all
 rm -rf /var/lib/apt/lists/*
 cat $KATALON_VERSION_FILE

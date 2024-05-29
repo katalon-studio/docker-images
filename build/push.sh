@@ -4,4 +4,6 @@ set -xe
 
 ksversion=$1
 
-docker push katalonstudio/katalon:$ksversion
+if [ -n "$ksversion" ]; then
+    docker push katalonstudio/katalon:$ksversion
+fi
