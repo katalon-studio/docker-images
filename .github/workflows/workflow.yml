@@ -27,6 +27,7 @@ jobs:
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
+        ./build/tag.sh $KS_VERSION
     - name: Test
       run: | 
         chmod u+x ./test/project/*.sh
