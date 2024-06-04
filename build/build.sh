@@ -4,4 +4,4 @@ set -xe
 
 ksversion=$1
 
-docker build -t katalon-katalon -f src/Dockerfile --build-arg KATALON_STUDIO_VERSION=$ksversion .
+docker build -t katalon-katalon -f src/Dockerfile.harden --build-arg KATALON_STUDIO_VERSION=$ksversion .

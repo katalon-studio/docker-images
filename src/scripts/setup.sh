@@ -7,12 +7,12 @@ mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
-katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
+katalon_version=$(cut -d '-' -f 1 <<< "9.5.0")
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+wget -O $katalon_package https://download.katalon.com/9.5.0/$katalon_package
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
