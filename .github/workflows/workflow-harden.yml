@@ -1,5 +1,19 @@
-name: KatalonDockerCI
+name: KatalonDockerCI Harden
 on:
+  workflow_dispatch:
+    inputs:
+      KS_VERSION:
+        description: 'Katalon Studio version (E.g: "9.5.0")'
+        required: false
+        default: 9.5.0
+      KS_VERSION_TAG:
+        description: 'Katalon Studio version tag (E.g: "9.5.0")'
+        required: false
+        default: 9.5.0
+      KS_VERSION_LATEST_TAG:
+        description: 'Katalon Studio latest version tag (E.g: "9-latest")'
+        required: false
+        default: 9-latest
   push:
     branches:
       - master
@@ -8,9 +22,9 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 9.5.0
-        KS_VERSION_TAG: 9.5.0
-        KS_VERSION_LATEST_TAG: 9-latest
+        KS_VERSION: ${{ inputs.KS_VERSION }}
+        KS_VERSION_TAG: ${{ inputs.KS_VERSION_TAG }}
+        KS_VERSION_LATEST_TAG: ${{ inputs.KS_VERSION_LATEST_TAG }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -27,7 +41,7 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION
+        ./build/build-harden.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
     - name: Test
       run: | 
