@@ -62,8 +62,8 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
         ./build/tag.sh $KS_VERSION_TAG
         ./build/push.sh $KS_VERSION_TAG
-        ./build/tag.sh $KS_VERSION_LATEST_TAG
-        ./build/push.sh $KS_VERSION_LATEST_TAG
+        # ./build/tag.sh $KS_VERSION_LATEST_TAG
+        # ./build/push.sh $KS_VERSION_LATEST_TAG
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@master
       env:

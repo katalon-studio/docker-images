@@ -29,11 +29,11 @@ ARG KATALON_STUDIO_VERSION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY ./src/scripts/setup.sh setup.sh
-RUN chmod a+x setup.sh
+COPY ./src/scripts/setup-harden.sh setup-harden.sh
+RUN chmod a+x setup-harden.sh
 
-# Main setup
-RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
+# Main setup-harden
+RUN $KATALON_KATALON_SCRIPT_DIR/setup-harden.sh
 
 # Set locale
 ENV LANG C.UTF-8
