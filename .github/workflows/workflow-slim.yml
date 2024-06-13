@@ -1,22 +1,17 @@
-name: KatalonDockerCI Harden
+name: Slim Docker Image
 on:
   workflow_dispatch:
     inputs:
       KS_VERSION:
-        description: 'Katalon Studio version (E.g: "9.5.0")'
-        required: false
-        default: 9.5.0
+        description: 'Katalon Studio version (e.g: "9.5.0")'
+        required: true
       KS_VERSION_TAG:
-        description: 'Katalon Studio version tag (E.g: "9.5.0")'
-        required: false
-        default: 9.5.0
+        description: 'Docker image tag (e.g: "9.5.0")'
+        required: true
       KS_VERSION_LATEST_TAG:
-        description: 'Katalon Studio latest version tag (E.g: "9-latest")'
+        description: 'Docker image latest tag (e.g: "9-latest")'
         required: false
-        default: 9-latest
-  push:
-    branches:
-      - master
+
 jobs:
   run:
     name: Run
@@ -41,7 +36,7 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
-        ./build/build-harden.sh $KS_VERSION
+        ./build/build-slim.sh $KS_VERSION
         ./build/tag.sh $KS_VERSION 
     - name: Test
       run: | 
