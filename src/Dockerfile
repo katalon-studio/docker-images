@@ -1,5 +1,8 @@
 FROM katalonstudio/ubuntu-20.04:b5bc9d0
 
+RUN useradd katalon
+USER katalon
+
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
 ARG KATALON_BASE_ROOT_DIR=$KATALON_ROOT_DIR/base
