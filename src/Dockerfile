@@ -1,4 +1,4 @@
-FROM katalonstudio/ubuntu-20.04:b5bc9d0
+FROM katalonstudio/ubuntu-20.04:27fd76f
 
 # common environment variables
 ARG KATALON_ROOT_DIR=/katalon
