@@ -12,7 +12,11 @@ katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 # general link
-wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+if [ -z "$SPECIFIC_DOWNLOAD_LINK" ];
+    wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+else
+    wget -O $katalon_package $SPECIFIC_DOWNLOAD_LINK
+fi
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
