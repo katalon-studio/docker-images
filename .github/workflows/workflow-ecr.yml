@@ -2,7 +2,7 @@ name: Default Docker Image
 on:
   push:
     branches:
-      - STUDIO-6141
+      - STUIDO-6141
 # on:
 #   workflow_dispatch:
 #     inputs:
