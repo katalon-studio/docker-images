@@ -48,7 +48,7 @@ jobs:
       id: vars
       run: echo "COMMIT_ID=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
     - name: Tag Docker image with commit ID
-      run: docker tag katalonstudio/katalon:$KS_VERSION 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ env.COMMIT_ID }}
+      run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ env.COMMIT_ID }}
     # - name: Test
     #   run: | 
     #     chmod u+x ./test/project/*.sh
