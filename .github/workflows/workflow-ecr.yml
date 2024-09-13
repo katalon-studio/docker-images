@@ -3,6 +3,15 @@ on:
   push:
     branches:
       - STUIDO-6141
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       KS_VERSION:
+#         description: 'Katalon Studio version (e.g: "9.5.0")'
+#         required: true
+#       DOCKER_IMAGE_TAG:
+#         description: 'Docker image tag (e.g: "9.5.0")'
+#         required: true
 
 jobs:
   run:
@@ -10,7 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: '9.7.0-rc1'
-        KS_COMMIT_ID: 'b8771d5fae3f5f3c905fbcd22b4aab4d9161232d'
+        DOCKER_IMAGE_TAG: '9.7.0-rc1'
+        # KS_VERSION: ${{ inputs.KS_VERSION }}
+        # DOCKER_IMAGE_TAG: ${{ inputs.DOCKER_IMAGE_TAG }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -25,7 +36,7 @@ jobs:
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
     - name: Tag Docker image with commit ID
-      run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$KS_COMMIT_ID
+      run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_TAG
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -36,4 +47,4 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
     - name: Push Docker image to ECR
-      run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$KS_COMMIT_ID
+      run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_TAG
