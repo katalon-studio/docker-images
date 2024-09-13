@@ -1,4 +1,4 @@
-name: Default Docker Image
+name: Push Docker Image to ECR
 on:
   push:
     branches:
