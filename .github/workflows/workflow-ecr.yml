@@ -3,18 +3,6 @@ on:
   push:
     branches:
       - STUIDO-6141
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       KS_VERSION:
-#         description: 'Katalon Studio version (e.g: "9.5.0")'
-#         required: true
-#       # KS_VERSION_TAG:
-#       #   description: 'Docker image tag (e.g: "9.5.0")'
-#       #   required: true
-#       # KS_VERSION_LATEST_TAG:
-#       #   description: 'Docker image latest tag (e.g: "9-latest")'
-#       #   required: false
 
 jobs:
   run:
@@ -22,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         KS_VERSION: '9.7.0-rc1'
-        # KS_VERSION: ${{ inputs.KS_VERSION }}
-        # KS_VERSION_TAG: ${{ inputs.KS_VERSION_TAG }}
-        # KS_VERSION_LATEST_TAG: ${{ inputs.KS_VERSION_LATEST_TAG }}
+        KS_COMMIT_ID: 'b8771d5fae3f5f3c905fbcd22b4aab4d9161232d'
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -33,30 +19,20 @@ jobs:
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
         sudo apt -y install jq
-    # - name: Prepare 
-    #   run: |
-    #     chmod u+x ./build/*.sh
-    #     # ./build/prevent_overwrite_existing_tag.sh $KS_VERSION_TAG
+    - name: Test
+      run: | 
+        chmod u+x ./test/project/*.sh
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
+        cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
     - name:  Build
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
         ./build/build.sh $KS_VERSION
-        # ./build/tag.sh $KS_VERSION
-    - name: Set up commit ID
-      # Need to update
-      id: vars
-      run: echo "COMMIT_ID=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
     - name: Tag Docker image with commit ID
-      run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ env.COMMIT_ID }}
-    # - name: Test
-    #   run: | 
-    #     chmod u+x ./test/project/*.sh
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-    #   continue-on-error: true
+      run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$KS_COMMIT_ID
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -67,29 +43,4 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
     - name: Push Docker image to ECR
-      run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ env.COMMIT_ID }}
-    # - uses: azure/docker-login@v1
-    #   with:
-    #     login-server: registry.hub.docker.com
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
-    # - name: Push to dockerhub
-    #   run: |
-    #     cd $GITHUB_WORKSPACE
-    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-    #     ./build/tag.sh $KS_VERSION_TAG
-    #     ./build/push.sh $KS_VERSION_TAG
-    #     ./build/tag.sh $KS_VERSION_LATEST_TAG
-    #     ./build/push.sh $KS_VERSION_LATEST_TAG
-    # - name: Slack Notification
-    #   uses: rtCamp/action-slack-notify@master
-    #   env:
-    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-    # - name: Scan Security Vulnerabilities
-    #   run: |
-    #     chmod u+x ./build/security-report/security_scan.sh
-    #     ./build/security-report/security_scan.sh $KS_VERSION_TAG  ${{ secrets.SNYK_AUTH_TOKEN }}
-    # - name: Upload reports
-    #   run: |
-    #     chmod u+x ./build/security-report/upload.sh
-    #     ./build/security-report/upload.sh $KS_VERSION ${{ secrets.SEC_AWS_S3_BUCKET }} ${{ secrets.SEC_AWS_ACCESS_KEY_ID }} ${{ secrets.SEC_AWS_SECRET_ACCESS_KEY }}
+      run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$KS_COMMIT_ID
