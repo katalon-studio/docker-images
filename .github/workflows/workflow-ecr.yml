@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # KRE_VERSION: ${{ inputs.KRE_VERSION }}
+      inputs.KRE_VERSION: '10.0.0-dev'
       KRE_VERSION: '10.0.0-dev'
       DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
     steps:
