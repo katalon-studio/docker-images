@@ -1,0 +1,44 @@
+name: Push KRE Docker Image to ECR
+
+on:
+  workflow_dispatch:
+    inputs:
+      KRE_VERSION:
+        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at [document](https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline#:~:text=rc3-,Release,-Version%20number%20and).'
+        required: true
+      DOCKER_IMAGE_PUBLISHED_TAG:
+        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE_VERSION is the default value.'
+        required: false
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    env:
+      KRE_VERSION: ${{ inputs.KRE_VERSION }}
+      DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build
+        run: |
+          chmod u+x ./build/*.sh
+          ./build/clean.sh $KRE_VERSION
+          ./build/build.sh $KRE_VERSION
+      - name: Tag Docker image with commit ID
+        run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+          role-session-name: github-actions
+          aws-region: us-east-1
+          mask-aws-account-id: "no"
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Push Docker image to ECR
+        run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
