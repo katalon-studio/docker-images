@@ -1,17 +1,14 @@
 name: Push Docker Image to ECR
+
 on:
-  push:
-    branches:
-      - STUIDO-6141
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       KS_VERSION:
-#         description: 'Katalon Studio version (e.g: "9.5.0")'
-#         required: true
-#       DOCKER_IMAGE_TAG:
-#         description: 'Docker image tag (e.g: "9.5.0")'
-#         required: true
+  workflow_dispatch:
+    inputs:
+      KS_VERSION:
+        description: 'Katalon Studio version (e.g: "9.5.0")'
+        required: true
+      DOCKER_IMAGE_TAG:
+        description: 'Docker image tag (e.g: "9.5.0")'
+        required: true
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -22,10 +19,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: '10.0.0-dev'
-        DOCKER_IMAGE_TAG: '10.0.0-dev'
-        # KS_VERSION: ${{ inputs.KS_VERSION }}
-        # DOCKER_IMAGE_TAG: ${{ inputs.DOCKER_IMAGE_TAG }}
+        KS_VERSION: ${{ inputs.KS_VERSION }}
+        DOCKER_IMAGE_TAG: ${{ inputs.DOCKER_IMAGE_TAG }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
