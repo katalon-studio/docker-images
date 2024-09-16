@@ -22,8 +22,8 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: '9.7.0-rc1'
-        DOCKER_IMAGE_TAG: '9.7.0-rc1'
+        KS_VERSION: '10.0.0-dev'
+        DOCKER_IMAGE_TAG: '10.0.0-dev'
         # KS_VERSION: ${{ inputs.KS_VERSION }}
         # DOCKER_IMAGE_TAG: ${{ inputs.DOCKER_IMAGE_TAG }}
     steps:
