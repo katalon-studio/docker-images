@@ -2,6 +2,16 @@
 
 set -xe
 
+# symlink Google Chrome
+symlink="/usr/bin/google-chrome"
+if [ -L $symlink ]; then
+    unlink $symlink
+fi
+
+if [ -f /opt/google/chrome/google-chrome ]; then
+    ln -s /opt/google/chrome/google-chrome $symlink
+fi
+
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
