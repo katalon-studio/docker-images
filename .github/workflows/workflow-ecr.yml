@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       KRE_VERSION:
-        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at [document](https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline#:~:text=rc3-,Release,-Version%20number%20and).'
+        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
         required: true
       DOCKER_IMAGE_PUBLISHED_TAG:
-        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE_VERSION is the default value.'
+        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
         required: false
 
 permissions:
