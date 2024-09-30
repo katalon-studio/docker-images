@@ -23,7 +23,7 @@ jobs:
       DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
     steps:
       - name: Checkout
-        uses: actions/checkout@Build-arm
+        uses: actions/checkout@master
       - name: Build
         run: |
           chmod u+x ./build/*.sh
