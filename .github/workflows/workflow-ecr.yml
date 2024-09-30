@@ -30,7 +30,7 @@ jobs:
           ./build/clean.sh $KRE_VERSION
           ./build/build.sh $KRE_VERSION
       - name: Tag Docker image with commit ID
-        run: docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
+        run: docker tag katalon-studio 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
