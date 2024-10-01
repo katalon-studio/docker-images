@@ -1,6 +1,8 @@
 FROM katalonstudio/ubuntu-20.04:490e137
 
 # common environment variables
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
 ARG KATALON_ROOT_DIR=/katalon
 ARG KATALON_BASE_ROOT_DIR=$KATALON_ROOT_DIR/base
 ENV KATALON_VERSION_FILE=$KATALON_ROOT_DIR/version
@@ -34,7 +36,7 @@ COPY ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
 # Main setup
-RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh
+RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh $BUILDPLATFORM $TARGETPLATFORM
 
 # Set locale
 ENV LANG C.UTF-8
