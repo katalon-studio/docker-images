@@ -22,10 +22,6 @@ jobs:
           chmod u+x ./build/*.sh
           ./build/clean.sh $KRE_VERSION
           ./build/build.sh $KRE_VERSION
-      - name: Tag Docker image with commit ID
-        run: |
-          docker images
-          docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -35,5 +31,9 @@ jobs:
           mask-aws-account-id: "no"
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
+      - name: Tag Docker image with commit ID
+        run: |
+          docker images
+          docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
       - name: Push Docker image to ECR
         run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
