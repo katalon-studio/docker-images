@@ -28,15 +28,15 @@ jobs:
         with:
           version: latest
           endpoint: builders
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
-          role-session-name: github-actions
-          aws-region: us-east-1
-          mask-aws-account-id: "no"
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v2
+      #   with:
+      #     role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+      #     role-session-name: github-actions
+      #     aws-region: us-east-1
+      #     mask-aws-account-id: "no"
+      # - name: Login to Amazon ECR
+      #   uses: aws-actions/amazon-ecr-login@v1
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -47,9 +47,9 @@ jobs:
           chmod u+x ./build/*.sh
           ./build/clean.sh $KRE_VERSION
           ./build/build.sh $KRE_VERSION
-      - name: Tag Docker image with commit ID
-        run: |
-          docker images
-          docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
+      # - name: Tag Docker image with commit ID
+      #   run: |
+      #     docker images
+      #     docker tag katalon-katalon 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
       # - name: Push Docker image to ECR
       #   run: docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
