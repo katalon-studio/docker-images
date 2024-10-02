@@ -2,14 +2,14 @@ name: KatalonDockerCI-NonLatest
 on:
   push:
     branches:
-      - release-non-latest
+      - Build-arm
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     env:
-        KS_VERSION: 8.5.0
-        KS_VERSION_TAG: 8.5.0
+        KS_VERSION: 10.0.0
+        KS_VERSION_TAG: 10.0.0
     steps:
     - name: Checkout
       uses: actions/checkout@master
