@@ -36,7 +36,7 @@ COPY ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
 # Main setup
-RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh $TARGETPLATFORM > ./temp.log 2>&1
+RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh $TARGETPLATFORM
 
 # Set locale
 ENV LANG C.UTF-8
