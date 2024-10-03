@@ -2,10 +2,9 @@
 
 set -xe
 
-BUILDPLATFORM=$1
-TARGETPLATFORM=$2
+TARGETPLATFORM=$1
 
-echo BUILDPLATFORM
+echo $TARGETPLATFORM
 
 # symlink Google Chrome
 symlink="/usr/bin/google-chrome"
