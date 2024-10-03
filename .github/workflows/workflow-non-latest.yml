@@ -37,8 +37,7 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION
-        ./build/tag.sh $KS_VERSION 
+        ./build/build.sh $KS_VERSION $KS_VERSION
     - name: Test
       run: | 
         chmod u+x ./test/project/*.sh
@@ -47,21 +46,21 @@ jobs:
         cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
         cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
       continue-on-error: true
-    - uses: azure/docker-login@v1
-      with:
-        login-server: registry.hub.docker.com
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push to dockerhub
-      run: |
-        cd $GITHUB_WORKSPACE
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-        ./build/tag.sh $KS_VERSION_TAG
-        ./build/push.sh $KS_VERSION_TAG
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@master
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    # - uses: azure/docker-login@v1
+    #   with:
+    #     login-server: registry.hub.docker.com
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Push to dockerhub
+    #   run: |
+    #     cd $GITHUB_WORKSPACE
+    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+    #     ./build/tag.sh $KS_VERSION_TAG
+    #     ./build/push.sh $KS_VERSION_TAG
+    # - name: Slack Notification
+    #   uses: rtCamp/action-slack-notify@master
+    #   env:
+    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     - name: Scan Security Vulnerabilities
       run: |
         chmod u+x ./build/security-report/security_scan.sh
