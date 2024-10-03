@@ -13,35 +13,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-‎.github/workflows/build-golden-images.yaml
-+8
--8
-Original file line number	Diff line number	Diff line change
-name: "[CICD] Build Golden Images"
-
-on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/workflows/**'
-
-permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
-
-env:
-  TEAM: cloudops
-  SERVICE_NAME: golden-images
-  SERVICE_PATH: .
-
-jobs:
-  set_env:
-    runs-on: ubuntu-latest
-    name: Set Environment
-    steps:
     - name: Set up QEMU dependency
-      uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v2
     - name: Set up Docker Context for Buildx
       shell: bash
       run: |
