@@ -1,6 +1,7 @@
 FROM katalonstudio/ubuntu-20.04:harden-56d9185
 
 # common environment variables
+ARG TARGETPLATFORM
 ARG KATALON_ROOT_DIR=/katalon
 ARG KATALON_BASE_ROOT_DIR=$KATALON_ROOT_DIR/base
 ENV KATALON_VERSION_FILE=$KATALON_ROOT_DIR/version
@@ -34,7 +35,7 @@ COPY ./src/scripts/setup-slim.sh setup-slim.sh
 RUN chmod a+x setup-slim.sh
 
 # Main setup-harden
-RUN $KATALON_KATALON_SCRIPT_DIR/setup-slim.sh
+RUN $KATALON_KATALON_SCRIPT_DIR/setup-slim.sh $TARGETPLATFORM
 
 # Set locale
 ENV LANG C.UTF-8
