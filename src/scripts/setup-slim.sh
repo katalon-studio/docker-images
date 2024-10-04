@@ -13,7 +13,7 @@ katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
 katalon_directory="$version"
 katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
 katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
-if [ "$TARGETPLATFORM" -eq "linux/arm64" ]; then
+if [ "$TARGETPLATFORM" == "linux/arm64" ]; then
     katalon_package="Katalon_Studio_Engine_Linux_arm64-$katalon_version.tar.gz"
     katalon_unzipped_directory="Katalon_Studio_Engine_Linux_arm64-$katalon_version"
 fi
