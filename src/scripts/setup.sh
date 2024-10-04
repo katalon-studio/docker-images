@@ -26,6 +26,7 @@ katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
 if [ "$TARGETPLATFORM" -eq "linux/arm64" ]; then
     katalon_package="Katalon_Studio_Engine_Linux_arm64-$katalon_version.tar.gz"
     katalon_unzipped_directory="Katalon_Studio_Engine_Linux_arm64-$katalon_version"
+    echo "HUYEN DEBUG: $katalon_package"
 fi
 # general link
 wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
