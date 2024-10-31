@@ -24,37 +24,44 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  run:
-    name: Run
+  test:
+    name: test
     runs-on: ubuntu-latest
-    env:
-      KRE_VERSION: ${{ inputs.KRE_VERSION }}
-      DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Set up QEMU dependency
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Context for Buildx
-        shell: bash
+      - name: test
         run: |
-          docker context create builders
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          version: latest
-          endpoint: builders
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
-          role-session-name: github-actions
-          aws-region: us-east-1
-          mask-aws-account-id: "no"
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
-      - name: Build & Push
-        run: |
-          chmod u+x ./build/*.sh
-          ./build/clean.sh $KRE_VERSION
-          ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG
+          echo "abc"
+  # run:
+  #   name: Run
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     KRE_VERSION: ${{ inputs.KRE_VERSION }}
+  #     DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
+  #     - name: Set up QEMU dependency
+  #       uses: docker/setup-qemu-action@v3
+  #     - name: Set up Docker Context for Buildx
+  #       shell: bash
+  #       run: |
+  #         docker context create builders
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
+  #       with:
+  #         version: latest
+  #         endpoint: builders
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v2
+  #       with:
+  #         role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+  #         role-session-name: github-actions
+  #         aws-region: us-east-1
+  #         mask-aws-account-id: "no"
+  #     - name: Login to Amazon ECR
+  #       uses: aws-actions/amazon-ecr-login@v1
+  #     - name: Build & Push
+  #       run: |
+  #         chmod u+x ./build/*.sh
+  #         ./build/clean.sh $KRE_VERSION
+  #         ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG
