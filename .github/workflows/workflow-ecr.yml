@@ -26,8 +26,8 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  test:
-    name: test
+  trigger:
+    name: trigger
     runs-on: ubuntu-latest
     steps:
       - name: test
