@@ -33,6 +33,8 @@ jobs:
       - name: test
         run: |
           echo "docker-iamges repo"
+          echo "release is: ${{ inputs.KRE_VERSION }}"
+          echo release is: ${{ inputs.KRE_VERSION }}
   # run:
   #   name: Run
   #   runs-on: ubuntu-latest
