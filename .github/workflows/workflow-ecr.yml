@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: test
         run: |
-          echo "abc"
+          echo "docker-iamges repo"
   # run:
   #   name: Run
   #   runs-on: ubuntu-latest
