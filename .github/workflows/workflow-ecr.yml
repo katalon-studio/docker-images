@@ -15,7 +15,6 @@ on:
         description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
         required: true
         type: string
-        # default: "10.0.0-dev"
       DOCKER_IMAGE_PUBLISHED_TAG:
         description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
         required: false
