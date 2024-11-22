@@ -24,6 +24,7 @@ jobs:
         KS_VERSION: ${{ inputs.KS_VERSION }}
         KS_VERSION_TAG: ${{ inputs.KS_VERSION_TAG }}
         KS_VERSION_LATEST_TAG: ${{ inputs.KS_VERSION_LATEST_TAG }}
+        IS_RELEASE: ${{ inputs.IS_RELEASE }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
