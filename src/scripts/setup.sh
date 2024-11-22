@@ -27,8 +27,13 @@ if [ "$TARGETPLATFORM" == "linux/arm64" ]; then
     katalon_package="Katalon_Studio_Engine_Linux_arm64-$katalon_version.tar.gz"
     katalon_unzipped_directory="Katalon_Studio_Engine_Linux_arm64-$katalon_version"
 fi
+# Switch package domain for downloading
+PACKAGE_DOMAIN="download.staging.katalon.com"
+if [ "$IS_RELEASE" == "true" ]; then
+    PACKAGE_DOMAIN="download.katalon.com"
+fi
 # general link
-wget -O $katalon_package https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+wget -O $katalon_package https://$PACKAGE_DOMAIN/$KATALON_STUDIO_VERSION/$katalon_package
 # beta link
 # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 ls
