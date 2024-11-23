@@ -27,6 +27,8 @@ on:
         description: 'Production'
         required: false
         type: boolean
+  repository_dispatch:
+    types: [trigger-workflow]
 
 permissions:
   id-token: write # This is required for requesting the JWT
