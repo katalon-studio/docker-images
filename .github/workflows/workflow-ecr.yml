@@ -69,8 +69,8 @@ jobs:
       #     mask-aws-account-id: "no"
       # # - name: Login to Amazon ECR
       # #   uses: aws-actions/amazon-ecr-login@v1
-      # - name: Build & Push
-      #   run: |
-      #     chmod u+x ./build/*.sh
-      #     ./build/clean.sh $KRE_VERSION
-      #     ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG $IS_PRODUCTION
+      - name: Build & Push
+        run: |
+          chmod u+x ./build/*.sh
+          ./build/clean.sh $KRE_VERSION
+          ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG $IS_PRODUCTION
