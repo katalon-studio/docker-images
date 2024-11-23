@@ -61,8 +61,8 @@ jobs:
           role-session-name: github-actions
           aws-region: us-east-1
           mask-aws-account-id: "no"
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
+      # - name: Login to Amazon ECR
+      #   uses: aws-actions/amazon-ecr-login@v1
       - name: Build & Push
         run: |
           chmod u+x ./build/*.sh
