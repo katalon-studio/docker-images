@@ -11,8 +11,8 @@ on:
       KS_VERSION_LATEST_TAG:
         description: 'Docker image latest tag (e.g: "9-latest")'
         required: false
-      IS_RELEASE:
-        description: 'Tick for Production'
+      IS_PRODUCTION:
+        description: 'Production'
         required: false
         type: boolean
 
@@ -24,7 +24,7 @@ jobs:
         KS_VERSION: ${{ inputs.KS_VERSION }}
         KS_VERSION_TAG: ${{ inputs.KS_VERSION_TAG }}
         KS_VERSION_LATEST_TAG: ${{ inputs.KS_VERSION_LATEST_TAG }}
-        IS_RELEASE: ${{ inputs.IS_RELEASE }}
+        IS_PRODUCTION: ${{ inputs.IS_PRODUCTION }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -52,7 +52,7 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION $KS_VERSION_TAG $IS_RELEASE
+        ./build/build.sh $KS_VERSION $KS_VERSION_TAG $IS_PRODUCTION
     - name: Test
       run: | 
         chmod u+x ./test/project/*.sh

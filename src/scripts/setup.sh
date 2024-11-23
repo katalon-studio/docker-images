@@ -29,7 +29,7 @@ if [ "$TARGETPLATFORM" == "linux/arm64" ]; then
 fi
 # Switch package domain for downloading
 PACKAGE_DOMAIN="download.staging.katalon.com"
-if [ "$IS_RELEASE" == "true" ]; then
+if [ "$IS_PRODUCTION" == "true" ]; then
     PACKAGE_DOMAIN="download.katalon.com"
 fi
 # general link

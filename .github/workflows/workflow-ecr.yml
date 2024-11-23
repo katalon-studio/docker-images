@@ -9,6 +9,10 @@ on:
       DOCKER_IMAGE_PUBLISHED_TAG:
         description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
         required: false
+      IS_PRODUCTION:
+        description: 'Production'
+        required: false
+        type: boolean
   workflow_call:
     inputs:
       KRE_VERSION:
@@ -19,6 +23,10 @@ on:
         description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
         required: false
         type: string
+      IS_PRODUCTION:
+        description: 'Production'
+        required: false
+        type: boolean
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -31,6 +39,7 @@ jobs:
     env:
       KRE_VERSION: ${{ inputs.KRE_VERSION }}
       DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
+      IS_PRODUCTION: ${{ inputs.IS_PRODUCTION }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -58,4 +67,4 @@ jobs:
         run: |
           chmod u+x ./build/*.sh
           ./build/clean.sh $KRE_VERSION
-          ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG
+          ./build/build-for-ecr.sh $KRE_VERSION $DOCKER_IMAGE_PUBLISHED_TAG $IS_PRODUCTION
