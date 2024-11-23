@@ -11,7 +11,6 @@ on:
       KS_VERSION_LATEST_TAG:
         description: 'Docker image latest tag (e.g: "9-latest")'
         required: false
-        required: true
       IS_PRODUCTION:
         description: 'Production'
         required: false
