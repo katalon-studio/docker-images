@@ -61,7 +61,7 @@ jobs:
     #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_root.sh $KS_VERSION ${{ secrets.API_KEY }}
     #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_chrome_advanced.sh $KS_VERSION ${{ secrets.API_KEY }}
     #     cd $GITHUB_WORKSPACE/test/project && rm -rfv ./bin && ./run_firefox.sh $KS_VERSION ${{ secrets.API_KEY }}
-      continue-on-error: true
+    #   continue-on-error: true
     # - name: Slack Notification
     #   uses: rtCamp/action-slack-notify@master
     #   env:
