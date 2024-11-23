@@ -45,11 +45,6 @@ jobs:
         uses: actions/checkout@master
         with:
           repository: 'katalon-studio/docker-images'
-          ref: CO-3487-build-and-publish-kre-docker-image-together-with-the-gitHub-action
-      - name: Test checkout
-        shell: bash
-        run: |
-          ls -la
       - name: Set up QEMU dependency
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Context for Buildx
