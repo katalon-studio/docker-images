@@ -42,7 +42,7 @@ jobs:
       IS_PRODUCTION: ${{ inputs.IS_PRODUCTION }}
     steps:
       - name: Checkout
-        uses: actions/checkout@CO-3487-build-and-publish-kre-docker-image-together-with-the-gitHub-action
+        uses: actions/checkout@master
       - name: Test checkout
         shell: bash
         run: |
