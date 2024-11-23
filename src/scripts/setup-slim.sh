@@ -8,15 +8,15 @@ TARGETPLATFORM=$1
 # mkdir -p $KATALON_KATALON_ROOT_DIR
 # cd $KATALON_KATALON_ROOT_DIR
 
-# echo "Install Katalon"
-# katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
-# katalon_directory="$version"
-# katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
-# katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
-# if [ "$TARGETPLATFORM" == "linux/arm64" ]; then
-#     katalon_package="Katalon_Studio_Engine_Linux_arm64-$katalon_version.tar.gz"
-#     katalon_unzipped_directory="Katalon_Studio_Engine_Linux_arm64-$katalon_version"
-# fi
+echo "Install Katalon"
+katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
+katalon_directory="$version"
+katalon_package="Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz"
+katalon_unzipped_directory="Katalon_Studio_Engine_Linux_64-$katalon_version"
+if [ "$TARGETPLATFORM" == "linux/arm64" ]; then
+    katalon_package="Katalon_Studio_Engine_Linux_arm64-$katalon_version.tar.gz"
+    katalon_unzipped_directory="Katalon_Studio_Engine_Linux_arm64-$katalon_version"
+fi
 # Switch package domain for downloading
 PACKAGE_DOMAIN="download.staging.katalon.com"
 if [ "$IS_PRODUCTION" == "true" ]; then
@@ -25,7 +25,7 @@ fi
 # # general link
 echo "Result"
 echo $katalon_package https://$PACKAGE_DOMAIN/$KATALON_STUDIO_VERSION/$katalon_package
-# wget -O $katalon_package https://$PACKAGE_DOMAIN/$KATALON_STUDIO_VERSION/$katalon_packagee
+wget -O $katalon_package https://$PACKAGE_DOMAIN/$KATALON_STUDIO_VERSION/$katalon_package
 # # beta link
 # # wget -O $katalon_package https://download.katalon.com/release-beta/$katalon_version/Katalon_Studio_Engine_Linux_64-$katalon_version.tar.gz
 # ls
