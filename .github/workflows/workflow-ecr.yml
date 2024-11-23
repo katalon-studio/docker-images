@@ -45,6 +45,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          repository: 'katalon-studio/docker-images'
       - name: Test checkout
         shell: bash
         run: |
