@@ -52,7 +52,7 @@ jobs:
       run: |
         chmod u+x ./build/*.sh
         ./build/clean.sh $KS_VERSION
-        ./build/build.sh $KS_VERSION $KS_VERSION_TAG $IS_PRODUCTION
+        ./build/build.sh $KS_VERSION $KS_VERSION_TAG $IS_PRODUCTION $KS_VERSION_LATEST_TAG
     - name: Test
       run: | 
         chmod u+x ./test/project/*.sh
