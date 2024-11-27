@@ -1,4 +1,4 @@
-name: Push KRE Docker Image to ECR
+name: KRE Fat Docker Image to AWS ECR
 
 on:
   workflow_dispatch:

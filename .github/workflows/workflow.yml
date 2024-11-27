@@ -1,4 +1,4 @@
-name: Default Docker Image
+name: KRE Fat Docker Image to DockerHub
 on:
   workflow_dispatch:
     inputs:
