@@ -1,4 +1,4 @@
-name: Slim Docker Image
+name: KRE Slim Docker Image to DockerHub
 on:
   workflow_dispatch:
     inputs:
