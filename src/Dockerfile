@@ -32,7 +32,7 @@ ARG IS_PRODUCTION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY ./src/scripts/setup.sh setup.sh
+COPY --chown=appuser:appgroup ./src/scripts/setup.sh setup.sh
 # USER appuser
 RUN pwd
 RUN whoami
