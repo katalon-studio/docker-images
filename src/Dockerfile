@@ -1,4 +1,4 @@
-FROM katalonstudio/ubuntu-20.04:b4f9441
+FROM katalonstudio/ubuntu-20.04:00ab3f1
 
 # common environment variables
 ARG TARGETPLATFORM
