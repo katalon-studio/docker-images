@@ -1,5 +1,5 @@
 # FROM katalonstudio/ubuntu-20.04:00ab3f1 #non-root-with-sudoer + katalon folder
-FROM katalonstudio/ubuntu-20.04:5683fb0
+FROM katalonstudio/ubuntu-20.04:41d88a8
 
 # common environment variables
 ARG TARGETPLATFORM
