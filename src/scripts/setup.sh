@@ -11,7 +11,7 @@ if [ -L $symlink ]; then
 fi
 
 if [ -f /opt/google/chrome/google-chrome ]; then
-    sudo ln -s /opt/google/chrome/google-chrome $symlink
+    ln -s /opt/google/chrome/google-chrome $symlink
 fi
 
 # copy scripts
