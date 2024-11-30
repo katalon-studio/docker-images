@@ -7,11 +7,11 @@ TARGETPLATFORM=$1
 # symlink Google Chrome
 symlink="/usr/bin/google-chrome"
 if [ -L $symlink ]; then
-    unlink $symlink
+    sudo unlink $symlink
 fi
 
 if [ -f /opt/google/chrome/google-chrome ]; then
-    ln -s /opt/google/chrome/google-chrome $symlink
+    sudo ln -s /opt/google/chrome/google-chrome $symlink
 fi
 
 # copy scripts
