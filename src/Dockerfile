@@ -1,4 +1,4 @@
-FROM katalonstudio/ubuntu-20.04:742ef96
+FROM katalonstudio/ubuntu-20.04:41d88a8
 
 # common environment variables
 ARG TARGETPLATFORM
@@ -32,7 +32,7 @@ ARG IS_PRODUCTION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY ./src/scripts/setup.sh setup.sh
+COPY --chown=appuser:appuser ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
 # Main setup
