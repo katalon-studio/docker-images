@@ -1,8 +1,8 @@
-FROM katalonstudio/ubuntu-20.04:742ef96
+FROM katalonstudio/ubuntu-20.04:b4f9441
 
 # common environment variables
 ARG TARGETPLATFORM
-ARG KATALON_ROOT_DIR=/home/appuser
+ARG KATALON_ROOT_DIR=/katalon
 ARG KATALON_BASE_ROOT_DIR=$KATALON_ROOT_DIR/base
 ENV KATALON_VERSION_FILE=$KATALON_ROOT_DIR/version
 ENV KATALON_SOFTWARE_DIR=/opt
