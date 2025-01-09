@@ -76,16 +76,16 @@ package_download_url=https://$PACKAGE_DOMAIN/$KATALON_STUDIO_VERSION/$katalon_pa
 # per the above statement is correct. To keep the build working for both pipelines,
 # the following code is added to check the file existing as extra step
 #
-set +e
-wget --spider -q $package_download_url
-if [ $? -ne 0 ]; then
-    if [ "$IS_PRODUCTION" == "true" ]; then
-        package_download_url=https://download.staging.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
-    else
-        package_download_url=https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
-    fi
-fi
-set -e
+# set +e
+# wget --spider -q $package_download_url
+# if [ $? -ne 0 ]; then
+#     if [ "$IS_PRODUCTION" == "true" ]; then
+#         package_download_url=https://download.staging.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+#     else
+#         package_download_url=https://download.katalon.com/$KATALON_STUDIO_VERSION/$katalon_package
+#     fi
+# fi
+# set -e
 
 # general link
 wget -O $katalon_package $package_download_url
