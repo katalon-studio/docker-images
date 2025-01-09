@@ -8,6 +8,7 @@ echo "Install Mozilla Firefox"
 apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
+ls -la /katalon/version
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 
 if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
