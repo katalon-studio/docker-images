@@ -4,9 +4,8 @@ set -xe
 
 TARGETPLATFORM=$1
 
-# copy scripts
-mkdir -p $KATALON_KATALON_ROOT_DIR
-cd $KATALON_KATALON_ROOT_DIR
+# Using the legacy scripts
+cd $KATALON_ROOT_DIR
 
 echo "Install Mozilla Firefox"
 apt -y install firefox
@@ -45,6 +44,10 @@ fi
 if [ -f /opt/google/chrome/google-chrome ]; then
     ln -s /opt/google/chrome/google-chrome $symlink
 fi
+
+# copy scripts
+mkdir -p $KATALON_KATALON_ROOT_DIR
+cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
 katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
