@@ -47,8 +47,8 @@ fi
 
 echo "check env"
 env
-echo "check env KATALON_KATALON_ROOT_DIR"
-env | grep KATALON_KATALON_ROOT_DIR
+echo "check env KATALON_BASE_ROOT_DIR"
+env | grep KATALON_BASE_ROOT_DIR
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR

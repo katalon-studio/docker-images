@@ -33,6 +33,7 @@ ARG IS_PRODUCTION
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
 RUN whoami
+RUN env
 
 COPY --chown=appuser:appuser ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
