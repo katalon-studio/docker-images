@@ -12,6 +12,7 @@ apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 ls -la /katalon
+echo $KATALON_VERSION_FILE
 touch "${KATALON_VERSION_FILE}"
 echo "$(firefox -version)" >> "${KATALON_VERSION_FILE}"
 # echo "$(firefox -version)" >> /katalon/version
