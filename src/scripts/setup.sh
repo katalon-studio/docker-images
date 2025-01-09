@@ -4,7 +4,9 @@ set -xe
 
 TARGETPLATFORM=$1
 
-# Using the legacy scripts
+# Using the legacy 
+env
+echo $KATALON_BASE_ROOT_DIR
 cd $KATALON_BASE_ROOT_DIR
 
 echo "Install Mozilla Firefox"
