@@ -30,7 +30,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
     dpkg -i $microsoft_edge_package || apt -y -f install
     rm $microsoft_edge_package
-    echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
+    echo "$(microsoft-edge --version)" >> "{$KATALON_VERSION_FILE}" || true
 
     ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
 fi
