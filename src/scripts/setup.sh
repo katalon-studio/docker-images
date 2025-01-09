@@ -46,8 +46,9 @@ if [ -f /opt/google/chrome/google-chrome ]; then
 fi
 
 # copy scripts
-mkdir -p $KATALON_KATALON_ROOT_DIR
-cd $KATALON_KATALON_ROOT_DIR
+# mkdir -p $KATALON_KATALON_ROOT_DIR
+# cd $KATALON_KATALON_ROOT_DIR
+cd /katalon/katalon
 
 echo "Install Katalon"
 katalon_version=$(cut -d '-' -f 1 <<< "$KATALON_STUDIO_VERSION")
