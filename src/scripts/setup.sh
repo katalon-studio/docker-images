@@ -5,7 +5,7 @@ set -xe
 TARGETPLATFORM=$1
 
 # Using the legacy scripts
-cd $KATALON_ROOT_DIR
+cd $KATALON_BASE_ROOT_DIR
 
 echo "Install Mozilla Firefox"
 apt -y install firefox
