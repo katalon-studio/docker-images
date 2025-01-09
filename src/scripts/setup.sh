@@ -45,10 +45,6 @@ if [ -f /opt/google/chrome/google-chrome ]; then
     ln -s /opt/google/chrome/google-chrome $symlink
 fi
 
-echo "check env"
-env
-echo "check env KATALON_KATALON_ROOT_DIR"
-env | grep KATALON_KATALON_ROOT_DIR
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
