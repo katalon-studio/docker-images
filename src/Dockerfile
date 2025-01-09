@@ -41,6 +41,8 @@ RUN sudo $KATALON_KATALON_SCRIPT_DIR/setup.sh $TARGETPLATFORM
 # Set locale
 ENV LANG C.UTF-8
 
+RUN env
+
 COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
 COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
