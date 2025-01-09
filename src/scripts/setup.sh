@@ -48,6 +48,7 @@ fi
 # copy scripts
 # mkdir -p $KATALON_KATALON_ROOT_DIR
 # cd $KATALON_KATALON_ROOT_DIR
+mkdir -p /katalon/katalon
 cd /katalon/katalon
 
 echo "Install Katalon"
