@@ -19,11 +19,12 @@ cd $KATALON_BASE_ROOT_DIR
 # whoami
 # echo $version
 # env
-
+sudo su -
+env
 echo "Install Mozilla Firefox"
-sudo apt -y install firefox
+apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
-sudo apt -y install pulseaudio
+apt -y install pulseaudio
 ls -la /katalon
 echo $KATALON_VERSION_FILE
 touch "${KATALON_VERSION_FILE}"
