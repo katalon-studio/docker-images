@@ -60,6 +60,6 @@ CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
 WORKDIR /
 
-COPY ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --chown=appuser:appuser ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod a+x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
