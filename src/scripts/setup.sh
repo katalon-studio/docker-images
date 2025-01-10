@@ -9,6 +9,12 @@ TARGETPLATFORM=$1
 # echo $KATALON_BASE_ROOT_DIR
 # cd $KATALON_BASE_ROOT_DIR
 
+whoami
+env
+sudo su -
+whoami
+env
+
 # echo "Install Mozilla Firefox"
 # apt -y install firefox
 # # Install 'pulseaudio' package to support WebRTC audio streams
