@@ -4,69 +4,65 @@ set -xe
 
 TARGETPLATFORM=$1
 
-# # Using the legacy 
+# Using the legacy script
+cd $KATALON_BASE_ROOT_DIR
+
+# whoami
+# echo $version
 # env
-# echo $KATALON_BASE_ROOT_DIR
-# cd $KATALON_BASE_ROOT_DIR
+# sudo su -
+# whoami
+# echo $version
+# env
+# whoami
+# sudo su - appuser
+# whoami
+# echo $version
+# env
 
-whoami
-echo $version
-env
-sudo su -
-whoami
-echo $version
-env
-whoami
-sudo su - appuser
-whoami
-echo $version
-env
+echo "Install Mozilla Firefox"
+apt -y install firefox
+# Install 'pulseaudio' package to support WebRTC audio streams
+apt -y install pulseaudio
+ls -la /katalon
+echo $KATALON_VERSION_FILE
+touch "${KATALON_VERSION_FILE}"
+echo "$(firefox -version)" >> $KATALON_VERSION_FILE
+# echo "$(firefox -version)" >> /katalon/version
 
-# echo "Install Mozilla Firefox"
-# apt -y install firefox
-# # Install 'pulseaudio' package to support WebRTC audio streams
-# apt -y install pulseaudio
-# ls -la /katalon
-# echo $KATALON_VERSION_FILE
-# touch "${KATALON_VERSION_FILE}"
-# echo "$(firefox -version)" >> "${KATALON_VERSION_FILE}"
-# # echo "$(firefox -version)" >> /katalon/version
+if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
+    echo "Install Google Chrome"
+    chrome_package='google-chrome-stable_current_amd64.deb'
+    wget -O $chrome_package https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dpkg -i $chrome_package || apt -y -f install
+    rm $chrome_package
+    echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
-# if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
-#     echo "Install Google Chrome"
-#     chrome_package='google-chrome-stable_current_amd64.deb'
-#     wget -O $chrome_package https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-#     dpkg -i $chrome_package || apt -y -f install
-#     rm $chrome_package
-#     echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
+    ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
 
-#     ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
+    echo "Install Edge Chromium"
+    microsoft_edge_package='MicrosoftEdgeSetup.exe'
+    wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
+    dpkg -i $microsoft_edge_package || apt -y -f install
+    rm $microsoft_edge_package
+    echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 
-#     echo "Install Edge Chromium"
-#     microsoft_edge_package='MicrosoftEdgeSetup.exe'
-#     wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
-#     dpkg -i $microsoft_edge_package || apt -y -f install
-#     rm $microsoft_edge_package
-#     echo "$(microsoft-edge --version)" >> "{$KATALON_VERSION_FILE}" || true
+    ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
+fi
 
-#     ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
-# fi
+# symlink Google Chrome
+symlink="/usr/bin/google-chrome"
+if [ -L $symlink ]; then
+    unlink $symlink
+fi
 
-# # symlink Google Chrome
-# symlink="/usr/bin/google-chrome"
-# if [ -L $symlink ]; then
-#     unlink $symlink
-# fi
-
-# if [ -f /opt/google/chrome/google-chrome ]; then
-#     ln -s /opt/google/chrome/google-chrome $symlink
-# fi
+if [ -f /opt/google/chrome/google-chrome ]; then
+    ln -s /opt/google/chrome/google-chrome $symlink
+fi
 
 # copy scripts
-# mkdir -p $KATALON_KATALON_ROOT_DIR
-# cd $KATALON_KATALON_ROOT_DIR
-mkdir -p /katalon/katalon
-cd /katalon/katalon
+mkdir -p $KATALON_KATALON_ROOT_DIR
+cd $KATALON_KATALON_ROOT_DIR
 
 echo "Install Katalon"
 katalon_version=$(cut -d '-' -f 1 <<< $KATALON_STUDIO_VERSION)
