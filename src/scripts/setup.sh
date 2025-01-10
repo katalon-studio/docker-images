@@ -14,6 +14,9 @@ env
 sudo su -
 whoami
 env
+whoami
+sudo su - appuser
+env
 
 # echo "Install Mozilla Firefox"
 # apt -y install firefox
