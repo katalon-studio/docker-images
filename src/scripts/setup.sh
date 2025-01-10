@@ -46,7 +46,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "Install Edge Chromium"
     microsoft_edge_package='MicrosoftEdgeSetup.exe'
     wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
-    sudo dpkg -i $microsoft_edge_package || apt -y -f install
+    sudo dpkg -i $microsoft_edge_package || sudo apt -y -f install
     rm $microsoft_edge_package
     echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 
@@ -56,11 +56,11 @@ fi
 # symlink Google Chrome
 symlink="/usr/bin/google-chrome"
 if [ -L $symlink ]; then
-    unlink $symlink
+    sudo unlink $symlink
 fi
 
 if [ -f /opt/google/chrome/google-chrome ]; then
-    ln -s /opt/google/chrome/google-chrome $symlink
+    sudo ln -s /opt/google/chrome/google-chrome $symlink
 fi
 
 # copy scripts
@@ -120,6 +120,6 @@ chmod -R 777 $KATALON_ROOT_DIR
 chmod -R 777 $KATALON_KATALON_INSTALL_DIR
 
 # clean up
-apt clean all
+sudo apt clean all
 rm -rf /var/lib/apt/lists/*
 cat $KATALON_VERSION_FILE
