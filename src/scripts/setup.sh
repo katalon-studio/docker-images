@@ -7,31 +7,11 @@ TARGETPLATFORM=$1
 # Using the legacy script
 cd $KATALON_BASE_ROOT_DIR
 
-# whoami
-# echo $version
-# env
-# sudo su -
-# whoami
-# echo $version
-# env
-# whoami
-# sudo su - appuser
-# whoami
-# echo $version
-# env
-env
-sudo su -
-whoami
-env
 echo "Install Mozilla Firefox"
 sudo apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 sudo apt -y install pulseaudio
-ls -la /katalon
-echo $KATALON_VERSION_FILE
-# touch "${KATALON_VERSION_FILE}"
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
-# echo "$(firefox -version)" >> /katalon/version
 
 if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "Install Google Chrome"
