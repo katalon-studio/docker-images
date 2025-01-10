@@ -10,12 +10,15 @@ TARGETPLATFORM=$1
 # cd $KATALON_BASE_ROOT_DIR
 
 whoami
+echo $version
 env
 sudo su -
 whoami
+echo $version
 env
 whoami
 sudo su - appuser
+echo $version
 env
 
 # echo "Install Mozilla Firefox"
