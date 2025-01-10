@@ -18,6 +18,7 @@ echo $version
 env
 whoami
 sudo su - appuser
+whoami
 echo $version
 env
 
