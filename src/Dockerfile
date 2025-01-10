@@ -52,7 +52,7 @@ COPY --chown=appuser:appuser ./src/scripts/katalonc.sh katalonc.sh
 RUN chmod a+x katalonc.sh
 
 RUN cat /etc/environment
-RUN sudo echo "PATH=\"$PATH\"" > /etc/environment
+RUN echo "PATH=\"$PATH\"" > /etc/environment
 
 CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
