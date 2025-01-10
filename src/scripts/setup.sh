@@ -121,5 +121,5 @@ chmod -R 777 $KATALON_KATALON_INSTALL_DIR
 
 # clean up
 sudo apt clean all
-rm -rf /var/lib/apt/lists/*
+sudo rm -rf /var/lib/apt/lists/*
 cat $KATALON_VERSION_FILE
