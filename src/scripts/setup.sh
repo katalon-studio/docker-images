@@ -21,6 +21,7 @@ cd $KATALON_BASE_ROOT_DIR
 # env
 env
 sudo su -
+whoami
 env
 echo "Install Mozilla Firefox"
 apt -y install firefox
