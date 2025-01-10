@@ -24,9 +24,9 @@ sudo su -
 whoami
 env
 echo "Install Mozilla Firefox"
-apt -y install firefox
+sudo apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
-apt -y install pulseaudio
+sudo apt -y install pulseaudio
 ls -la /katalon
 echo $KATALON_VERSION_FILE
 touch "${KATALON_VERSION_FILE}"
