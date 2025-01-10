@@ -37,7 +37,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "Install Google Chrome"
     chrome_package='google-chrome-stable_current_amd64.deb'
     wget -O $chrome_package https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i $chrome_package || apt -y -f install
+    sudo dpkg -i $chrome_package || sudo apt -y -f install
     rm $chrome_package
     echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
