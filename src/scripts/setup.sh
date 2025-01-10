@@ -29,7 +29,7 @@ sudo apt -y install firefox
 sudo apt -y install pulseaudio
 ls -la /katalon
 echo $KATALON_VERSION_FILE
-touch "${KATALON_VERSION_FILE}"
+# touch "${KATALON_VERSION_FILE}"
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
 # echo "$(firefox -version)" >> /katalon/version
 
@@ -37,7 +37,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "Install Google Chrome"
     chrome_package='google-chrome-stable_current_amd64.deb'
     wget -O $chrome_package https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    dpkg -i $chrome_package || apt -y -f install
+    sudo dpkg -i $chrome_package || apt -y -f install
     rm $chrome_package
     echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
 
@@ -46,7 +46,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "Install Edge Chromium"
     microsoft_edge_package='MicrosoftEdgeSetup.exe'
     wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
-    dpkg -i $microsoft_edge_package || apt -y -f install
+    sudo dpkg -i $microsoft_edge_package || apt -y -f install
     rm $microsoft_edge_package
     echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 
