@@ -19,6 +19,7 @@ cd $KATALON_BASE_ROOT_DIR
 # whoami
 # echo $version
 # env
+env
 sudo su -
 env
 echo "Install Mozilla Firefox"
