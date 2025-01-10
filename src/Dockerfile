@@ -32,9 +32,6 @@ ARG IS_PRODUCTION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-RUN whoami
-RUN env
-
 COPY --chown=appuser:appuser ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
@@ -51,10 +48,8 @@ RUN chmod a+x katalon-notify.sh
 COPY --chown=appuser:appuser ./src/scripts/katalonc.sh katalonc.sh
 RUN chmod a+x katalonc.sh
 
-RUN cat /etc/environment
 USER root
-RUN sudo echo "PATH=\"$PATH\"" > /etc/environment
-RUN cat /etc/environment
+RUN echo "PATH=\"$PATH\"" > /etc/environment
 USER appuser
 CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
