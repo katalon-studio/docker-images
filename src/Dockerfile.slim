@@ -32,7 +32,7 @@ ARG IS_PRODUCTION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY ./src/scripts/setup-slim.sh setup-slim.sh
+COPY --chown=appuser:appuser ./src/scripts/setup-slim.sh setup-slim.sh
 RUN chmod a+x setup-slim.sh
 
 # Main setup-harden
@@ -41,17 +41,18 @@ RUN $KATALON_KATALON_SCRIPT_DIR/setup-slim.sh $TARGETPLATFORM
 # Set locale
 ENV LANG C.UTF-8
 
-COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
+COPY --chown=appuser:appuser ./src/scripts/katalon-notify.sh katalon-notify.sh
 RUN chmod a+x katalon-notify.sh
-COPY ./src/scripts/katalonc.sh katalonc.sh
+COPY --chown=appuser:appuser ./src/scripts/katalonc.sh katalonc.sh
 RUN chmod a+x katalonc.sh
 
+USER root
 RUN echo "PATH=\"$PATH\"" > /etc/environment
-
+USER appuser
 CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
 WORKDIR /
 
-COPY ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --chown=appuser:appuser ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod a+x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
