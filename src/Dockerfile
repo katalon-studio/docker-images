@@ -50,7 +50,6 @@ RUN chmod a+x katalonc.sh
 
 USER root
 RUN echo "PATH=\"$PATH\"" > /etc/environment
-USER appuser
 CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
 WORKDIR /
