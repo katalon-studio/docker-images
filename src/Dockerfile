@@ -1,4 +1,4 @@
-FROM katalonstudio/ubuntu-20.04:2e53833
+FROM katalonstudio/ubuntu-20.04:b1f45a6
 
 # common environment variables
 ARG TARGETPLATFORM
@@ -32,7 +32,7 @@ ARG IS_PRODUCTION
 # RUN mkdir -p $KATALON_KATALON_SCRIPT_DIR 
 WORKDIR $KATALON_KATALON_SCRIPT_DIR
 
-COPY --chown=appuser:appuser ./src/scripts/setup.sh setup.sh
+COPY ./src/scripts/setup.sh setup.sh
 RUN chmod a+x setup.sh
 
 # Main setup
@@ -41,20 +41,19 @@ RUN $KATALON_KATALON_SCRIPT_DIR/setup.sh $TARGETPLATFORM
 # Set locale
 ENV LANG C.UTF-8
 
-COPY --chown=appuser:appuser ./src/scripts/katalon-execute.sh katalon-execute.sh
+COPY ./src/scripts/katalon-execute.sh katalon-execute.sh
 RUN chmod a+x katalon-execute.sh
-COPY --chown=appuser:appuser ./src/scripts/katalon-notify.sh katalon-notify.sh
+COPY ./src/scripts/katalon-notify.sh katalon-notify.sh
 RUN chmod a+x katalon-notify.sh
-COPY --chown=appuser:appuser ./src/scripts/katalonc.sh katalonc.sh
+COPY ./src/scripts/katalonc.sh katalonc.sh
 RUN chmod a+x katalonc.sh
 
-USER root
 RUN echo "PATH=\"$PATH\"" > /etc/environment
-USER appuser
+
 CMD $KATALON_KATALON_SCRIPT_DIR/katalon-notify.sh
 
 WORKDIR /
 
-COPY --chown=appuser:appuser ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./src/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod a+x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
