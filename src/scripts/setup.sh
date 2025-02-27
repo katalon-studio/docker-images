@@ -28,16 +28,16 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
 
     ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
+fi
 
-    # symlink Google Chrome
-    symlink="/usr/bin/google-chrome"
-    if [ -L $symlink ]; then
-        unlink $symlink
-    fi
+# symlink Google Chrome
+symlink="/usr/bin/google-chrome"
+if [ -L $symlink ]; then
+    unlink $symlink
+fi
 
-    if [ -f /opt/google/chrome/google-chrome ]; then
-        ln -s /opt/google/chrome/google-chrome $symlink
-    fi
+if [ -f /opt/google/chrome/google-chrome ]; then
+    ln -s /opt/google/chrome/google-chrome $symlink
 fi
 
 # copy scripts
