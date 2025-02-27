@@ -4,6 +4,32 @@ set -xe
 
 TARGETPLATFORM=$1
 
+echo "Install Mozilla Firefox"
+apt -y install firefox
+# Install 'pulseaudio' package to support WebRTC audio streams
+apt -y install pulseaudio
+echo "$(firefox -version)" >> $KATALON_VERSION_FILE
+
+if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
+    echo "Install Google Chrome"
+    chrome_package='google-chrome-stable_current_amd64.deb'
+    wget -O $chrome_package https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dpkg -i $chrome_package || apt -y -f install
+    rm $chrome_package
+    echo "$(google-chrome --version)" >> $KATALON_VERSION_FILE || true
+
+    ./wrap_chrome_binary.sh && rm -rfv ./wrap_chrome_binary.sh
+
+    echo "Install Edge Chromium"
+    microsoft_edge_package='MicrosoftEdgeSetup.exe'
+    wget -O $microsoft_edge_package https://go.microsoft.com/fwlink?linkid=2149051
+    dpkg -i $microsoft_edge_package || apt -y -f install
+    rm $microsoft_edge_package
+    echo "$(microsoft-edge --version)" >> $KATALON_VERSION_FILE || true
+
+    ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
+fi
+
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
 cd $KATALON_KATALON_ROOT_DIR
