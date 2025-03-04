@@ -32,7 +32,7 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
     ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
 fi
 
-popd
+cd $KATALON_KATALON_SCRIPT_DIR
 
 # copy scripts
 mkdir -p $KATALON_KATALON_ROOT_DIR
