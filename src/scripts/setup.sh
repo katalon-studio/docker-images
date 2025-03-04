@@ -4,6 +4,8 @@ set -xe
 
 TARGETPLATFORM=$1
 
+cd $KATALON_BASE_ROOT_DIR
+
 echo "Install Mozilla Firefox"
 apt -y install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
@@ -29,6 +31,8 @@ if [ "$TARGETPLATFORM" == "linux/amd64" ]; then
 
     ./wrap_edge_chromium_binary.sh && rm -rfv ./wrap_edge_chromium_binary.sh
 fi
+
+popd
 
 # symlink Google Chrome
 symlink="/usr/bin/google-chrome"
