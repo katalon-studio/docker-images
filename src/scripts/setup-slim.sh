@@ -7,7 +7,7 @@ TARGETPLATFORM=$1
 cd $KATALON_BASE_ROOT_DIR
 
 echo "Install Mozilla Firefox"
-apt -y install firefox
+snap install firefox
 # Install 'pulseaudio' package to support WebRTC audio streams
 apt -y install pulseaudio
 echo "$(firefox -version)" >> $KATALON_VERSION_FILE
