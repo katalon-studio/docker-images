@@ -1,6 +1,9 @@
 name: KRE ECR scan
 
 on:
+  push:
+    branches:
+        - security-refactor
   workflow_dispatch:
     inputs:
       KRE_VERSION:
