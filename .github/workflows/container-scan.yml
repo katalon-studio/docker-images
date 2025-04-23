@@ -49,6 +49,7 @@ jobs:
           DD_TEST_TYPE_NAME: Trivy Scan
           DD_FILE_NAME: trivy_ecr.json
           DD_SERVICE: dd-import
-          DD_VERSION: $DOCKER_IMAGE_PUBLISHED_TAG
+          DD_VERSION: ${{ DOCKER_IMAGE_PUBLISHED_TAG }}
+          DD_GROUP_BY: file_path
         run: |
               dd-reimport-findings
