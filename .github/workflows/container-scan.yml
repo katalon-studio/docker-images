@@ -1,35 +1,12 @@
 name: KRE ECR scan
 
 on:
-  push:
-    branches:
-        - security-refactor
-  workflow_dispatch:
-    inputs:
-      KRE_VERSION:
-        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
-        required: true
-      DOCKER_IMAGE_PUBLISHED_TAG:
-        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
-        required: false
-      IS_PRODUCTION:
-        description: 'Production'
-        required: false
-        type: boolean
-  workflow_call:
-    inputs:
-      KRE_VERSION:
-        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
-        required: true
-        type: string
-      DOCKER_IMAGE_PUBLISHED_TAG:
-        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
-        required: false
-        type: string
-      IS_PRODUCTION:
-        description: 'Production'
-        required: false
-        type: boolean
+    workflow_dispatch:
+        inputs:
+            KRE_VERSION:
+                description: 'Select the KRE version'
+                required: true
+                type: string
 
 permissions:
   id-token: write # This is required for requesting the JWT
