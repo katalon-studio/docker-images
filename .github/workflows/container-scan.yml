@@ -1,0 +1,78 @@
+name: KRE Fat Docker Image to AWS ECR
+
+on:
+  workflow_dispatch:
+    inputs:
+      KRE_VERSION:
+        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
+        required: true
+      DOCKER_IMAGE_PUBLISHED_TAG:
+        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
+        required: false
+      IS_PRODUCTION:
+        description: 'Production'
+        required: false
+        type: boolean
+  workflow_call:
+    inputs:
+      KRE_VERSION:
+        description: 'KRE version (e.g: "10.0.0-dev"). Please reference the Release at https://katalon.atlassian.net/wiki/spaces/KSR/pages/3005284354/Building+and+Delivery+Pipeline'
+        required: true
+        type: string
+      DOCKER_IMAGE_PUBLISHED_TAG:
+        description: 'Docker image tag (e.g: "10.0.0-latest"). Optional, KRE version is the default value.'
+        required: false
+        type: string
+      IS_PRODUCTION:
+        description: 'Production'
+        required: false
+        type: boolean
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    env:
+      KRE_VERSION: ${{ inputs.KRE_VERSION }}
+      DOCKER_IMAGE_PUBLISHED_TAG: ${{ inputs.DOCKER_IMAGE_PUBLISHED_TAG || inputs.KRE_VERSION }}
+      IS_PRODUCTION: ${{ inputs.IS_PRODUCTION }}
+      DD_URL: ${{ secrets.DD_URL }}
+      DD_API_KEY: ${{ secrets.DD_TOKEN }}
+      DD_PRODUCT_TYPE_NAME: Katalon Studio
+      DD_PRODUCT_NAME: Katalon Studio Enterprise
+      DD_SSL_VERIFY: 0
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+          role-session-name: github-actions
+          aws-region: us-east-1
+          mask-aws-account-id: "no"
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: scan ecr
+        run: |
+          set -e
+          sudo apt-get install wget gnupg
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy
+          pip3 install dd-import
+          trivy image --format json -o trivy_ecr.json 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$DOCKER_IMAGE_PUBLISHED_TAG
+
+      - name: Upload 10-latest to DefectDojo
+        env:
+          DD_ENGAGEMENT_NAME: Container Scan
+          DD_TEST_NAME: Trivy
+          DD_TEST_TYPE_NAME: Trivy Scan
+          DD_FILE_NAME: trivy_ecr.json
+          DD_SERVICE: dd-import
+          DD_VERSION: $DOCKER_IMAGE_PUBLISHED_TAG
+        run: |
+              dd-reimport-findings
