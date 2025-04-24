@@ -92,7 +92,7 @@ tar -xvzf $katalon_package -C $KATALON_KATALON_INSTALL_DIR_PARENT
 ls
 
 # Remove webdrivermanager.jar
-rm $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory/configuration/resources/tools/webdriver/webdrivermanager-5.9.2.1-fat.jar
+rm $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory/configuration/resources/tools/webdriver/webdrivermanager-*.jar
 
 rm $katalon_package
 mv $KATALON_KATALON_INSTALL_DIR_PARENT/$katalon_unzipped_directory $KATALON_KATALON_INSTALL_DIR
