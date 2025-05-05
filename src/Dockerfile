@@ -1,5 +1,8 @@
 FROM katalonstudio/ubuntu:24.04-cbce6ea
 
+RUN useradd katalon
+USER katalon
+
 # common environment variables
 ARG TARGETPLATFORM
 ARG KATALON_ROOT_DIR=/katalon
