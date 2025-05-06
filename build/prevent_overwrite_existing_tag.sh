@@ -10,7 +10,7 @@ function docker_tag_exists() {
 }
 
 if docker_tag_exists; then
-    exit 1
+    exit 0
 else
     exit 0
 fi
