@@ -1,0 +1,56 @@
+name: "[ECR] Promote Docker Images to Latest Tag"
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: 'Original tag (e.g: "10.3.0")'
+        required: true
+        type: string
+      
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup env
+        run: echo "MAJOR_VERSION=$(echo "${{ inputs.VERSION }}" | cut -d. -f1)" >> $GITHUB_ENV
+
+      - name: print env
+        run: printenv | sort
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
+          role-session-name: github-actions
+          aws-region: us-east-1
+          mask-aws-account-id: "no"
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Pull the original images
+        run: |
+          docker pull 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }}
+          docker pull 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }}-slim
+
+      - name: Tag the original images to latest
+        run: |
+          docker tag 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }} 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$MAJOR_VERSION-latest
+          docker tag 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }} 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:latest
+
+          docker tag 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }}-slim 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$MAJOR_VERSION-latest-slim
+          docker tag 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:${{ inputs.VERSION }}-slim 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:latest-slim
+
+      - name: Push the latest images
+        run: |
+          docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$MAJOR_VERSION-latest
+          docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:latest
+
+          docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:$MAJOR_VERSION-latest-slim
+          docker push 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio:latest-slim
