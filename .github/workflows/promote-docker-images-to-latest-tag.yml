@@ -24,7 +24,6 @@ on:
       
 permissions:
   id-token: write # This is required for requesting the JWT
-  contents: read # This is required for actions/checkout
 
 env:
   ECR_IMAGE: 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio
