@@ -21,7 +21,7 @@ jobs:
         run: echo "MAJOR_VERSION=$(echo "${{ inputs.VERSION }}" | cut -d. -f1)" >> $GITHUB_ENV
 
       - name: print env
-        run: printenv | sort
+        run: printenv | grep MAJOR_VERSION # only print MAJOR_VERSION to prevent exposing sensitive credentials
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
