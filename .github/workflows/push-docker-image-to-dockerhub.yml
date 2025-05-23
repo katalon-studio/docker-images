@@ -1,10 +1,10 @@
-name: "Promote Docker Images to Latest Tag"
+name: "Push Docker Image to Docker Hub"
 
 on:
   workflow_dispatch:
     inputs:
-      REGISTRY:
-        description: 'Target registry'
+      SOURCE_REGISTRY:
+        description: 'Source registry'
         required: true
         type: choice
         options:
@@ -28,6 +28,7 @@ permissions:
 env:
   ECR_IMAGE: 002582244933.dkr.ecr.us-east-1.amazonaws.com/katalon-studio
   DOCKERHUB_IMAGE: katalonstudio/katalon
+  TARGET_IMAGE: katalonstudio/katalon # always push image to DockerHub
 
 jobs:
   run:
@@ -36,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS credentials
-        if: ${{ inputs.REGISTRY == 'ecr' }}
+        if: ${{ inputs.SOURCE_REGISTRY == 'ecr' }}
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::002582244933:role/katalon-github-oidc-federation
@@ -45,30 +46,29 @@ jobs:
           mask-aws-account-id: "no"
 
       - name: Login to Amazon ECR
-        if: ${{ inputs.REGISTRY == 'ecr' }}
+        if: ${{ inputs.SOURCE_REGISTRY == 'ecr' }}
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Login to DockerHub
-        if: ${{ inputs.REGISTRY == 'dockerhub' }}
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Set image variable
+      - name: Set source image variable
         id: set_image
         run: |
-          if [[ "${{ inputs.REGISTRY }}" == "ecr" ]]; then
-            echo "IMAGE=${{ env.ECR_IMAGE }}" >> $GITHUB_OUTPUT
+          if [[ "${{ inputs.SOURCE_REGISTRY }}" == "ecr" ]]; then
+            echo "SOURCE_IMAGE=${{ env.ECR_IMAGE }}" >> $GITHUB_OUTPUT
           else
-            echo "IMAGE=${{ env.DOCKERHUB_IMAGE }}" >> $GITHUB_OUTPUT
+            echo "SOURCE_IMAGE=${{ env.DOCKERHUB_IMAGE }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Pull the original images
-        run: docker pull ${{ steps.set_image.outputs.IMAGE }}:${{ inputs.ORIGINAL_TAG }}
+      - name: Pull the original image
+        run: docker pull ${{ steps.set_image.outputs.SOURCE_IMAGE }}:${{ inputs.ORIGINAL_TAG }}
 
-      - name: Tag the original images to latest
-        run: docker tag ${{ steps.set_image.outputs.IMAGE }}:${{ inputs.ORIGINAL_TAG }} ${{ steps.set_image.outputs.IMAGE }}:${{ inputs.TARGET_TAG }}
+      - name: Tag the original image to docker image target tag
+        run: docker tag ${{ steps.set_image.outputs.SOURCE_IMAGE }}:${{ inputs.ORIGINAL_TAG }} ${{ env.TARGET_IMAGE }}:${{ inputs.TARGET_TAG }}
 
-      - name: Push the latest images
-        run: docker push ${{ steps.set_image.outputs.IMAGE }}:${{ inputs.TARGET_TAG }}
+      - name: Push the image with target tag to DockerHub
+        run: docker push ${{ env.TARGET_IMAGE }}:${{ inputs.TARGET_TAG }}
