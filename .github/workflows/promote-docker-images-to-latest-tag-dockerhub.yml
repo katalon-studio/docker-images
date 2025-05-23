@@ -12,6 +12,9 @@ permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
 
+env:
+  DOCKER_IMAGE: katalonstudio/katalon
+
 jobs:
   run:
     name: Run
@@ -31,21 +34,21 @@ jobs:
 
       - name: Pull the original images
         run: |
-          docker pull katalonstudio/katalon:${{ inputs.VERSION }}
-          docker pull katalonstudio/katalon:${{ inputs.VERSION }}-slim
+          docker pull ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }}
+          docker pull ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }}-slim
 
       - name: Tag the original images to latest
         run: |
-          docker tag katalonstudio/katalon:${{ inputs.VERSION }} katalonstudio/katalon:$MAJOR_VERSION-latest
-          docker tag katalonstudio/katalon:${{ inputs.VERSION }} katalonstudio/katalon:latest
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }} ${{ env.DOCKER_IMAGE }}:${MAJOR_VERSION}-latest
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }} ${{ env.DOCKER_IMAGE }}:latest
 
-          docker tag katalonstudio/katalon:${{ inputs.VERSION }}-slim katalonstudio/katalon:$MAJOR_VERSION-latest-slim
-          docker tag katalonstudio/katalon:${{ inputs.VERSION }}-slim katalonstudio/katalon:latest-slim
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }}-slim ${{ env.DOCKER_IMAGE }}:${MAJOR_VERSION}-latest-slim
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.VERSION }}-slim ${{ env.DOCKER_IMAGE }}:latest-slim
 
       - name: Push the latest images
         run: |
-          docker push katalonstudio/katalon:$MAJOR_VERSION-latest
-          docker push katalonstudio/katalon:latest
+          docker push ${{ env.DOCKER_IMAGE }}:${MAJOR_VERSION}-latest
+          docker push ${{ env.DOCKER_IMAGE }}:latest
 
-          docker push katalonstudio/katalon:$MAJOR_VERSION-latest-slim
-          docker push katalonstudio/katalon:latest-slim
+          docker push ${{ env.DOCKER_IMAGE }}:${MAJOR_VERSION}-latest-slim
+          docker push ${{ env.DOCKER_IMAGE }}:latest-slim
